@@ -2,6 +2,7 @@ package me.Treidex.Game;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
 
 import me.Treidex.Game.GameObject.GameObject;
 
@@ -42,6 +43,18 @@ public class GameManager {
 	public void lateUpdate() {
 		for (GameObject gameObject : gameObjects) {
 			gameObject.lateUpdate();
+		}
+	}
+	
+	public void keyPressed(KeyEvent e) {
+		for (GameObject gameObject : gameObjects) {
+			gameObject.keyPressed(e);
+		}
+	}
+	
+	public void keyReleased(KeyEvent e) {
+		for (GameObject gameObject : gameObjects) {
+			gameObject.keyReleased(e);
 		}
 	}
 

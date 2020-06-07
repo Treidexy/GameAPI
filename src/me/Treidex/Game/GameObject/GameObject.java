@@ -1,6 +1,7 @@
 package me.Treidex.Game.GameObject;
 
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
 
 import me.Treidex.Game.GameObject.Components.Component;
 import me.Treidex.Game.GameObject.Components.Transform;
@@ -62,6 +63,18 @@ public class GameObject {
 	public void lateUpdate() {
 		for (Component component : components) {
 			component.lateUpdate();
+		}
+	}
+	
+	public void keyPressed(KeyEvent e) {
+		for (Component component : components) {
+			component.keyPressed(e);
+		}
+	}
+	
+	public void keyReleased(KeyEvent e) {
+		for (Component component : components) {
+			component.keyReleased(e);
 		}
 	}
 }

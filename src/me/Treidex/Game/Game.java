@@ -66,18 +66,15 @@ public class Game extends JPanel {
 	}
 	
 	private class KeyInput implements KeyListener {
-
-		@Override
 		public void keyPressed(KeyEvent e) {
+			gameManager.keyPressed(e);
 		}
 
-		@Override
 		public void keyReleased(KeyEvent e) {
+			gameManager.keyReleased(e);
 		}
 
-		@Override
-		public void keyTyped(KeyEvent e) {
-		}
+		public void keyTyped(KeyEvent e) {}
 		
 	}
 }

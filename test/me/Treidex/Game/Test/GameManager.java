@@ -2,126 +2,95 @@ package me.Treidex.Game.Test;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.Toolkit;
+import java.io.FileReader;
 
 import me.Treidex.Game.GameObject.GameObject;
-import me.Treidex.Game.GameObject.Components.*;
-import me.Treidex.Game.GameObject.Components.Colliders.*;
+import me.Treidex.Game.GameObject.Components.Physics;
+import me.Treidex.Game.GameObject.Components.Player;
+import me.Treidex.Game.GameObject.Components.Sprite;
+import me.Treidex.Game.GameObject.Components.Transform;
+import me.Treidex.Game.GameObject.Components.Colliders.ColliderType;
+import me.Treidex.Game.GameObject.Components.Colliders.RectangleCollider;
 import me.Treidex.Game.maths.Vector2;
 
+import org.json.simple.JSONArray; 
+import org.json.simple.JSONObject; 
+import org.json.simple.parser.*; 
+
 public class GameManager extends me.Treidex.Game.GameManager {
-	RectangleCollider rectColl;
-	Image background = (Toolkit.getDefaultToolkit().getImage(getClass().getResource("/gui/KIU.png")));
-	Image backgroundResized;
 	public GameManager() {
-//		rectColl = new RectangleCollider(
-//				false,
-//				2
-//			) {
-//				public void onCollisionEnter(float[] collisionMap) {System.out.println(collisionMap);}
-//				public void onCollisionExit() {System.out.println("Exited");}
-//			};
-			
-		
 		gameObjects = new GameObject[] {
-				new GameObject(
-					new Transform(
-						new Vector2(0, 0),
-						new Vector2(100, 100),
-						0f
-					),
-//					new Sprite(
-//						"/sprites/Ball.png"
-//					),
-					new RectangleCollider(
-						false,
-						54
-					),
-					new Physics(
-						ColliderType.Rectangle,
-						new Vector2(0.1f, 1f),
-						0.14f,
-						0.69f
-					)
+			new GameObject(
+				new Transform(
+					new Vector2(0, 0),
+					new Vector2(50, 100),
+					0f
 				),
-				new GameObject(
-					new Transform(
-						new Vector2(150, 600),
-						new Vector2(900, 500),
-						0f
-					),
-//					new Sprite(
-//						"/sprites/Ball.png"
-//					),
-					new RectangleCollider(
-						false,
-						6
-					)
+				new Sprite(
+					"/sprites/Ball.png"
 				),
-				new GameObject(
-					new Transform(
-						new Vector2(155, 0),
-						new Vector2(100, 100),
-						0f
-					),
-//					new Sprite(
-//						"/sprites/Ball.png"
-//					),
-					new EllipseCollider(
-						false,
-						2
-					),
-					new Physics(
-						ColliderType.Ellipse,
-						new Vector2(0, 1),
-						0.14f,
-						0.69f
-					)
+				new RectangleCollider(
+					false,
+					2
+				),
+				new Physics(
+					ColliderType.Rectangle,
+					new Vector2(0, 9.8f),
+					0.88f,
+					0.98f
+				),
+				new Player(
+					0.88f,
+					8.8f,
+					false
 				)
-//				new Tester(
-//					new Transform(
-//						new Vector2(0, 100),
-//						new Vector2(100, 50),
-//						0f
-//					),
-//					new RectangleCollider(
-//						false,
-//						2
-//					) {
-//						public void onCollisionEnter(float[] collisionMap) {System.out.println(collisionMap);}
-//						public void onCollisionExit() {System.out.println("Exited");}
-//					}
-//				)
+			),
+			new GameObject(
+				new Transform(
+					new Vector2(0, 500),
+					new Vector2(690, 50),
+					0f
+				),
+				new Sprite(
+					"/gui/Menu.png"
+				),
+				new RectangleCollider(
+					false,
+					2
+				)
+			)
 		};
 	}
-	
+
 	public void init() {
 		setParents();
 		
 		super.init();
 	}
-	
+
 	public void draw(Graphics g) {
-//		if (backgroundResized != null)
-//		g.drawImage(backgroundResized, 0, 0, null);
 		g.setColor(new Color(255, 255, 255));
 		g.fillRect(0, 0, runner.getWidth(), runner.getHeight());
 		
 		super.draw(g);
-		
-//		backgroundResized = background.getScaledInstance(runner.getWidth(), runner.getHeight(), Image.SCALE_DEFAULT);
 	}
-//	
+
 	public void update() {
 		super.update();
 	}
-//	
-//	public void fixedUpdate() {
-//		super.fixedUpdate();
-//	}
-//	
-//	public void lateUpdate() {
-//		super.lateUpdate();
+	
+	// Maybe Later...
+//	private void readJSON(String filename) {
+//		try {
+//			Object jsonObj = new JSONParser().parse(new FileReader("GameObjects.json"));
+//			
+//			JSONArray json = (JSONArray) jsonObj;
+//			
+//			for (int i = 0; i < json.size(); i++) {
+//				json.get(i)
+//			}
+//		} catch (Exception e) {
+//			System.err.println("[!]: Error reading file \"" + filename + "\": " + e.toString());
+//		}
 //	}
 }

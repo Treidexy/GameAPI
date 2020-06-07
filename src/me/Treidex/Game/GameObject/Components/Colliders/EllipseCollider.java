@@ -39,9 +39,9 @@ public class EllipseCollider extends Collider {
 				float X = (float) Math.sin(ang);
 				float Y = (float) Math.cos(ang);
 				
-				for (int multX = 1; multX < transform.size.x; multX++) {
+				for (float multX = -transform.size.x; multX < transform.size.x/2; multX++) {
 					float x = X * multX;
-					for (int multY = 0; multY < transform.size.y; multY++) {
+					for (float multY = -transform.size.y; multY < transform.size.y/2; multY++) {
 						float y = Y * multY;
 						
 						float[] tempCollisionMap = collider.checkCollision(Vector2.add(transform.position, new Vector2(x, y)));
@@ -75,7 +75,31 @@ public class EllipseCollider extends Collider {
 		if (Math.pow((checkPos.x - transform.position.x), 2) / Math.pow(transform.size.x, 2) + Math.pow((checkPos.y - transform.position.y), 2) / Math.pow(transform.size.y, 2) <= 1) {
 			collisionMap[0] = 1;
 			
+			if (
+					checkPos.x >= transform.position.x && checkPos.x <= transform.position.x + margin &&
+					checkPos.y >= transform.position.y && checkPos.y <= transform.position.y + transform.size.y
+				) {
+				collisionMap[1] = -1;
+			}
+			if (
+					checkPos.x >= transform.position.x + transform.size.x - margin && checkPos.x <= transform.position.x + transform.size.x &&
+					checkPos.y >= transform.position.y && checkPos.y <= transform.position.y + transform.size.y
+				) {
+				collisionMap[1] = 1;
+			}
 			
+			if (
+					checkPos.x >= transform.position.x && checkPos.x <= transform.position.x + transform.size.x &&
+					checkPos.y >= transform.position.y && checkPos.y <= transform.position.y + margin
+				) {
+				collisionMap[2] = -1;
+			}
+			if (
+					checkPos.x >= transform.position.x && checkPos.x <= transform.position.x + transform.size.x &&
+					checkPos.y >= transform.position.y + transform.size.y - margin && checkPos.y <= transform.position.y + transform.size.y
+				) {
+				collisionMap[2] = 1;
+			}
 		}
 		
 		if (collisionMap[0] == 1) {

@@ -6,13 +6,14 @@ import me.Treidex.Game.GameObject.Components.Colliders.*;
 import me.Treidex.Game.maths.Vector2;
 
 public class Physics extends Component {
-	public Transform transform;
 	public Collider collider;
 	public Vector2 velocity;
 	public Vector2 gravity;
 	
 	public float speedDamp;
 	public float lerp;
+	
+	public boolean onGround;
 	
 	private ColliderType colliderType;
 	
@@ -22,23 +23,16 @@ public class Physics extends Component {
 		this.speedDamp = speedDamp;
 		this.lerp = lerp;
 		
-		transform = Transform.empty;
 		velocity = Vector2.zero;
-	}
-	
-	public void setParent(GameObject parent) {
-		super.setParent(parent);
-		
-		transform = parent().transform;
 	}
 	
 	public void init() {
 		switch(colliderType) {
 			case Rectangle:
-				collider = parent().<RectangleCollider> getComponent(RectangleCollider.class);
+				collider = parent.<RectangleCollider> getComponent(RectangleCollider.class);
 				break;
 			case Ellipse:
-				collider = parent().<EllipseCollider> getComponent(EllipseCollider.class);
+				collider = parent.<EllipseCollider> getComponent(EllipseCollider.class);
 				break;
 		}
 	}
@@ -52,6 +46,13 @@ public class Physics extends Component {
 		transform.position = Vector2.lerp(transform.position, newPos, lerp);
 		
 		velocity = Vector2.lerp(velocity, Vector2.zero, speedDamp);
+		
+		if (velocity.x <= 0.1f && velocity.x >= -0.1f) {
+			velocity.x = 0;
+		}
+		if (velocity.y <= 0.1f && velocity.y >= -0.1f) {
+			velocity.y = 0;
+		}
 	}
 	
 	public void addForce(Vector2 force) {
@@ -65,8 +66,11 @@ public class Physics extends Component {
 		}
 		
 		if (collisionMap[0] == 0) {
+			onGround = false;
 			return;
 		}
+		
+		onGround = true;
 		
 		addForce(new Vector2((Math.abs(velocity.x) * collisionMap[1]), (Math.abs(velocity.y) * collisionMap[2])));
 	}

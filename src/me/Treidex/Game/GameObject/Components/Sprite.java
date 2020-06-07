@@ -16,7 +16,6 @@ public class Sprite extends Component {
 	
 	private Image spriteRaw;
 	private Image sprite;
-	private Transform transform;
 	
 	public Sprite(String filepath) {
 		this.filepath = filepath;
@@ -28,7 +27,6 @@ public class Sprite extends Component {
 	public void setParent(GameObject parent) {
 		super.setParent(parent);
 		
-		transform = parent().transform;
 		sprite = spriteRaw.getScaledInstance((int) transform.size.x, (int) transform.size.y, Image.SCALE_DEFAULT);
 	}
 	

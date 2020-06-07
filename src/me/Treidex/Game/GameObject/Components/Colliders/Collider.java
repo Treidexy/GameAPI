@@ -10,7 +10,6 @@ public abstract class Collider extends Component {
 	public static Collider[] colliders = new Collider[0];
 	
 	public boolean isTrigger;
-	public Transform transform;
 	public float margin;
 	
 //	public abstract void onCollisionEnter(float[] collisionMap);
@@ -26,12 +25,6 @@ public abstract class Collider extends Component {
 		this.margin = margin;
 		
 		colliders = Mathf.<Collider> addToArray(Collider.class, colliders, this);
-	}
-	
-	public void setParent(GameObject parent) {
-		super.setParent(parent);
-		
-		transform = parent().transform;
 	}
 	
 	public boolean pcollided() {

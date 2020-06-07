@@ -1,11 +1,13 @@
 package me.Treidex.Game.GameObject.Components;
 
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
 
 import me.Treidex.Game.GameObject.GameObject;
 
 public class Component {
-	private GameObject parent;
+	protected GameObject parent;
+	protected Transform transform;
 	
 	public void init() {
 	}
@@ -18,11 +20,14 @@ public class Component {
 	public void lateUpdate() {
 	}
 	
+	public void keyPressed(KeyEvent e) {
+	}
+	public void keyReleased(KeyEvent e) {
+	}
+	
 	public void setParent(GameObject parent) {
 		this.parent = parent;
-	}
-
-	public final GameObject parent() {
-		return parent;
+		
+		transform = parent.transform;
 	}
 }
