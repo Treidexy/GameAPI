@@ -7,11 +7,28 @@ import me.Treidex.Game.GameObject.GameObject;
 import me.Treidex.Game.maths.Mathf;
 import me.Treidex.Game.maths.Vector2;
 
+/**
+ * The numero uno Collider
+ * in Video Games.
+ * 
+ * @author Treidex
+ *
+ */
 public class RectangleCollider extends Collider {
+	
+	/**
+	 * Initialize the Rectangle Collider.
+	 * 
+	 * @param isTrigger Determines whether is a Trigger or not.
+	 * @param margin The Margin in which to calculate from.
+	 */
 	public RectangleCollider(boolean isTrigger, float margin) {
 		super(isTrigger, margin);
 	}
 	
+	/**
+	 * Draw The Wireframe of the Collider.
+	 */
 	public void draw(Graphics g) {
 		g.setColor(new Color(50, 255, 14));
 		g.drawRect((int) transform.position.x, (int) transform.position.y, (int) transform.size.x, (int) transform.size.y);
@@ -20,6 +37,9 @@ public class RectangleCollider extends Collider {
 		g.drawRect((int) (transform.position.x + margin), (int) (transform.position.y + margin), (int) (transform.size.x - margin*2), (int) (transform.size.y - margin*2));
 	}
 	
+	/**
+	 * Checks if the Rectangle is colliding with another collider.
+	 */
 	public float[] checkCollision() {
 		float[] collisionMap = new float[] {
 			0,
@@ -54,6 +74,9 @@ public class RectangleCollider extends Collider {
 		return collisionMap;
 	}
 
+	/**
+	 * Checks Collision for one spot.
+	 */
 	public float[] checkCollision(Vector2 checkPos) {
 		float[] collisionMap = new float[] {
 			0, // Has Collided?

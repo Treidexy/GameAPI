@@ -10,16 +10,27 @@ import me.Treidex.Game.Anotations.*;
  * @author Treidex
  * 
  */
-@Remarks(
+@ProjectInfo(
+	Name= "Game API",
+	Authors= { "Treidex" },
+	Version= "a1.1",
+	Description= "Amazing Unity-Based API for Java Game Deveplopment",
+	Page= "https://github.com/TeddyTelanoff/GameAPI"
+)
+
+@Credit(
 	Author= "Treidex",
 	ProjectName= "Game API",
 	Links= {
 		"https://github.com/TeddyTelanoff",
 		"https://www.youtube.com/channel/UCQBziAEpzflahxJk-Jkv4iA"
 	},
-	Description= 
-		"API for Java Game Dev",
-	Version= "a1.0"
+	Description= {
+		"Amazing Game Dev. (Somewhat) Knows many languages, including: JavaScript, p5, processing, Java, C#, and python.",
+		"Worked using: Unity, Visual Studio, VS Code, Unreal, Processing IDE, Eclipse, and Subline Text.",
+		"This is my first FULL-ON API. Any Help would be apreciated."
+	},
+	Versions= { "a1.0", "a1.1" }
 )
 public final class Program implements Runnable {
 	

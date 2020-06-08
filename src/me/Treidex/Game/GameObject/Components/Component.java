@@ -5,26 +5,76 @@ import java.awt.event.KeyEvent;
 
 import me.Treidex.Game.GameObject.GameObject;
 
+/**
+ * How do you make anything?
+ * With Components!
+ * 
+ * This is the structure for every Component.
+ * 
+ * @author Treidex
+ *
+ */
 public class Component {
+	
+	/**
+	 * Store the Parent Game Object in which
+	 * the Component is used inside.
+	 */
 	protected GameObject parent;
+	
+	/**
+	 * Store the Transform of
+	 * the Parent.
+	 */
 	protected Transform transform;
 	
-	public void init() {
-	}
-	public void draw(Graphics g) {
-	}
-	public void update() {
-	}
-	public void fixedUpdate() {
-	}
-	public void lateUpdate() {
-	}
+	/**
+	 * Structure for Initialization of the Component.
+	 */
+	public void init() {}
 	
-	public void keyPressed(KeyEvent e) {
-	}
-	public void keyReleased(KeyEvent e) {
-	}
+	/**
+	 * Structure for Initialization of the Component.
+	 * 
+	 * @param g The Graphics Component.
+	 */
+	public void draw(Graphics g) {}
 	
+	/**
+	 * Structure for Updating the Component.
+	 */
+	public void update() {}
+	
+	/**
+	 * Structure for Fixed Updates of the Component.
+	 */
+	public void fixedUpdate() {}
+	
+	/**
+	 * Structure for Late Updates of the Component.
+	 */
+	public void lateUpdate() {}
+	
+	/**
+	 * Structure for Key Pressing for the Component.
+	 * 
+	 * @param e Key Event.
+	 */
+	public void keyPressed(KeyEvent e) {}
+	
+	/**
+	 * Structure for Key Releasing for the Component.
+	 * 
+	 * @param e Key Event.
+	 */
+	public void keyReleased(KeyEvent e) {}
+	
+	/**
+	 * Used for the Game Object to set
+	 * the Components Parent.
+	 * 
+	 * @param parent The Parent to be set.
+	 */
 	public void setParent(GameObject parent) {
 		this.parent = parent;
 		

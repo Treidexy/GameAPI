@@ -12,11 +12,6 @@ public class Ball extends GameObject {
 		super(transform, components);
 	}
 	
-	public void setComponents(Component... components) {
-		super.setComponents(components);
-		System.out.println(components[0]);
-	}
-	
 	public void init() {
 		super.init();
 	}

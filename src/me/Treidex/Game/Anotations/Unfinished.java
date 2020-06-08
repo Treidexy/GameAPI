@@ -1,5 +1,10 @@
 package me.Treidex.Game.Anotations;
 
-public @interface Unfinished {
-
-}
+/**
+ * Just what it says.
+ * Something's Not Finished yet.
+ * 
+ * @author Treidex
+ *
+ */
+public @interface Unfinished {}
