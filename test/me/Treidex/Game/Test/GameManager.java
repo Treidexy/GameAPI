@@ -2,7 +2,6 @@ package me.Treidex.Game.Test;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.io.FileReader;
 
 import me.Treidex.Game.GameObject.GameObject;
 import me.Treidex.Game.GameObject.Components.Physics;
@@ -12,10 +11,6 @@ import me.Treidex.Game.GameObject.Components.Transform;
 import me.Treidex.Game.GameObject.Components.Colliders.ColliderType;
 import me.Treidex.Game.GameObject.Components.Colliders.RectangleCollider;
 import me.Treidex.Game.maths.Vector2;
-
-import org.json.simple.JSONArray; 
-import org.json.simple.JSONObject; 
-import org.json.simple.parser.*; 
 
 public class GameManager extends me.Treidex.Game.GameManager {
 	public GameManager() {
@@ -41,7 +36,7 @@ public class GameManager extends me.Treidex.Game.GameManager {
 				),
 				new Player(
 					0.88f,
-					8.8f,
+					(float) Math.PI,
 					false
 				)
 			),
