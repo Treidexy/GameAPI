@@ -4,12 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 import me.Treidex.Game.GameObject.GameObject;
-import me.Treidex.Game.GameObject.Components.Physics;
-import me.Treidex.Game.GameObject.Components.Player;
-import me.Treidex.Game.GameObject.Components.Sprite;
-import me.Treidex.Game.GameObject.Components.Transform;
-import me.Treidex.Game.GameObject.Components.Colliders.ColliderType;
-import me.Treidex.Game.GameObject.Components.Colliders.RectangleCollider;
+import me.Treidex.Game.GameObject.Components.*;
+import me.Treidex.Game.GameObject.Components.Colliders.*;
 import me.Treidex.Game.Math.Vector2;
 
 public class GameManager extends me.Treidex.Game.GameManager {
@@ -21,8 +17,13 @@ public class GameManager extends me.Treidex.Game.GameManager {
 					new Vector2(50, 100),
 					0f
 				),
-				new Sprite(
-					"/sprites/Ball.png"
+				new PlayerController(
+					25,
+					100,
+					false
+				),
+				new SpriteRenderer(
+					"/gui/KIU.png"
 				),
 				new RectangleCollider(
 					false,
@@ -30,23 +31,18 @@ public class GameManager extends me.Treidex.Game.GameManager {
 				),
 				new Physics(
 					ColliderType.Rectangle,
-					new Vector2(0, 9.8f),
-					0.88f,
-					0.98f
-				),
-				new Player(
-					0.88f,
-					(float) Math.PI,
-					false
+					new Vector2(0, 15),
+					0.14f,
+					0.14f
 				)
 			),
 			new GameObject(
 				new Transform(
-					new Vector2(0, 500),
+					new Vector2(-15, 500),
 					new Vector2(690, 50),
 					0f
 				),
-				new Sprite(
+				new SpriteRenderer(
 					"/gui/Menu.png"
 				),
 				new RectangleCollider(
