@@ -1,8 +1,8 @@
 package me.Treidex.Game.GameObject.Components.Colliders;
 
 import me.Treidex.Game.GameObject.Components.Component;
-import me.Treidex.Game.maths.Mathf;
-import me.Treidex.Game.maths.Vector2;
+import me.Treidex.Game.Math.Mathf;
+import me.Treidex.Game.Math.Vector2;
 
 /**
  * Colliders!

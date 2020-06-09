@@ -10,7 +10,7 @@ import me.Treidex.Game.GameObject.Components.Sprite;
 import me.Treidex.Game.GameObject.Components.Transform;
 import me.Treidex.Game.GameObject.Components.Colliders.ColliderType;
 import me.Treidex.Game.GameObject.Components.Colliders.RectangleCollider;
-import me.Treidex.Game.maths.Vector2;
+import me.Treidex.Game.Math.Vector2;
 
 public class GameManager extends me.Treidex.Game.GameManager {
 	public GameManager() {

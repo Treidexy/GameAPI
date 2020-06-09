@@ -4,8 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 import me.Treidex.Game.Anotations.Unfinished;
-import me.Treidex.Game.maths.Mathf;
-import me.Treidex.Game.maths.Vector2;
+import me.Treidex.Game.Math.Mathf;
+import me.Treidex.Game.Math.Vector2;
 
 /**
  * Ellipse's are cool,

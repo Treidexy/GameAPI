@@ -1,22 +1,60 @@
 package me.Treidex.Game.GameObject.Components;
 
 import me.Treidex.Game.Anotations.Unfinished;
-import me.Treidex.Game.GameObject.GameObject;
 import me.Treidex.Game.GameObject.Components.Colliders.*;
-import me.Treidex.Game.maths.Vector2;
+import me.Treidex.Game.Math.Vector2;
 
+/**
+ * Component for Simulated Physics.
+ * 
+ * @author Treidex
+ *
+ */
 public class Physics extends Component {
+	
+	/**
+	 * The Collider the Physics Component uses.
+	 */
 	public Collider collider;
+	
+	/**
+	 * The Velocity of the Physics Component.
+	 */
 	public Vector2 velocity;
+	
+	/**
+	 * The Gravity of the Physics Component.
+	 */
 	public Vector2 gravity;
 	
+	/**
+	 * The Rate of which you slow down.
+	 */
 	public float speedDamp;
+	
+	/**
+	 * The Linear Interpolation for the Physics Component.
+	 */
 	public float lerp;
 	
+	/**
+	 * Determine Whether the Physics Component is on the Ground.
+	 */
 	public boolean onGround;
 	
+	/**
+	 * The Collider Type.
+	 */
 	private ColliderType colliderType;
 	
+	/**
+	 * Initialize the Physics Component.
+	 * 
+	 * @param colliderType The Collider Type.
+	 * @param gravity The Gravity of the Physics Component.
+	 * @param speedDamp The Rate of which you slow down.
+	 * @param lerp The Liner Interpolation for the Physics Component.
+	 */
 	public Physics(ColliderType colliderType, Vector2 gravity, float speedDamp, float lerp) {
 		this.colliderType = colliderType;
 		this.gravity = gravity;
@@ -26,6 +64,9 @@ public class Physics extends Component {
 		velocity = Vector2.zero;
 	}
 	
+	/**
+	 * Initialize the Collider.
+	 */
 	public void init() {
 		switch(colliderType) {
 			case Rectangle:
@@ -37,6 +78,9 @@ public class Physics extends Component {
 		}
 	}
 	
+	/**
+	 * Update the Physics Component.
+	 */
 	public void fixedUpdate() {
 		addForce(gravity);
 		
@@ -55,10 +99,20 @@ public class Physics extends Component {
 		}
 	}
 	
+	/**
+	 * Method for Adding Force to the Physics Component.
+	 * 
+	 * @param force
+	 */
 	public void addForce(Vector2 force) {
 		velocity = Vector2.add(velocity, force);
 	}
 	
+	/**
+	 * Handling Collision for Physics Component.
+	 * 
+	 * @param collisionMap The Collision Map.
+	 */
 	@Unfinished
 	private void collisionHandle(float[] collisionMap) {
 		if (collider.isTrigger) {

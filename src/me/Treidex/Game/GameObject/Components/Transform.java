@@ -1,7 +1,7 @@
 package me.Treidex.Game.GameObject.Components;
 
 import me.Treidex.Game.Anotations.Unfinished;
-import me.Treidex.Game.maths.Vector2;
+import me.Treidex.Game.Math.Vector2;
 
 /**
  * Transforms Store Position, Size, and Rotation;

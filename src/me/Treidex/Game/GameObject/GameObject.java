@@ -53,6 +53,7 @@ public class GameObject {
 	 * @param componentClass Component Class.
 	 * @return Component.
 	 */
+	@SuppressWarnings("unchecked")
 	public <T extends Component> T getComponent (Class<T> componentClass){
 	    for (Component c: this.components){
 	    	System.out.println("Checking: " + c.getClass().getSimpleName() + "...");
