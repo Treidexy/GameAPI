@@ -1,6 +1,7 @@
 package me.Treidex.Game;
 
 import me.Treidex.Game.Anotations.*;
+import me.Treidex.Game.Math.Time;
 
 /**
  * This the Main Program as of itself,
@@ -66,10 +67,10 @@ public final class Program implements Runnable {
 	 */
 	private GameWindow gameWindow;
 	
-	/**
-	 * Used to caculate when to run Tick.
-	 */
-	private long time;
+	private int fixedTPS;
+	
+	private int width;
+	private int height;
 
 	/**
 	 * In order to create and instance of Program,
@@ -78,8 +79,11 @@ public final class Program implements Runnable {
 	 * @param gameManager The Game Manager
 	 * @param maxTPS The Max Tick Per Second allowed.
 	 */
-	public Program(GameManager gameManager, int maxTPS) {
+	public Program(GameManager gameManager, int maxTPS, int fixedTPS, int width, int height) {
 		this.gameManager = gameManager;
+		this.width = width;
+		this.height = height;
+		this.fixedTPS = fixedTPS;
 		
 		MAX_TPS = maxTPS;
 		WAIT_MILLIS = 1000 / MAX_TPS;
@@ -99,8 +103,8 @@ public final class Program implements Runnable {
 	 * of the program.
 	 */
 	public void init() {
-		game = new Game(gameManager);
-		gameWindow = new GameWindow(game);
+		game = new Game(gameManager, fixedTPS);
+		gameWindow = new GameWindow(game, width, height);
 		game.init();
 	}
 	
@@ -111,10 +115,12 @@ public final class Program implements Runnable {
 	public void run() {
 		init();
 		while (!gameWindow.shouldClose) {
-			if (System.currentTimeMillis() > time + WAIT_MILLIS) {
+			if (System.currentTimeMillis() > Time.lastTick + WAIT_MILLIS) {
+				Time.deltaTime = (float) (System.currentTimeMillis() - Time.lastTick) / 1000;
+				
 				update();
 				
-				time = System.currentTimeMillis();
+				Time.lastTick = System.currentTimeMillis();
 			}
 		}
 		System.exit(0);

@@ -32,12 +32,6 @@ public class GameWindow extends JFrame {
 	private Game game;
 	
 	/**
-	 * The window Scale;
-	 * Aspect Ratio: 16:9
-	 */
-	private double scale = 100;
-	
-	/**
 	 * Used to calculate Frame Rate.
 	 */
 	private int frames;
@@ -54,11 +48,11 @@ public class GameWindow extends JFrame {
 	 * 
 	 * @param game The Game that controls the Canvas.
 	 */
-	public GameWindow(Game game) {
+	public GameWindow(Game game, int width, int height) {
 		this.game = game;
 		shouldClose = false;
 		
-		setSize((int) (16*scale), (int) (9*scale));
+		setSize(width, height);
 		setResizable(false);
 		setLocationRelativeTo(null);
 		setTitle("Physics - by Treidex");

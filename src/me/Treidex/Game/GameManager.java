@@ -1,9 +1,6 @@
 package me.Treidex.Game;
 
-import java.awt.Graphics;
-import java.awt.event.KeyEvent;
-
-import me.Treidex.Game.GameObject.GameObject;
+import me.Treidex.Game.SuperClasses.Scene;
 
 /**
  * Imagine the world
@@ -16,106 +13,37 @@ import me.Treidex.Game.GameObject.GameObject;
  * @author Treidex
  *
  */
-public class GameManager {
+public final class GameManager {
 	
 	/**
-	 * The List of Game Objects.
+	 * The Active Scene.
 	 */
-	public GameObject[] gameObjects;
+	public Scene scene;
+	
+	/**
+	 * All Scenes loaded.
+	 */
+	public Scene[] scenes;
 	
 	/**
 	 * The Canvas the Game is ran on.
 	 */
 	protected Game runner;
-	
-	/**
-	 * Sets the parents for
-	 * all the Game Objects.
-	 */
-	public final void setParents() {
-		for (GameObject gameObject : gameObjects) {
-			gameObject.setParents();
-		}
-	}
-	
-	/**
-	 * Initializes
-	 * all the Game Objects.
-	 * Called when Initialized.
-	 */
-	public void init() {
-		for (GameObject gameObject : gameObjects) {
-			gameObject.init();
-		}
-	}
-	
-	/**
-	 * Draws
-	 * all Game Objects.
-	 * Called after every frame.
-	 * 
-	 * @param g The Graphics Component to help Draw.
-	 */
-	public void draw(Graphics g) {
-		for (GameObject gameObject : gameObjects) {
-			gameObject.draw(g);
-		}
-	}
-	
-	/**
-	 * Updates
-	 * all Game Objects.
-	 * Called every frame.
-	 */
-	public void update() {
-		for (GameObject gameObject : gameObjects) {
-			gameObject.update();
-		}
-	}
-	
-	
-	/**
-	 * Another method for updating.
-	 * Called a fixed times a second.
-	 */
-	public void fixedUpdate() {
-		for (GameObject gameObject : gameObjects) {
-			gameObject.fixedUpdate();
-		}
-	}
-	
-	/**
-	 * Another method for updating.
-	 * Called at the end of an update.
-	 */
-	public void lateUpdate() {
-		for (GameObject gameObject : gameObjects) {
-			gameObject.lateUpdate();
-		}
-	}
-	
-	/**
-	 * Called whenever a key is Pressed.
-	 *
-	 * @param e The Key Event.
-	 */
-	public void keyPressed(KeyEvent e) {
-		for (GameObject gameObject : gameObjects) {
-			gameObject.keyPressed(e);
-		}
-	}
-	
-	/**
-	 * Called whenever a key is Released.
-	 * 
-	 * @param e The Key Event.
-	 */
-	public void keyReleased(KeyEvent e) {
-		for (GameObject gameObject : gameObjects) {
-			gameObject.keyReleased(e);
-		}
-	}
 
+	/**
+	 * Initialize the Game Manage
+	 * 
+	 * @param scenes All the Scenes to be loaded.
+	 */
+	public GameManager(Scene... scenes) {
+		this.scenes = scenes;
+	}
+	
+	/**
+	 * Set the Runner of the Game Manager.
+	 * 
+	 * @param runner The Canvas the Game is ran on.
+	 */
 	public void setRunner(Game runner) {
 		this.runner = runner;
 	}

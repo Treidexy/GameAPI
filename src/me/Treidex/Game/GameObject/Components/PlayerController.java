@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.util.HashMap;
 
+import me.Treidex.Game.Math.Time;
 import me.Treidex.Game.Math.Vector2;
 
 /**
@@ -150,6 +151,8 @@ public class PlayerController extends Component {
 	 */
 	private void move(Vector2 accel) {
 		Vector2 acceleration = Vector2.mult(accel, speed);
+		acceleration = Vector2.mult(acceleration, Time.fixedDeltaTime);
+		
 		physics.addForce(acceleration);
 	}
 }

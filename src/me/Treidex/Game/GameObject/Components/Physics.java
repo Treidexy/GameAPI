@@ -2,6 +2,7 @@ package me.Treidex.Game.GameObject.Components;
 
 import me.Treidex.Game.Anotations.Unfinished;
 import me.Treidex.Game.GameObject.Components.Colliders.*;
+import me.Treidex.Game.Math.Time;
 import me.Treidex.Game.Math.Vector2;
 
 /**
@@ -26,6 +27,8 @@ public class Physics extends Component {
 	 * The Gravity of the Physics Component.
 	 */
 	public Vector2 gravity;
+	
+	public Vector2 newPos;
 	
 	/**
 	 * The Rate of which you slow down.
@@ -62,6 +65,7 @@ public class Physics extends Component {
 		this.lerp = lerp;
 		
 		velocity = Vector2.zero;
+		newPos = Vector2.zero;
 	}
 	
 	/**
@@ -78,15 +82,19 @@ public class Physics extends Component {
 		}
 	}
 	
+	public void update() {
+		transform.position = Vector2.lerp(transform.position, newPos, lerp);
+	}
+	
 	/**
 	 * Update the Physics Component.
 	 */
 	public void fixedUpdate() {
-		addForce(gravity);
+		addForce(Vector2.mult(gravity, Time.fixedDeltaTime));
 		
 		collisionHandle(collider.checkCollision());
 		
-		Vector2 newPos = Vector2.add(transform.position, velocity);
+		newPos = Vector2.add(transform.position, velocity);
 		transform.position = Vector2.lerp(transform.position, newPos, lerp);
 		
 		velocity = Vector2.lerp(velocity, Vector2.zero, speedDamp);

@@ -45,4 +45,8 @@ public class Transform extends Component {
 		this.size = size;
 		this.rotation = rotation;
 	}
+	
+	public String toString() {
+		return "[ " + position + ", " + size + " ]";
+	}
 }

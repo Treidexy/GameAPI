@@ -6,6 +6,8 @@ import java.awt.event.KeyListener;
 
 import javax.swing.JPanel;
 
+import me.Treidex.Game.Math.Time;
+
 /**
  * The universal game;
  * basically the motherboard
@@ -27,7 +29,7 @@ public class Game extends JPanel {
 	/**
 	 * The Fixed Ticks Per Second.
 	 */
-	public final int FIXED_TPS = 60;
+	public final int FIXED_TPS;
 	
 	/**
 	 * Used to Calculate when to
@@ -51,16 +53,11 @@ public class Game extends JPanel {
 	private KeyInput keyInput;
 	
 	/**
-	 * Used to Calculate Fixed Updates.
-	 */
-	private long time;
-	
-	/**
 	 * Paints the canvas;
 	 * everything is drawn.
 	 */
 	public final void paint(Graphics g) {
-		gameManager.draw(g);
+		gameManager.scene.draw(g);
 	}
 	
 	/**
@@ -69,11 +66,14 @@ public class Game extends JPanel {
 	 * 
 	 * @param gameManager The Game Manager.
 	 */
-	public Game(GameManager gameManager) {
+	public Game(GameManager gameManager, int fixedTPS) {
 		this.gameManager = gameManager;
 		
+		FIXED_TPS = fixedTPS;
 		FIXED_MILLIS = 1000 / FIXED_TPS;
 		end = false;
+		
+		Time.fixedDeltaTime = (float) FIXED_MILLIS / 1000;
 		
 		keyInput = new KeyInput();
 		addKeyListener(keyInput);
@@ -87,7 +87,7 @@ public class Game extends JPanel {
 	public final void init() {
 		gameManager.setRunner(this);
 		
-		gameManager.init();
+		gameManager.scene.init();
 	}
 	
 	/**
@@ -95,11 +95,13 @@ public class Game extends JPanel {
 	 * The main Game Loop.
 	 */
 	public final void update() {
-		gameManager.update();
+		gameManager.scene.update();
 		
-		if (System.currentTimeMillis() > time + FIXED_MILLIS) {
+		if (System.currentTimeMillis() > Time.lastFixedTick + FIXED_MILLIS) {
+			System.out.println(Time.fixedDeltaTime);
+			
 			fixedUpdate();
-			time = System.currentTimeMillis();
+			Time.lastFixedTick = System.currentTimeMillis();
 		}
 		
 		lateUpdate();
@@ -112,7 +114,7 @@ public class Game extends JPanel {
 	 * per second.
 	 */
 	private final void fixedUpdate() {
-		gameManager.fixedUpdate();
+		gameManager.scene.fixedUpdate();
 	}
 	
 	/**
@@ -120,7 +122,7 @@ public class Game extends JPanel {
 	 * of each frame.
 	 */
 	private final void lateUpdate() {
-		gameManager.lateUpdate();
+		gameManager.scene.lateUpdate();
 	}
 	
 	/**
@@ -138,14 +140,14 @@ public class Game extends JPanel {
 			if (e.getKeyCode() == 27)
 				end = true;
 			
-			gameManager.keyPressed(e);
+			gameManager.scene.keyPressed(e);
 		}
 
 		/**
 		 * Called whenever key is Released.
 		 */
 		public void keyReleased(KeyEvent e) {
-			gameManager.keyReleased(e);
+			gameManager.scene.keyReleased(e);
 		}
 
 		/**

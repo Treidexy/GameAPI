@@ -1,0 +1,15 @@
+# Alpha 1.1.
+
+## New Features in **Alpha 1.1**:
+- JavaDocs.
+ - ZIP Files now come with Releases.
+
+## New Changes to **Alpha 1.1**:
+ - Changed `Player` Component to `PlayerController` Component.
+ - Changed `Sprite` Component to `SpriteRenderer` Component.
+ - Physics Component to run on Fixed Update rather than Update.
+ - Renamed `maths` package to `Math` package
+	
+
+## Removed Features from **Alpha 1.1**:
+ - None.
