@@ -26,8 +26,8 @@ public class EllipseCollider extends Collider {
 	 * @param isTrigger Determines whether is a Trigger or not.
 	 * @param margin The Margin in which to calculate from.
 	 */
-	public EllipseCollider(boolean isTrigger, float margin) {
-		super(isTrigger, margin);
+	public EllipseCollider(boolean isTrigger, float margin, ColliderEvent... colliderEvents) {
+		super(isTrigger, margin, colliderEvents);
 	}
 	
 	/**
@@ -130,13 +130,15 @@ public class EllipseCollider extends Collider {
 		
 		if (collisionMap[0] == 1) {
 			if (!pcollided()) {
-					onCollisionEnter(collisionMap);
+				for (ColliderEvent colliderEvent : colliderEvents)
+					colliderEvent.onCollisionEnter(collisionMap);
 			}
 			
 			pcollided(true);
 		} else {
 			if (pcollided()) {
-					onCollisionExit();
+				for (ColliderEvent colliderEvent : colliderEvents)
+					colliderEvent.onCollisionExit();
 			}
 			
 			pcollided(false);

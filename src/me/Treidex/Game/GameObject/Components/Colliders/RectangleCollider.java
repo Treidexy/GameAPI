@@ -21,8 +21,8 @@ public class RectangleCollider extends Collider {
 	 * @param isTrigger Determines whether is a Trigger or not.
 	 * @param margin The Margin in which to calculate from.
 	 */
-	public RectangleCollider(boolean isTrigger, float margin) {
-		super(isTrigger, margin);
+	public RectangleCollider(boolean isTrigger, float margin, ColliderEvent... colliderEvents) {
+		super(isTrigger, margin, colliderEvents);
 	}
 	
 	/**
@@ -119,13 +119,18 @@ public class RectangleCollider extends Collider {
 		
 		if (collisionMap[0] == 1) {
 			if (!pcollided()) {
-				onCollisionEnter(collisionMap);
+				for (ColliderEvent colliderEvent : colliderEvents) {
+					colliderEvent.onCollisionEnter(collisionMap);
+					System.out.println("enticing col!");
+				}
 			}
 			
 			pcollided(true);
 		} else {
 			if (pcollided()) {
-				onCollisionExit();
+				for (ColliderEvent colliderEvent : colliderEvents) {
+					colliderEvent.onCollisionExit();
+				}
 			}
 			
 			pcollided(false);

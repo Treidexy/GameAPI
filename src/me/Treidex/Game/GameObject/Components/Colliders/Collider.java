@@ -62,28 +62,21 @@ public abstract class Collider extends Component {
 	 */
 	public abstract float[] checkCollision(Vector2 checkPos);
 	
+	protected ColliderEvent[] colliderEvents;
+	
 	/**
 	 * Initialize the Collider.
 	 * 
 	 * @param isTrigger Determines whether the Collider is a Trigger.
 	 * @param margin The Margin in which to check Collision.
 	 */
-	public Collider(boolean isTrigger, float margin) {
+	public Collider(boolean isTrigger, float margin, ColliderEvent... colliderEvents) {
 		this.isTrigger = isTrigger;
 		this.margin = margin;
+		this.colliderEvents = colliderEvents;
 		
 		colliders = Mathf.<Collider> addToArray(Collider.class, colliders, this);
 	}
-	
-	/**
-	 * Structure for Entering Collision.
-	 */
-	public void onCollisionEnter(float[] collisionMap) {}
-	
-	/**
-	 * Structure for Exiting Collision.
-	 */
-	public void onCollisionExit() {}
 	
 	/**
 	 * Getter for pcollided.

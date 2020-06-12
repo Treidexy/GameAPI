@@ -40,7 +40,16 @@ public class Main {
 						),
 						new RectangleCollider(
 							false,
-							2
+							2,
+							new ColliderEvent() {
+								public void onCollisionEnter(float[] collisionMap) {
+									System.out.println("Entering Collision!D");
+								}
+								
+								public void onCollisionExit() {
+									System.out.println("Exited Collision!D");
+								}
+							}
 						),
 						new Physics(
 							ColliderType.Rectangle,
