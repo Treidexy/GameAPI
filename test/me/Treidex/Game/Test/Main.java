@@ -74,12 +74,6 @@ public class Main {
 				
 				super.draw(g);
 			}
-			
-			public void fixedUpdate() {
-				super.fixedUpdate();
-				
-				System.out.println(gameObjects[0].transform);
-			}
 		});
 		
 		gameManager.scene = gameManager.scenes[0];

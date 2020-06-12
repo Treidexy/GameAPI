@@ -56,14 +56,10 @@ public class GameObject {
 	@SuppressWarnings("unchecked")
 	public <T extends Component> T getComponent (Class<T> componentClass){
 	    for (Component c: this.components){
-	    	System.out.println("Checking: " + c.getClass().getSimpleName() + "...");
-	    	
 	        if(c.getClass() == componentClass) {
-	            System.out.println("Component of type: " + c.getClass().getSimpleName() + " found!");
 	            return (T) c;
 	        }
 	    }
-	    System.out.println("No component found");
 	    return null;
 	}
 	

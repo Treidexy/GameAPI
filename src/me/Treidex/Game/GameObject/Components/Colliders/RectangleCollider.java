@@ -39,7 +39,7 @@ public class RectangleCollider extends Collider {
 	/**
 	 * Checks if the Rectangle is colliding with another collider.
 	 */
-	public float[] checkCollision() {
+	public final float[] checkCollision() {
 		float[] collisionMap = new float[] {
 			0,
 			0,
@@ -76,7 +76,7 @@ public class RectangleCollider extends Collider {
 	/**
 	 * Checks Collision for one spot.
 	 */
-	public float[] checkCollision(Vector2 checkPos) {
+	public final float[] checkCollision(Vector2 checkPos) {
 		float[] collisionMap = new float[] {
 			0, // Has Collided?
 			0, // Horizontal Map
@@ -119,13 +119,13 @@ public class RectangleCollider extends Collider {
 		
 		if (collisionMap[0] == 1) {
 			if (!pcollided()) {
-//				onCollisionEnter(collisionMap);
+				onCollisionEnter(collisionMap);
 			}
 			
 			pcollided(true);
 		} else {
 			if (pcollided()) {
-//				onCollisionExit();
+				onCollisionExit();
 			}
 			
 			pcollided(false);

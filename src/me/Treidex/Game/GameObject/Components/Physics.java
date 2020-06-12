@@ -82,6 +82,9 @@ public class Physics extends Component {
 		}
 	}
 	
+	/**
+	 * Interpolate the Position.
+	 */
 	public void update() {
 		transform.position = Vector2.lerp(transform.position, newPos, lerp);
 	}

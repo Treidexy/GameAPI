@@ -98,8 +98,6 @@ public class Game extends JPanel {
 		gameManager.scene.update();
 		
 		if (System.currentTimeMillis() > Time.lastFixedTick + FIXED_MILLIS) {
-			System.out.println(Time.fixedDeltaTime);
-			
 			fixedUpdate();
 			Time.lastFixedTick = System.currentTimeMillis();
 		}

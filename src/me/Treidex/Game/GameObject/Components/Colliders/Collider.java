@@ -34,6 +34,15 @@ public abstract class Collider extends Component {
 	public float margin;
 	
 	/**
+	 * (!UN-USED!)
+	 * Used to determine
+	 * when to trigger
+	 * onCollisionEnter (UN-USED) and
+	 * onCollisionExit (UN-USED).
+	 */
+	private boolean pcollided;
+	
+	/**
 	 * Function structure.
 	 * All Colliders must have
 	 * this.
@@ -54,15 +63,6 @@ public abstract class Collider extends Component {
 	public abstract float[] checkCollision(Vector2 checkPos);
 	
 	/**
-	 * (!UN-USED!)
-	 * Used to determine
-	 * when to trigger
-	 * onCollisionEnter (UN-USED) and
-	 * onCollisionExit (UN-USED).
-	 */
-	private boolean pcollided;
-	
-	/**
 	 * Initialize the Collider.
 	 * 
 	 * @param isTrigger Determines whether the Collider is a Trigger.
@@ -74,6 +74,16 @@ public abstract class Collider extends Component {
 		
 		colliders = Mathf.<Collider> addToArray(Collider.class, colliders, this);
 	}
+	
+	/**
+	 * Structure for Entering Collision.
+	 */
+	public void onCollisionEnter(float[] collisionMap) {}
+	
+	/**
+	 * Structure for Exiting Collision.
+	 */
+	public void onCollisionExit() {}
 	
 	/**
 	 * Getter for pcollided.
