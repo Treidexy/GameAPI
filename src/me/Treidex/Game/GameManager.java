@@ -21,11 +21,6 @@ public final class GameManager {
 	public Scene scene;
 	
 	/**
-	 * All Scenes loaded.
-	 */
-	public Scene[] scenes;
-	
-	/**
 	 * The Canvas the Game is ran on.
 	 */
 	protected Game runner;
@@ -35,8 +30,14 @@ public final class GameManager {
 	 * 
 	 * @param scenes All the Scenes to be loaded.
 	 */
-	public GameManager(Scene... scenes) {
-		this.scenes = scenes;
+	public GameManager(Scene scene) {
+		
+	}
+	
+	public void changeScene(Scene newScene) {
+		scene = newScene;
+		
+		scene.init();
 	}
 	
 	/**
