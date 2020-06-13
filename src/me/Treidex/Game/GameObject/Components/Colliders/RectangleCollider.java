@@ -70,6 +70,23 @@ public class RectangleCollider extends Collider {
 			collisionMap[i] = Mathf.constrain(collisionMap[i], -1, 1);
 		}
 		
+		if (collisionMap[0] == 1) {
+			if (!pcollided()) {
+				for (ColliderEvent colliderEvent : colliderEvents) {
+					colliderEvent.onCollisionEnter(collisionMap);
+				}
+			}
+			pcollided(true);
+		} else {
+			if (pcollided()) {
+				for (ColliderEvent colliderEvent : colliderEvents) {
+					colliderEvent.onCollisionExit();
+				}
+			}
+			
+			pcollided(false);
+		}
+		
 		return collisionMap;
 	}
 
@@ -115,25 +132,6 @@ public class RectangleCollider extends Collider {
 			collisionMap[0] = 1;
 			
 			collisionMap[2] = 1;
-		}
-		
-		if (collisionMap[0] == 1) {
-			if (!pcollided()) {
-				for (ColliderEvent colliderEvent : colliderEvents) {
-					colliderEvent.onCollisionEnter(collisionMap);
-					System.out.println("enticing col!");
-				}
-			}
-			
-			pcollided(true);
-		} else {
-			if (pcollided()) {
-				for (ColliderEvent colliderEvent : colliderEvents) {
-					colliderEvent.onCollisionExit();
-				}
-			}
-			
-			pcollided(false);
 		}
 		
 		return collisionMap;

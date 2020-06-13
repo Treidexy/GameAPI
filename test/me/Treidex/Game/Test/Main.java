@@ -48,6 +48,7 @@ public class Main {
 								
 								public void onCollisionExit() {
 									System.out.println("Exited Collision!D");
+									System.exit(1);
 								}
 							}
 						),

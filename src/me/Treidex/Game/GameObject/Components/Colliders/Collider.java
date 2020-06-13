@@ -70,7 +70,7 @@ public abstract class Collider extends Component {
 	 * @param isTrigger Determines whether the Collider is a Trigger.
 	 * @param margin The Margin in which to check Collision.
 	 */
-	public Collider(boolean isTrigger, float margin, ColliderEvent... colliderEvents) {
+	public Collider(boolean isTrigger, float margin, ColliderEvent[] colliderEvents) {
 		this.isTrigger = isTrigger;
 		this.margin = margin;
 		this.colliderEvents = colliderEvents;
