@@ -76,6 +76,14 @@ public abstract class Collider extends Component {
 		this.colliderEvents = colliderEvents;
 		
 		colliders = Mathf.<Collider> addToArray(Collider.class, colliders, this);
+		
+		for (Collider collider : colliders)
+		System.out.println(collider);
+		System.out.println(colliders.length);
+	}
+	
+	public void destroy(int index) {
+		colliders = Mathf.<Collider> removeFromArray(Collider.class, colliders, index);
 	}
 	
 	/**

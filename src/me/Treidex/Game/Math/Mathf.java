@@ -2,6 +2,8 @@ package me.Treidex.Game.Math;
 
 import java.lang.reflect.Array;
 
+import me.Treidex.Game.GameObject.GameObject;
+
 /**
  * An Addition to java.lang.Math,
  * used for more Math functions.
@@ -92,5 +94,15 @@ public final class Mathf {
 		}
 		
 		return out;
+	}
+	
+	public static <T> Integer getIndexFromArray(T object, T[] array) {
+		for (int i = 0; i < array.length; i++) {
+			if (array[i] == object) {
+				return i;
+			}
+		}
+		
+		return null;
 	}
 }

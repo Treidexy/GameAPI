@@ -69,6 +69,8 @@ public class Component {
 	 */
 	public void keyReleased(KeyEvent e) {}
 	
+	public void onDestroy() {}
+	
 	/**
 	 * Used for the Game Object to set
 	 * the Components Parent.

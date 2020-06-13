@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
 import me.Treidex.Game.GameWindow;
 import me.Treidex.Game.Anotations.Unfinished;
 import me.Treidex.Game.GameObject.GameObject;
+import me.Treidex.Game.Math.Mathf;
 
 
 /**
@@ -111,5 +112,26 @@ public class Scene {
 		for (GameObject gameObject : gameObjects) {
 			gameObject.keyReleased(e);
 		}
+	}
+	
+	public void onDestroy() {
+		for (GameObject gameObject : gameObjects) {
+			gameObject.onDestroy();
+		}
+	}
+	
+	
+	public void spawn(GameObject objectToSpawn) {
+		gameObjects = Mathf.<GameObject> addToArray(GameObject.class, gameObjects, objectToSpawn);
+	}
+	
+	public void destroy(GameObject objectToDestroy) {
+		destroy(Mathf.<GameObject> getIndexFromArray(objectToDestroy, gameObjects));
+	}
+	
+	public void destroy(int index) {
+		gameObjects[index].onDestroy();
+		
+		gameObjects = Mathf.<GameObject> removeFromArray(GameObject.class, gameObjects, index);
 	}
 }

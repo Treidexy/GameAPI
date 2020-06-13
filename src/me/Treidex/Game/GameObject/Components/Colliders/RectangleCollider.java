@@ -36,6 +36,10 @@ public class RectangleCollider extends Collider {
 		g.drawRect((int) (transform.position.x + margin), (int) (transform.position.y + margin), (int) (transform.size.x - margin*2), (int) (transform.size.y - margin*2));
 	}
 	
+	public void onDestroy() {
+		super.destroy(Mathf.<Collider> getIndexFromArray(this, super.colliders));
+	}
+	
 	/**
 	 * Checks if the Rectangle is colliding with another collider.
 	 */

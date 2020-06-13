@@ -133,4 +133,10 @@ public class GameObject {
 			component.keyReleased(e);
 		}
 	}
+	
+	public void onDestroy() {
+		for (Component component : components) {
+			component.onDestroy();
+		}
+	}
 }

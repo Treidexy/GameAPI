@@ -23,7 +23,8 @@ public final class GameManager {
 	/**
 	 * The Canvas the Game is ran on.
 	 */
-	protected Game runner;
+	@SuppressWarnings("unused")
+	private Game runner;
 
 	/**
 	 * Initialize the Game Manage
@@ -31,7 +32,7 @@ public final class GameManager {
 	 * @param scenes All the Scenes to be loaded.
 	 */
 	public GameManager(Scene scene) {
-		
+		changeScene(scene);
 	}
 	
 	public void changeScene(Scene newScene) {

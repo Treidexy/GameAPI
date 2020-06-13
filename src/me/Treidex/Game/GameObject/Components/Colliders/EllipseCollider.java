@@ -41,6 +41,10 @@ public class EllipseCollider extends Collider {
 		g.setColor(new Color(255, 88, 14));
 		g.drawOval((int) (transform.position.x + margin), (int) (transform.position.y + margin), (int) (transform.size.x - margin*2), (int) (transform.size.y - margin*2));
 	}
+	
+	public void onDestroy() {
+		super.destroy(Mathf.<Collider> getIndexFromArray(this, super.colliders));
+	}
 
 	/**
 	 * Checks if the Ellipse is colliding with
