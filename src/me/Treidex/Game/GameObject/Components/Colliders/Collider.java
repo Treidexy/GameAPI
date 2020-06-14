@@ -49,7 +49,7 @@ public abstract class Collider extends Component {
 	 * 
 	 * @return Collision Map (Tells Physics Component how to move).
 	 */
-	public abstract float[] checkCollision();
+	public abstract Object[] checkCollision();
 	
 	/**
 	 * Function structure.
@@ -60,7 +60,7 @@ public abstract class Collider extends Component {
 	 * @return Collision Map.
 	 * @see me.Treidex.Game.GameObject.Components.Colliders.Collider#checkCollision() Check Collision().
 	 */
-	public abstract float[] checkCollision(Vector2 checkPos);
+	public abstract Object[] checkCollision(Vector2 checkPos);
 	
 	protected ColliderEvent[] colliderEvents;
 	
@@ -75,10 +75,12 @@ public abstract class Collider extends Component {
 		this.margin = margin;
 		this.colliderEvents = colliderEvents;
 		
+		for (Collider collider: colliders)
+			if (collider == this)
+				return;
 		colliders = Mathf.<Collider> addToArray(Collider.class, colliders, this);
 		
-		for (Collider collider : colliders)
-		System.out.println(collider);
+		System.out.println(this);
 		System.out.println(colliders.length);
 	}
 	

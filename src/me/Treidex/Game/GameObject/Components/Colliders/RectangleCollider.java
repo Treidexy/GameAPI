@@ -2,6 +2,7 @@ package me.Treidex.Game.GameObject.Components.Colliders;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.ArrayList;
 
 import me.Treidex.Game.Math.Mathf;
 import me.Treidex.Game.Math.Vector2;
@@ -37,30 +38,37 @@ public class RectangleCollider extends Collider {
 	}
 	
 	public void onDestroy() {
-		super.destroy(Mathf.<Collider> getIndexFromArray(this, super.colliders));
+		super.destroy(Mathf.<Collider> getIndexFromArray(this, Collider.colliders));
 	}
 	
 	/**
 	 * Checks if the Rectangle is colliding with another collider.
 	 */
-	public final float[] checkCollision() {
+	public final Object[] checkCollision() {
 		float[] collisionMap = new float[] {
 			0,
 			0,
 			0
 		};
 		
-		for (Collider collider : Collider.colliders) {
+		ArrayList<Collider> collidersArray = new ArrayList<Collider>();
+		
+		for (Collider collider: Collider.colliders) {
 			
 			if (collider == this)
 				continue;
 			
 			for (int y = 0; y < transform.size.y; y++) {
 				for (int x = 0; x < transform.size.x; x++) {
-					float[] tempCollisionMap = collider.checkCollision(Vector2.add(transform.position, new Vector2(x, y)));
+					Object[] collision = collider.checkCollision(Vector2.add(transform.position, new Vector2(x, y)));
 					
-					if (tempCollisionMap[0] != 0)
+					Collider tempCollider = (Collider) collision[1];
+					float[] tempCollisionMap = (float[]) collision[0];
+					
+					if (tempCollisionMap[0] != 0) {
 						collisionMap[0] = tempCollisionMap[0];
+						collidersArray.add(tempCollider);
+					}
 					
 					if (tempCollisionMap[1] != 0)
 						collisionMap[1] += tempCollisionMap[1];
@@ -70,6 +78,9 @@ public class RectangleCollider extends Collider {
 			}
 		}
 		
+		Collider[] colliders = new Collider[collidersArray.size()];
+		colliders = collidersArray.<Collider> toArray(colliders);
+		
 		for (int i = 0; i < collisionMap.length; i++) {
 			collisionMap[i] = Mathf.constrain(collisionMap[i], -1, 1);
 		}
@@ -77,7 +88,7 @@ public class RectangleCollider extends Collider {
 		if (collisionMap[0] == 1) {
 			if (!pcollided()) {
 				for (ColliderEvent colliderEvent : colliderEvents) {
-					colliderEvent.onCollisionEnter(collisionMap);
+					colliderEvent.onCollisionEnter(collisionMap, colliders);
 				}
 			}
 			pcollided(true);
@@ -91,13 +102,13 @@ public class RectangleCollider extends Collider {
 			pcollided(false);
 		}
 		
-		return collisionMap;
+		return new Object[] { collisionMap, colliders };
 	}
 
 	/**
 	 * Checks Collision for one spot.
 	 */
-	public final float[] checkCollision(Vector2 checkPos) {
+	public final Object[] checkCollision(Vector2 checkPos) {
 		float[] collisionMap = new float[] {
 			0, // Has Collided?
 			0, // Horizontal Map
@@ -138,6 +149,6 @@ public class RectangleCollider extends Collider {
 			collisionMap[2] = 1;
 		}
 		
-		return collisionMap;
+		return new Object[] { collisionMap, this };
 	}
 }

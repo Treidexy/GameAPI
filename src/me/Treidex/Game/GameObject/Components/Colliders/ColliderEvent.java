@@ -4,7 +4,7 @@ public interface ColliderEvent {
 	/**
 	 * Structure for Entering Collision.
 	 */
-	public void onCollisionEnter(float[] collisionMap);
+	public void onCollisionEnter(float[] collisionMap, Collider[] colliders);
 	
 	/**
 	 * Structure for Exiting Collision.

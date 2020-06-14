@@ -41,7 +41,7 @@ public class GameObject {
 	 * in Game Object.
 	 */
 	public void setParents() {
-		for (Component component : components) {
+		for (Component component: components) {
 			component.setParent(this);
 		}
 	}
@@ -69,7 +69,7 @@ public class GameObject {
 	 * Initialize all Components.
 	 */
 	public void init() {
-		for (Component component : components) {
+		for (Component component: components) {
 			component.init();
 		}
 	}
@@ -80,7 +80,7 @@ public class GameObject {
 	 * @param g Graphics Component.
 	 */
 	public void draw(Graphics g) {
-		for (Component component : components) {
+		for (Component component: components) {
 			component.draw(g);
 		}
 	}
@@ -89,7 +89,7 @@ public class GameObject {
 	 * Update all Components.
 	 */
 	public void update() {
-		for (Component component : components) {
+		for (Component component: components) {
 			component.update();
 		}
 	}
