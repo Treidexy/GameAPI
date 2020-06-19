@@ -44,7 +44,7 @@ public class RectangleCollider extends Collider {
 	/**
 	 * Checks if the Rectangle is colliding with another collider.
 	 */
-	public final Object[] checkCollision() {
+	public final CollisionMap checkCollision() {
 		float[] collisionMap = new float[] {
 			0,
 			0,
@@ -64,10 +64,10 @@ public class RectangleCollider extends Collider {
 			for (int y = 0; y < transform.size.y; y++) {
 				for (int x = 0; x < transform.size.x; x++) {
 					
-					Object[] collision = collider.checkCollision(Vector2.add(transform.position(), new Vector2(x, y)));
+					CollisionMap tempCollision = collider.checkCollision(Vector2.add(transform.position(), new Vector2(x, y)));
 					
-					Collider tempCollider = (Collider) collision[1];
-					float[] tempCollisionMap = (float[]) collision[0];
+					Collider tempCollider = tempCollision.collision;
+					float[] tempCollisionMap = tempCollision.collisionMapf;
 					
 					if (tempCollisionMap[0] != 0) {
 						collisionMap[0] = tempCollisionMap[0];
@@ -106,13 +106,13 @@ public class RectangleCollider extends Collider {
 			pcollided(false);
 		}
 		
-		return new Object[] { collisionMap, colliders };
+		return new CollisionMap(collisionMap, colliders);
 	}
 
 	/**
 	 * Checks Collision for one spot.
 	 */
-	public final Object[] checkCollision(Vector2 checkPos) {
+	public final CollisionMap checkCollision(Vector2 checkPos) {
 		float[] collisionMap = new float[] {
 			0, // Has Collided?
 			0, // Horizontal Map
@@ -153,6 +153,6 @@ public class RectangleCollider extends Collider {
 			collisionMap[2] = 1;
 		}
 		
-		return new Object[] { collisionMap, this };
+		return new CollisionMap(collisionMap, this);
 	}
 }

@@ -99,7 +99,7 @@ public class Physics extends Component {
 	public void fixedUpdate() {
 		addForce(Vector2.mult(gravity, Time.fixedDeltaTime));
 		
-		collisionHandle((float[]) collider.checkCollision()[0]);
+		collisionHandle(collider.checkCollision().collisionMapf);
 		
 		newPos = Vector2.add(transform.position(), velocity);
 		transform.position(Vector2.lerp(transform.position(), newPos, lerp));

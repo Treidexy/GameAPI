@@ -2,6 +2,7 @@ package me.Treidex.Game.GameObject.Components.Colliders;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.ArrayList;
 
 import me.Treidex.Game.Anotations.Unfinished;
 import me.Treidex.Game.Math.Mathf;
@@ -36,10 +37,10 @@ public class EllipseCollider extends Collider {
 	 */
 	public void draw(Graphics g) {
 		g.setColor(new Color(50, 255, 14));
-		g.drawOval((int) transform.position.x, (int) transform.position.y, (int) transform.size.x, (int) transform.size.y);
+		g.drawOval((int) transform.position().x, (int) transform.position().y, (int) transform.size.x, (int) transform.size.y);
 		
 		g.setColor(new Color(255, 88, 14));
-		g.drawOval((int) (transform.position.x + margin), (int) (transform.position.y + margin), (int) (transform.size.x - margin*2), (int) (transform.size.y - margin*2));
+		g.drawOval((int) (transform.position().x + margin), (int) (transform.position().y + margin), (int) (transform.size.x - margin*2), (int) (transform.size.y - margin*2));
 	}
 	
 	public void onDestroy() {
@@ -50,12 +51,14 @@ public class EllipseCollider extends Collider {
 	 * Checks if the Ellipse is colliding with
 	 * another collider.
 	 */
-	public final float[] checkCollision() {
+	public final CollisionMap checkCollision() {
 		float[] collisionMap = new float[] {
 			0,
 			0,
 			0
 		};
+		
+		ArrayList<Collider> collidersArray = new ArrayList<Collider>();
 		
 		for (Collider collider : Collider.colliders) {
 			
@@ -71,10 +74,15 @@ public class EllipseCollider extends Collider {
 					for (float multY = -transform.size.y; multY < transform.size.y/2; multY++) {
 						float y = Y * multY;
 						
-						float[] tempCollisionMap = collider.checkCollision(Vector2.add(transform.position, new Vector2(x, y)));
+						CollisionMap tempCollision = collider.checkCollision(Vector2.add(transform.position(), new Vector2(x, y)));
 						
-						if (tempCollisionMap[0] != 0)
+						Collider tempCollider = tempCollision.collision;
+						float[] tempCollisionMap = tempCollision.collisionMapf;
+						
+						if (tempCollisionMap[0] != 0) {
 							collisionMap[0] = tempCollisionMap[0];
+							collidersArray.add(tempCollider);
+						}
 						
 						if (tempCollisionMap[1] != 0)
 							collisionMap[1] += tempCollisionMap[1];
@@ -85,69 +93,73 @@ public class EllipseCollider extends Collider {
 			}
 		}
 		
+		Collider[] colliders = new Collider[collidersArray.size()];
+		colliders = collidersArray.<Collider> toArray(colliders);
+		
 		for (int i = 0; i < collisionMap.length; i++) {
 			collisionMap[i] = Mathf.constrain(collisionMap[i], -1, 1);
 		}
 		
-		return collisionMap;
+		if (collisionMap[0] == 1) {
+			if (!pcollided()) {
+				for (ColliderEvent colliderEvent : colliderEvents) {
+					colliderEvent.onCollisionEnter(collisionMap, colliders);
+				}
+			}
+			pcollided(true);
+		} else {
+			if (pcollided()) {
+				for (ColliderEvent colliderEvent : colliderEvents) {
+					colliderEvent.onCollisionExit();
+				}
+			}
+			
+			pcollided(false);
+		}
+		
+		return new CollisionMap(collisionMap, colliders);
 	}
 
 	/**
 	 * Checks Collision for one spot.
 	 */
-	public final float[] checkCollision(Vector2 checkPos) {
+	public final CollisionMap checkCollision(Vector2 checkPos) {
 		float[] collisionMap = new float[] {
 			0, // Has Collided?
 			0, // Horizontal Map
 			0  // Vertical Map
 		};
 		
-		if (Math.pow((checkPos.x - transform.position.x), 2) / Math.pow(transform.size.x, 2) + Math.pow((checkPos.y - transform.position.y), 2) / Math.pow(transform.size.y, 2) <= 1) {
+		if (Math.pow((checkPos.x - transform.position().x), 2) / Math.pow(transform.size.x, 2) + Math.pow((checkPos.y - transform.position().y), 2) / Math.pow(transform.size.y, 2) <= 1) {
 			collisionMap[0] = 1;
 			
 			if (
-					checkPos.x >= transform.position.x && checkPos.x <= transform.position.x + margin &&
-					checkPos.y >= transform.position.y && checkPos.y <= transform.position.y + transform.size.y
+					checkPos.x >= transform.position().x && checkPos.x <= transform.position().x + margin &&
+					checkPos.y >= transform.position().y && checkPos.y <= transform.position().y + transform.size.y
 				) {
 				collisionMap[1] = -1;
 			}
 			if (
-					checkPos.x >= transform.position.x + transform.size.x - margin && checkPos.x <= transform.position.x + transform.size.x &&
-					checkPos.y >= transform.position.y && checkPos.y <= transform.position.y + transform.size.y
+					checkPos.x >= transform.position().x + transform.size.x - margin && checkPos.x <= transform.position().x + transform.size.x &&
+					checkPos.y >= transform.position().y && checkPos.y <= transform.position().y + transform.size.y
 				) {
 				collisionMap[1] = 1;
 			}
 			
 			if (
-					checkPos.x >= transform.position.x && checkPos.x <= transform.position.x + transform.size.x &&
-					checkPos.y >= transform.position.y && checkPos.y <= transform.position.y + margin
+					checkPos.x >= transform.position().x && checkPos.x <= transform.position().x + transform.size.x &&
+					checkPos.y >= transform.position().y && checkPos.y <= transform.position().y + margin
 				) {
 				collisionMap[2] = -1;
 			}
 			if (
-					checkPos.x >= transform.position.x && checkPos.x <= transform.position.x + transform.size.x &&
-					checkPos.y >= transform.position.y + transform.size.y - margin && checkPos.y <= transform.position.y + transform.size.y
+					checkPos.x >= transform.position().x && checkPos.x <= transform.position().x + transform.size.x &&
+					checkPos.y >= transform.position().y + transform.size.y - margin && checkPos.y <= transform.position().y + transform.size.y
 				) {
 				collisionMap[2] = 1;
 			}
 		}
 		
-		if (collisionMap[0] == 1) {
-			if (!pcollided()) {
-				for (ColliderEvent colliderEvent : colliderEvents)
-					colliderEvent.onCollisionEnter(collisionMap);
-			}
-			
-			pcollided(true);
-		} else {
-			if (pcollided()) {
-				for (ColliderEvent colliderEvent : colliderEvents)
-					colliderEvent.onCollisionExit();
-			}
-			
-			pcollided(false);
-		}
-		
-		return collisionMap;
+		return new CollisionMap(collisionMap, this);
 	}
 }
