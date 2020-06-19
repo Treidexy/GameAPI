@@ -41,6 +41,8 @@ public class GameWindow extends JFrame {
 	 */
 	private long time;
 	
+	private String windowName;
+	
 	
 	/**
 	 * Constructor -
@@ -48,14 +50,16 @@ public class GameWindow extends JFrame {
 	 * 
 	 * @param game The Game that controls the Canvas.
 	 */
-	public GameWindow(Game game, int width, int height) {
+	public GameWindow(Game game, String windowName, int width, int height) {
 		this.game = game;
+		this.windowName = windowName;
+		
 		shouldClose = false;
 		
 		setSize(width, height);
 		setResizable(false);
 		setLocationRelativeTo(null);
-		setTitle("Physics - by Treidex");
+		setTitle(windowName);
 		setVisible(true);
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		addWindowListener(new WindowAdapter() {
@@ -74,7 +78,7 @@ public class GameWindow extends JFrame {
 	public void update() {
 		frames++;
 		if (System.currentTimeMillis() > time + 1000) {
-			setTitle("Physics - by Treidex" + " | FPS: " + frames);
+			setTitle(windowName + " | FPS: " + frames);
 			time = System.currentTimeMillis();
 			frames = 0;
 		}

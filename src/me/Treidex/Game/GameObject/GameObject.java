@@ -5,6 +5,7 @@ import java.awt.event.KeyEvent;
 
 import me.Treidex.Game.GameObject.Components.Component;
 import me.Treidex.Game.GameObject.Components.Transform;
+import me.Treidex.Game.SuperClasses.Scene;
 
 /**
  * Class of every Object On-Scene.
@@ -23,6 +24,8 @@ public class GameObject {
 	 * The Components the Game Object contains.
 	 */
 	public Component[] components;
+	
+	public Scene scene;
 	
 	/**
 	 * Initialize the Game Object.
@@ -46,6 +49,15 @@ public class GameObject {
 		}
 	}
 	
+	public <T extends Component> boolean hasComponent(Class<T> componentClass){
+	    for (Component c: this.components){
+	        if(c.getClass() == componentClass) {
+	            return true;
+	        }
+	    }
+	    return false;
+	}
+	
 	/**
 	 * Allows Method for getting Component.
 	 * 
@@ -54,7 +66,7 @@ public class GameObject {
 	 * @return Component.
 	 */
 	@SuppressWarnings("unchecked")
-	public <T extends Component> T getComponent (Class<T> componentClass){
+	public <T extends Component> T getComponent(Class<T> componentClass){
 	    for (Component c: this.components){
 	        if(c.getClass() == componentClass) {
 	            return (T) c;

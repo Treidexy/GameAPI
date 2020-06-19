@@ -10,99 +10,134 @@ import me.Treidex.Game.GameObject.Components.*;
 import me.Treidex.Game.GameObject.Components.Colliders.*;
 import me.Treidex.Game.Math.*;
 import me.Treidex.Game.SuperClasses.Scene;
+import me.Treidex.Game.Test.GameObjects.Coin;
+import me.Treidex.Game.Test.GameObjects.Components.*;
 
 public class Main {
-	public static final int width = 1200;
-	public static final int height = 1080;
+	public static final int width = 1920;
+	public static final int height = 1200;
 	
 	static GameManager gameManager;
 	static Scene scene;
 	static GameObject player;
-	static GameObject[] gameObjects;
-	
-	private static void init() {
-		player = new GameObject(
-				new Transform(
-					new Vector2(0, 0),
-					new Vector2(50, 100),
-					0f
-				),
-				new Follow(
-					0.1f,
-					width,
-					height
-				),
-				new PlayerController(
-					500,
-					69,
-					false
-				),
-				new SpriteRenderer(
-					"/gui/KIU.png"
-				),
-				new RectangleCollider(
-					false,
-					2,
-					new ColliderEvent() {
-						public void onCollisionEnter(float[] collisionMap, Collider[] colliders) {
-							System.out.println("Entering Collision with: " + colliders[0]);
-						}
-						
-						public void onCollisionExit() {
-							System.out.println("Exited Collision!D");
-						}
-					}
-				),
-				new Physics(
-					ColliderType.Rectangle,
-					new Vector2(0, 269),
-					0.36f,
-					0.14f
-				)
-			);
-			gameObjects = new GameObject[] {
-				player,
-				new GameObject(
-					new Transform(
-						new Vector2(-15, 500),
-						new Vector2(690, 50),
-						0f
-					),
-					new SpriteRenderer(
-						"/gui/Menu.png"
-					),
-					new RectangleCollider(
-						false,
-						2
-					)
-				),
-				new GameObject(
-					new Transform(
-						new Vector2(700, 450),
-						new Vector2(690, 50),
-						0f
-					),
-					new SpriteRenderer(
-						"/gui/Menu.png"
-					),
-					new RectangleCollider(
-						false,
-						2
-					)
-				)
-			};
-	}
 	
 	public static void main(String[] args) {
-		
-		
-		
 		scene = new Scene() {
 			public void init() {
-				Main.init();
+				player = null;
+				player = new GameObject(
+					new Transform(
+						new Vector2(0, 0),
+						new Vector2(50, 100),
+						0f
+					),
+					new Follow(
+						0f,
+						new Vector2(0, 0),
+						width,
+						height
+					),
+					new PlayerController(
+						1000,
+						88,
+						false
+					),
+					new SpriteRenderer(
+						"/gui/KIU.png"
+					),
+					new RectangleCollider(
+						false,
+						5,
+						new ColliderEvent() {
+							public void onCollisionEnter(float[] collisionMap, Collider[] colliders) {
+								System.out.println("Entering Collision with: " + colliders[0]);
+							}
+							
+							public void onCollisionExit() {
+								System.out.println("Exited Collision!D");
+							}
+						}
+					),
+					new Physics(
+						ColliderType.Rectangle,
+						new Vector2(0, 420),
+						0.36f,
+						0.14f
+					)
+//					new PlayerScore()
+				);
 				
-				this.gameObjects = Main.gameObjects;
-				System.out.println('f');
+				gameObjects = new GameObject[] {
+//						new Coin(
+//								this,
+//								new Transform(
+//									new Vector2(725, 400),
+//									new Vector2(30, 30),
+//									0f
+//								),
+//								ColliderType.Rectangle,
+//								6,
+//								new SpriteRenderer(
+//									"/sprites/Ball.png"
+//								)
+//							),
+//						new GameObject(
+//								new Transform(
+//									new Vector2(1000, 400),
+//									new Vector2(50, 100),
+//									0f
+//								),
+//								new SpriteRenderer(
+//									"/sprites/Ball.png"
+//								),
+//								new RectangleCollider(
+//									false,
+//									2,
+//									new ColliderEvent() {
+//										public void onCollisionEnter(float[] collisionMap, Collider[] colliders) {
+//											System.exit(0);
+//										}
+//										
+//										public void onCollisionExit() {}
+//									}
+//								)
+//								new Physics(
+//									ColliderType.Rectangle,
+//									new Vector2(-69f, 0),
+//									0.36f,
+//									0.14f
+//								)
+//							),
+					player,
+					new GameObject(
+						new Transform(
+							new Vector2(-15, 500),
+							new Vector2(690, 50),
+							0f
+						),
+						new SpriteRenderer(
+							"/gui/Menu.png"
+						),
+						new RectangleCollider(
+							false,
+							2
+						)
+					),
+					new GameObject(
+						new Transform(
+							new Vector2(700, 450),
+							new Vector2(690, 50),
+							0f
+						),
+						new SpriteRenderer(
+							"/gui/Menu.png"
+						),
+						new RectangleCollider(
+							false,
+							2
+						)
+					)
+				};
 				
 				super.init();
 			}
@@ -117,7 +152,9 @@ public class Main {
 			public void fixedUpdate() {
 				super.fixedUpdate();
 				
-				if (player.transform.position.y >= 700) {
+//				System.out.println(((PlayerScore) player.components[5]) .score);
+				
+				if (player.transform.position().y >= 700) {
 					gameManager.changeScene(scene);
 				}
 //				if (scene.gameObjects.length >= 3)
@@ -128,7 +165,7 @@ public class Main {
 
 		gameManager = new GameManager(scene);
 		
-		Program program = new Program(gameManager, 1337, 60, width, height);
+		Program program = new Program(gameManager, "Testing for Game API - Treidex", 1337, 60, width, height);
 		program.start();
 	}
 }

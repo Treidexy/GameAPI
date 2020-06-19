@@ -7,6 +7,7 @@ import me.Treidex.Game.GameWindow;
 import me.Treidex.Game.Anotations.Unfinished;
 import me.Treidex.Game.GameObject.GameObject;
 import me.Treidex.Game.Math.Mathf;
+import me.Treidex.Game.Math.Vector2;
 
 
 /**
@@ -21,6 +22,8 @@ public class Scene {
 	 * The List of Game Objects.
 	 */
 	public GameObject[] gameObjects;
+	
+	public Vector2 translate = Vector2.zero;
 	
 	protected GameWindow window;
 	
@@ -43,6 +46,8 @@ public class Scene {
 		setParents();
 		
 		for (GameObject gameObject : gameObjects) {
+			gameObject.scene = this;
+			
 			gameObject.init();
 		}
 	}
@@ -55,6 +60,8 @@ public class Scene {
 	 * @param g The Graphics Component to help Draw.
 	 */
 	public void draw(Graphics g) {
+		g.translate((int) translate.x, (int) translate.y);
+		
 		for (GameObject gameObject : gameObjects) {
 			gameObject.draw(g);
 		}
@@ -123,6 +130,12 @@ public class Scene {
 	
 	public void spawn(GameObject objectToSpawn) {
 		gameObjects = Mathf.<GameObject> addToArray(GameObject.class, gameObjects, objectToSpawn);
+	}
+	
+	public void destroyAll() {
+		for (int i = 0; i < gameObjects.length; i++) {
+			destroy(i);
+		}
 	}
 	
 	public void destroy(GameObject objectToDestroy) {

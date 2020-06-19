@@ -55,6 +55,6 @@ public class SpriteRenderer extends Component {
 	 * Draw the Sprite.
 	 */
 	public void draw(Graphics g) {
-		g.drawImage(sprite, (int) transform.position.x, (int) transform.position.y, null);
+		g.drawImage(sprite, (int) transform.position().x, (int) transform.position().y, null);
 	}
 }

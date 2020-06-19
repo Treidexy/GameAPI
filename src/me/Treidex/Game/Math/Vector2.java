@@ -86,6 +86,14 @@ public class Vector2 {
 		return new Vector2(vector.x / divider, vector.y / divider);
 	}
 	
+	public static Vector2 neg(Vector2 vector) {
+		return Vector2.sub(zero, vector);
+	}
+	
+	public static Vector2 abs(Vector2 vector) {
+		return new Vector2(Math.abs(vector.x), Math.abs(vector.y));
+	}
+	
 	/**
 	 * Method Used for Linear Interpolation
 	 * for two Vectors.
@@ -99,6 +107,12 @@ public class Vector2 {
 	 */
 	public static Vector2 lerp(Vector2 startPos, Vector2 endPos, float lerp) {
 		return Vector2.add(endPos, Vector2.mult(Vector2.sub(endPos, startPos), lerp));
+	}
+	
+	public static Vector2 normalized(Vector2 vector) {
+		float magnitude = vector.magnitude();
+		
+		return new Vector2(vector.x / magnitude, vector.y / magnitude);
 	}
 	
 	/**
@@ -120,14 +134,15 @@ public class Vector2 {
 	}
 	
 	/**
-	 * (UN-FINISHED)
 	 * Limit The Magnitude of the Vector.
 	 * 
 	 * @param limit The Limit.
 	 */
-	@Unfinished
 	public void limitMag(float limit) {
-		// TODO Make It Work!!!
+		normalize();
+		
+		x *= limit;
+		y *= limit;
 	}
 	
 	/**
@@ -145,6 +160,13 @@ public class Vector2 {
 		mag = (float) Math.sqrt(magSqr);
 		
 		return mag;
+	}
+	
+	public void normalize() {
+		float magnitude = magnitude();
+		
+		x /= magnitude;
+		y /= magnitude;
 	}
 	
 	/**

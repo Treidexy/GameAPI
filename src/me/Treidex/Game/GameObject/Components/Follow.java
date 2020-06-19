@@ -25,6 +25,8 @@ public class Follow extends Component {
 	 */
 	private float lerp;
 	
+	private Vector2 offset;
+	
 	/**
 	 * The Width of the Canvas.
 	 */
@@ -42,8 +44,9 @@ public class Follow extends Component {
 	 * @param width The Width of the Canvas.
 	 * @param height The Height of the Canvas.
 	 */
-	public Follow(float lerp, int width, int height) {
+	public Follow(float lerp, Vector2 offset, int width, int height) {
 		this.lerp = lerp;
+		this.offset = offset;
 		this.width = width;
 		this.height = height;
 		
@@ -55,13 +58,18 @@ public class Follow extends Component {
 	 * the Focus Position.
 	 */
 	public void draw(Graphics g) {
-		g.translate((int) -((pos.x + transform.size.x) - (width/2)), (int) -((pos.y + transform.size.y) - (height/2)));
+		Vector2 translate = Vector2.neg(Vector2.sub(pos, Vector2.div(new Vector2(width, height), 2)));
+		Vector2 translateDif = Vector2.sub(translate, parent.scene.translate);
+		
+		g.translate((int) translateDif.x, (int) translateDif.y);
+		
+		parent.scene.translate = translate;
 	}
 	
 	/**
 	 * Update the Fucos Position.
 	 */
 	public void lateUpdate() {
-		pos = Vector2.lerp(pos, transform.position, lerp);
+		pos = Vector2.lerp(pos, Vector2.sub(transform.center(), offset), lerp);
 	}
 }

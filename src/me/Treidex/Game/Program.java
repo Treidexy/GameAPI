@@ -67,6 +67,8 @@ public final class Program implements Runnable {
 	 */
 	private GameWindow gameWindow;
 	
+	private String windowName;
+	
 	private int fixedTPS;
 	
 	private int width;
@@ -79,8 +81,9 @@ public final class Program implements Runnable {
 	 * @param gameManager The Game Manager
 	 * @param maxTPS The Max Tick Per Second allowed.
 	 */
-	public Program(GameManager gameManager, int maxTPS, int fixedTPS, int width, int height) {
+	public Program(GameManager gameManager, String windowName, int maxTPS, int fixedTPS, int width, int height) {
 		this.gameManager = gameManager;
+		this.windowName = windowName;
 		this.width = width;
 		this.height = height;
 		this.fixedTPS = fixedTPS;
@@ -104,7 +107,7 @@ public final class Program implements Runnable {
 	 */
 	public void init() {
 		game = new Game(gameManager, fixedTPS);
-		gameWindow = new GameWindow(game, width, height);
+		gameWindow = new GameWindow(game, windowName, width, height);
 		game.init();
 	}
 	

@@ -31,10 +31,10 @@ public class RectangleCollider extends Collider {
 	 */
 	public void draw(Graphics g) {
 		g.setColor(new Color(50, 255, 14));
-		g.drawRect((int) transform.position.x, (int) transform.position.y, (int) transform.size.x, (int) transform.size.y);
+		g.drawRect((int) transform.position().x, (int) transform.position().y, (int) transform.size.x, (int) transform.size.y);
 		
 		g.setColor(new Color(255, 88, 14));
-		g.drawRect((int) (transform.position.x + margin), (int) (transform.position.y + margin), (int) (transform.size.x - margin*2), (int) (transform.size.y - margin*2));
+		g.drawRect((int) (transform.position().x + margin), (int) (transform.position().y + margin), (int) (transform.size.x - margin*2), (int) (transform.size.y - margin*2));
 	}
 	
 	public void onDestroy() {
@@ -58,9 +58,13 @@ public class RectangleCollider extends Collider {
 			if (collider == this)
 				continue;
 			
+			if (collider.isTrigger)
+				continue;
+			
 			for (int y = 0; y < transform.size.y; y++) {
 				for (int x = 0; x < transform.size.x; x++) {
-					Object[] collision = collider.checkCollision(Vector2.add(transform.position, new Vector2(x, y)));
+					
+					Object[] collision = collider.checkCollision(Vector2.add(transform.position(), new Vector2(x, y)));
 					
 					Collider tempCollider = (Collider) collision[1];
 					float[] tempCollisionMap = (float[]) collision[0];
@@ -116,16 +120,16 @@ public class RectangleCollider extends Collider {
 		};
 		
 		if (
-				checkPos.x >= transform.position.x && checkPos.x <= transform.position.x + margin &&
-				checkPos.y >= transform.position.y && checkPos.y <= transform.position.y + transform.size.y
+				checkPos.x >= transform.position().x && checkPos.x <= transform.position().x + margin &&
+				checkPos.y >= transform.position().y && checkPos.y <= transform.position().y + transform.size.y
 			) {
 			collisionMap[0] = 1;
 			
 			collisionMap[1] = -1;
 		}
-		if (
-				checkPos.x >= transform.position.x + transform.size.x - margin && checkPos.x <= transform.position.x + transform.size.x &&
-				checkPos.y >= transform.position.y && checkPos.y <= transform.position.y + transform.size.y
+		if ( 
+				checkPos.x >= transform.position().x + transform.size.x - margin && checkPos.x <= transform.position().x + transform.size.x &&
+				checkPos.y >= transform.position().y && checkPos.y <= transform.position().y + transform.size.y
 			) {
 			collisionMap[0] = 1;
 			
@@ -133,16 +137,16 @@ public class RectangleCollider extends Collider {
 		}
 		
 		if (
-				checkPos.x >= transform.position.x && checkPos.x <= transform.position.x + transform.size.x &&
-				checkPos.y >= transform.position.y && checkPos.y <= transform.position.y + margin
+				checkPos.x >= transform.position().x && checkPos.x <= transform.position().x + transform.size.x &&
+				checkPos.y >= transform.position().y && checkPos.y <= transform.position().y + margin
 			) {
 			collisionMap[0] = 1;
 			
 			collisionMap[2] = -1;
 		}
 		if (
-				checkPos.x >= transform.position.x && checkPos.x <= transform.position.x + transform.size.x &&
-				checkPos.y >= transform.position.y + transform.size.y - margin && checkPos.y <= transform.position.y + transform.size.y
+				checkPos.x >= transform.position().x && checkPos.x <= transform.position().x + transform.size.x &&
+				checkPos.y >= transform.position().y + transform.size.y - margin && checkPos.y <= transform.position().y + transform.size.y
 			) {
 			collisionMap[0] = 1;
 			

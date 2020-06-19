@@ -71,6 +71,10 @@ public class Component {
 	
 	public void onDestroy() {}
 	
+	public GameObject getParent() {
+		return parent;
+	}
+	
 	/**
 	 * Used for the Game Object to set
 	 * the Components Parent.
@@ -81,5 +85,9 @@ public class Component {
 		this.parent = parent;
 		
 		transform = parent.transform;
+	}
+	
+	public String toString() {
+		return "Component!";
 	}
 }

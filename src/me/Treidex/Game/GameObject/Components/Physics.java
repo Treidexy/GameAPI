@@ -80,13 +80,17 @@ public class Physics extends Component {
 				collider = parent.<EllipseCollider> getComponent(EllipseCollider.class);
 				break;
 		}
+		
+		if (collider.isTrigger) {
+			new Exception("Physics Colliders must not be Triggers!");
+		}
 	}
 	
 	/**
 	 * Interpolate the Position.
 	 */
 	public void update() {
-		transform.position = Vector2.lerp(transform.position, newPos, lerp);
+		transform.position(Vector2.lerp(transform.position(), newPos, lerp));
 	}
 	
 	/**
@@ -97,8 +101,8 @@ public class Physics extends Component {
 		
 		collisionHandle((float[]) collider.checkCollision()[0]);
 		
-		newPos = Vector2.add(transform.position, velocity);
-		transform.position = Vector2.lerp(transform.position, newPos, lerp);
+		newPos = Vector2.add(transform.position(), velocity);
+		transform.position(Vector2.lerp(transform.position(), newPos, lerp));
 		
 		velocity = Vector2.lerp(velocity, Vector2.zero, speedDamp);
 		
@@ -126,10 +130,6 @@ public class Physics extends Component {
 	 */
 	@Unfinished
 	private void collisionHandle(float[] collisionMap) {
-		if (collider.isTrigger) {
-			return;
-		}
-		
 		if (collisionMap[0] == 0) {
 			onGround = false;
 			return;

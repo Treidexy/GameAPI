@@ -32,11 +32,16 @@ public final class GameManager {
 	 * @param scenes All the Scenes to be loaded.
 	 */
 	public GameManager(Scene scene) {
-		changeScene(scene);
+		setScene(scene);
+	}
+	
+	public void setScene(Scene newScene) {
+		scene = newScene;
 	}
 	
 	public void changeScene(Scene newScene) {
-		scene = newScene;
+		scene.destroyAll();
+		setScene(newScene);
 		
 		scene.init();
 	}

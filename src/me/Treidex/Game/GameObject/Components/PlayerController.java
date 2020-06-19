@@ -75,7 +75,7 @@ public class PlayerController extends Component {
 	public void draw(Graphics g) {
 		if (renderDefault) {
 			g.setColor(new Color(14, 69, 14));
-			g.fillRect((int) transform.position.x, (int) transform.position.y, (int) transform.size.x, (int) transform.size.y);
+			g.fillRect((int) transform.position().x, (int) transform.position().y, (int) transform.size.x, (int) transform.size.y);
 		}
 	}
 	
