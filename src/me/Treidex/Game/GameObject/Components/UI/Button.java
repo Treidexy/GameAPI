@@ -17,9 +17,7 @@ public class Button extends UI {
 	protected boolean mouseOver;
 	protected boolean mousePressed;
 	
-	public Button(boolean isStatic, Color normalCol, Color overCol, Color pressedCol, ButtonEvent... buttonEvents) {
-		super(isStatic);
-		
+	public Button(Color normalCol, Color overCol, Color pressedCol, ButtonEvent... buttonEvents) {
 		this.normalCol = normalCol;
 		this.overCol = overCol;
 		this.pressedCol = pressedCol;
@@ -27,8 +25,6 @@ public class Button extends UI {
 	}
 	
 	public void draw(Graphics g) {
-		staticTransStart(g);
-		
 		g.setColor(normalCol);
 		
 		if (mouseOver)
@@ -38,8 +34,6 @@ public class Button extends UI {
 			g.setColor(pressedCol);
 		
 		g.fillRoundRect((int) transform.position().x, (int) transform.position().y, (int) transform.size.x, (int) transform.size.y, 5, 5);
-		
-		staticTransEnd(g);
 	}
 	
 	public void mousePressed(MouseEvent e) {

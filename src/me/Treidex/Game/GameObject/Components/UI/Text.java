@@ -8,21 +8,16 @@ public class Text extends UI {
 	protected Color col;
 	protected Font font;
 	
-	public Text(String text, Color col, Font font, boolean isStatic) {
-		super(isStatic);
+	public Text(String text, Color col, Font font) {
 		this.text = text;
 		this.col = col;
 		this.font = font;
 	}
 	
 	public void draw(Graphics g) {
-		staticTransStart(g);
-		
 		g.setColor(col);
 		g.setFont(font);
 		
 		g.drawString(text, (int) transform.position().x, (int) transform.position().y);
-		
-		staticTransEnd(g);
 	}
 }

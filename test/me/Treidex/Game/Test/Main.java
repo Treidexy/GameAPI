@@ -70,20 +70,7 @@ public class Main {
 //					new PlayerScore()
 				);
 				
-				gameObjects = new GameObject[] {
-					new GameObject(
-						new Transform(
-							new Vector2(50, 100),
-							Vector2.zero,
-							0
-						),
-						new Text(
-							"Lol",
-							new Color(0, 0, 0),
-							new Font(Font.MONOSPACED, Font.ROMAN_BASELINE, 69),
-							false
-						)
-					),
+				noTranslateObjects = new GameObject[] {
 					new GameObject(
 						new Transform(
 							new Vector2(50, 100),
@@ -91,13 +78,14 @@ public class Main {
 							0
 						),
 						new Button(
-							true,
 							new Color(200, 200, 200),
 							new Color(188, 188, 188),
 							new Color(100, 100, 100)
 						)
-					),
-					player,
+					)
+				};
+				
+				staticObjects = new GameObject[] {
 					new GameObject(
 						new Transform(
 							new Vector2(-15, 500),
@@ -125,7 +113,23 @@ public class Main {
 							false,
 							2
 						)
+					),
+					new GameObject(
+						new Transform(
+							new Vector2(50, 100),
+							Vector2.zero,
+							0
+						),
+						new Text(
+							"Lol",
+							new Color(0, 0, 0),
+							new Font(Font.MONOSPACED, Font.ROMAN_BASELINE, 69)
+						)
 					)
+				};
+				
+				gameObjects = new GameObject[] {
+					player
 				};
 				
 				super.init();

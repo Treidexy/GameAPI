@@ -19,6 +19,8 @@ import me.Treidex.Game.Math.Vector2;
  */
 @Unfinished
 public class Scene {
+	public GameObject[] noTranslateObjects;
+	
 	public GameObject[] staticObjects;
 	
 	/**
@@ -35,11 +37,14 @@ public class Scene {
 	 * all the Game Objects.
 	 */
 	public final void setParents() {
-		for (GameObject staticObject : staticObjects) {
-			staticObject.setParents();
+		for (GameObject noTranslateObject : noTranslateObjects) {
+			noTranslateObject.setParents();
 		}
 		for (GameObject gameObject : gameObjects) {
 			gameObject.setParents();
+		}
+		for (GameObject staticObject : staticObjects) {
+			staticObject.setParents();
 		}
 	}
 	
@@ -51,15 +56,20 @@ public class Scene {
 	public void init() {
 		setParents();
 		
-		for (GameObject staticObject : staticObjects) {
-			staticObject.scene = this;
+		for (GameObject noTranslateObject : noTranslateObjects) {
+			noTranslateObject.scene = this;
 			
-			staticObject.init();
+			noTranslateObject.init();
 		}
 		for (GameObject gameObject : gameObjects) {
 			gameObject.scene = this;
 			
 			gameObject.init();
+		}
+		for (GameObject staticObject : staticObjects) {
+			staticObject.scene = this;
+			
+			staticObject.init();
 		}
 	}
 	
@@ -71,13 +81,16 @@ public class Scene {
 	 * @param g The Graphics Component to help Draw.
 	 */
 	public void draw(Graphics g) {
-		g.translate((int) translate.x, (int) translate.y);
-		
-		for (GameObject staticObject : staticObjects) {
-			staticObject.draw(g);
+		for (GameObject noTranslateObject : noTranslateObjects) {
+			noTranslateObject.draw(g);
 		}
+		
+		g.translate((int) translate.x, (int) translate.y);
 		for (GameObject gameObject : gameObjects) {
 			gameObject.draw(g);
+		}
+		for (GameObject staticObject : staticObjects) {
+			staticObject.draw(g);
 		}
 	}
 	
@@ -87,11 +100,14 @@ public class Scene {
 	 * Called every frame.
 	 */
 	public void update() {
-		for (GameObject staticObject : staticObjects) {
-			staticObject.update();
+		for (GameObject noTranslateObject : noTranslateObjects) {
+			noTranslateObject.update();
 		}
 		for (GameObject gameObject : gameObjects) {
 			gameObject.update();
+		}
+		for (GameObject staticObject : staticObjects) {
+			staticObject.update();
 		}
 	}
 	
@@ -101,11 +117,14 @@ public class Scene {
 	 * Called a fixed times a second.
 	 */
 	public void fixedUpdate() {
-		for (GameObject staticObject : staticObjects) {
-			staticObject.fixedUpdate();
+		for (GameObject noTranslateObject : noTranslateObjects) {
+			noTranslateObject.fixedUpdate();
 		}
 		for (GameObject gameObject : gameObjects) {
 			gameObject.fixedUpdate();
+		}
+		for (GameObject staticObject : staticObjects) {
+			staticObject.fixedUpdate();
 		}
 	}
 	
@@ -114,50 +133,75 @@ public class Scene {
 	 * Called at the end of an update.
 	 */
 	public void lateUpdate() {
-		for (GameObject staticObject : staticObjects) {
-			staticObject.lateUpdate();
+		for (GameObject noTranslateObject : noTranslateObjects) {
+			noTranslateObject.lateUpdate();
 		}
 		for (GameObject gameObject : gameObjects) {
 			gameObject.lateUpdate();
 		}
+		for (GameObject staticObject : staticObjects) {
+			staticObject.lateUpdate();
+		}
 	}
 	
 	public void mouseClicked(MouseEvent e) {
-		for (GameObject staticObject : staticObjects) {
-			staticObject.mouseClicked(e);
+		for (GameObject noTranslateObject : noTranslateObjects) {
+			noTranslateObject.mouseClicked(e);
 		}
 		for (GameObject gameObject : gameObjects) {
 			gameObject.mouseClicked(e);
 		}
+		for (GameObject staticObject : staticObjects) {
+			staticObject.mouseClicked(e);
+		}
 	}
 
 	public void mousePressed(MouseEvent e) {
-		for (GameObject staticObject : staticObjects) {
-			staticObject.mousePressed(e);
+		for (GameObject noTranslateObject : noTranslateObjects) {
+			noTranslateObject.mousePressed(e);
 		}
 		for (GameObject gameObject : gameObjects) {
 			gameObject.mousePressed(e);
 		}
+		for (GameObject staticObject : staticObjects) {
+			staticObject.mousePressed(e);
+		}
 	}
 
 	public void mouseReleased(MouseEvent e) {
-		for (GameObject staticObject : staticObjects) {
-			staticObject.mouseReleased(e);
+		for (GameObject noTranslateObject : noTranslateObjects) {
+			noTranslateObject.mouseReleased(e);
 		}
 		for (GameObject gameObject : gameObjects) {
 			gameObject.mouseReleased(e);
 		}
+		for (GameObject staticObject : staticObjects) {
+			staticObject.mouseReleased(e);
+		}
+		
 	}
 	
 	public void mouseDragged(MouseEvent e) {
+		for (GameObject noTranslateObject : noTranslateObjects) {
+			noTranslateObject.mouseDragged(e);
+		}
 		for (GameObject gameObject : gameObjects) {
 			gameObject.mouseDragged(e);
+		}
+		for (GameObject staticObject : staticObjects) {
+			staticObject.mouseDragged(e);
 		}
 	}
 
 	public void mouseMoved(MouseEvent e) {
+		for (GameObject noTranslateObject : noTranslateObjects) {
+			noTranslateObject.mouseMoved(e);
+		}
 		for (GameObject gameObject : gameObjects) {
 			gameObject.mouseMoved(e);
+		}
+		for (GameObject staticObject : staticObjects) {
+			staticObject.mouseMoved(e);
 		}
 	}
 	
@@ -167,8 +211,14 @@ public class Scene {
 	 * @param e The Key Event.
 	 */
 	public void keyPressed(KeyEvent e) {
+		for (GameObject noTranslateObject : noTranslateObjects) {
+			noTranslateObject.keyPressed(e);
+		}
 		for (GameObject gameObject : gameObjects) {
 			gameObject.keyPressed(e);
+		}
+		for (GameObject staticObject : staticObjects) {
+			staticObject.keyPressed(e);
 		}
 	}
 	
@@ -178,14 +228,26 @@ public class Scene {
 	 * @param e The Key Event.
 	 */
 	public void keyReleased(KeyEvent e) {
+		for (GameObject noTranslateObject : noTranslateObjects) {
+			noTranslateObject.keyReleased(e);
+		}
 		for (GameObject gameObject : gameObjects) {
 			gameObject.keyReleased(e);
+		}
+		for (GameObject staticObject : staticObjects) {
+			staticObject.keyReleased(e);
 		}
 	}
 	
 	public void onDestroy() {
+		for (GameObject noTranslateObject : noTranslateObjects) {
+			noTranslateObject.onDestroy();
+		}
 		for (GameObject gameObject : gameObjects) {
 			gameObject.onDestroy();
+		}
+		for (GameObject staticObject : staticObjects) {
+			staticObject.onDestroy();
 		}
 	}
 	
