@@ -16,6 +16,7 @@ public class Button extends UI {
 	
 	protected boolean mouseOver;
 	protected boolean mousePressed;
+	protected boolean clicked;
 	
 	public Button(Color normalCol, Color overCol, Color pressedCol, ButtonEvent... buttonEvents) {
 		this.normalCol = normalCol;
@@ -30,18 +31,31 @@ public class Button extends UI {
 		if (mouseOver)
 			g.setColor(overCol);
 		
-		if (mousePressed)
+		if (clicked)
 			g.setColor(pressedCol);
 		
 		g.fillRoundRect((int) transform.position().x, (int) transform.position().y, (int) transform.size.x, (int) transform.size.y, 5, 5);
 	}
 	
 	public void mousePressed(MouseEvent e) {
-		mousePressed = mouseOver;
+		mousePressed = true;
+		clicked = mouseOver;
+		
+		if (clicked)
+			for (ButtonEvent buttonEvent : buttonEvents) {
+				buttonEvent.mousePressed();
+			}
 	}
 	
 	public void mouseReleased(MouseEvent e) {
 		mousePressed = false;
+		
+		if (clicked)
+			for (ButtonEvent buttonEvent : buttonEvents) {
+				buttonEvent.mouseReleased();
+			}
+		
+		clicked = false;
 	}
 	
 	public void mouseMoved(MouseEvent e) {
@@ -52,8 +66,11 @@ public class Button extends UI {
 			Vector2.lessThanOREqualTo(mouse, Vector2.add(transform.position(), transform.size))
 		) {
 			mouseOver = true;
-		} else {
+			
+			for (ButtonEvent buttonEvent : buttonEvents) {
+				buttonEvent.mouseOver();
+			}
+		} else
 			mouseOver = false;
-		}
 	}
 }

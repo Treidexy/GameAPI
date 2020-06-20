@@ -4,17 +4,14 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 
-import me.Treidex.Game.GameManager;
-import me.Treidex.Game.Program;
+import me.Treidex.Game.*;
 import me.Treidex.Game.GameObject.GameObject;
 import me.Treidex.Game.GameObject.Components.*;
 import me.Treidex.Game.GameObject.Components.Colliders.*;
-import me.Treidex.Game.GameObject.Components.UI.Button;
-import me.Treidex.Game.GameObject.Components.UI.Text;
+import me.Treidex.Game.GameObject.Components.UI.*;
+import me.Treidex.Game.GameObject.Components.UI.Events.*;
 import me.Treidex.Game.Math.*;
-import me.Treidex.Game.SuperClasses.Scene;
-import me.Treidex.Game.Test.GameObjects.Coin;
-import me.Treidex.Game.Test.GameObjects.Components.*;
+import me.Treidex.Game.SuperClasses.*;
 
 public class Main {
 	public static final int width = 1920;
@@ -80,7 +77,16 @@ public class Main {
 						new Button(
 							new Color(200, 200, 200),
 							new Color(188, 188, 188),
-							new Color(100, 100, 100)
+							new Color(100, 100, 100),
+							new ButtonEvent() {
+								public void mouseOver() {}
+								
+								public void mousePressed() {}
+								
+								public void mouseReleased() {
+									System.exit(0);
+								}
+							}
 						)
 					)
 				};
