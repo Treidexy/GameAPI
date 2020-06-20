@@ -8,6 +8,7 @@ import me.Treidex.Game.Program;
 import me.Treidex.Game.GameObject.GameObject;
 import me.Treidex.Game.GameObject.Components.*;
 import me.Treidex.Game.GameObject.Components.Colliders.*;
+import me.Treidex.Game.GameObject.Components.UI.Text;
 import me.Treidex.Game.Math.*;
 import me.Treidex.Game.SuperClasses.Scene;
 import me.Treidex.Game.Test.GameObjects.Coin;
@@ -121,6 +122,17 @@ public class Main {
 						new RectangleCollider(
 							false,
 							2
+						)
+					),
+					new GameObject(
+						new Transform(
+							new Vector2(50, 100),
+							Vector2.zero,
+							0
+						),
+						new Text(
+							"Lol",
+							false
 						)
 					),
 					new GameObject(
