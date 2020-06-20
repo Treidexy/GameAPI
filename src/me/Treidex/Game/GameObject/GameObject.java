@@ -2,6 +2,7 @@ package me.Treidex.Game.GameObject;
 
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 
 import me.Treidex.Game.GameObject.Components.Component;
 import me.Treidex.Game.GameObject.Components.Transform;
@@ -121,6 +122,24 @@ public class GameObject {
 	public void lateUpdate() {
 		for (Component component : components) {
 			component.lateUpdate();
+		}
+	}
+	
+	public void mouseClicked(MouseEvent e) {
+		for (Component component : components) {
+			component.mouseClicked(e);
+		}
+	}
+
+	public void mousePressed(MouseEvent e) {
+		for (Component component : components) {
+			component.mousePressed(e);
+		}
+	}
+
+	public void mouseReleased(MouseEvent e) {
+		for (Component component : components) {
+			component.mouseReleased(e);
 		}
 	}
 	

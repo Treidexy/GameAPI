@@ -2,6 +2,7 @@ package me.Treidex.Game.GameObject.Components;
 
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 
 import me.Treidex.Game.GameObject.GameObject;
 
@@ -54,6 +55,12 @@ public class Component {
 	 * Structure for Late Updates of the Component.
 	 */
 	public void lateUpdate() {}
+	
+	public void mouseClicked(MouseEvent e) {}
+
+	public void mousePressed(MouseEvent e) {}
+
+	public void mouseReleased(MouseEvent e) {}
 	
 	/**
 	 * Structure for Key Pressing for the Component.

@@ -1,8 +1,11 @@
 package me.Treidex.Game;
 
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JPanel;
 
@@ -47,10 +50,14 @@ public class Game extends JPanel {
 	 */
 	public boolean end;
 	
+	private MouseInput mouseInput;
+	
 	/**
 	 * An instance of the Key Input.
 	 */
 	private KeyInput keyInput;
+	
+	public Dimension screen;
 	
 	/**
 	 * Paints the canvas;
@@ -66,8 +73,9 @@ public class Game extends JPanel {
 	 * 
 	 * @param gameManager The Game Manager.
 	 */
-	public Game(GameManager gameManager, int fixedTPS) {
+	public Game(GameManager gameManager, Dimension screen, int fixedTPS) {
 		this.gameManager = gameManager;
+		this.screen = screen;
 		
 		FIXED_TPS = fixedTPS;
 		FIXED_MILLIS = 1000 / FIXED_TPS;
@@ -75,9 +83,14 @@ public class Game extends JPanel {
 		
 		Time.fixedDeltaTime = (float) FIXED_MILLIS / 1000;
 		
+		mouseInput = new MouseInput();
 		keyInput = new KeyInput();
+		
+		addMouseListener(mouseInput);
 		addKeyListener(keyInput);
+		
 		setFocusable(true);
+		this.setSize(screen.width, screen.height);
 	}
 	
 	/**
@@ -123,6 +136,21 @@ public class Game extends JPanel {
 		gameManager.scene.lateUpdate();
 	}
 	
+	private class MouseInput implements MouseListener {
+
+		public void mouseClicked(MouseEvent e) {}
+
+		public void mousePressed(MouseEvent e) {}
+
+		public void mouseReleased(MouseEvent e) {}
+
+		@Override
+		public void mouseEntered(MouseEvent e) {}
+		@Override
+		public void mouseExited(MouseEvent e) {}
+		
+	}
+	
 	/**
 	 * 
 	 * @author Treidex
@@ -153,6 +181,5 @@ public class Game extends JPanel {
 		 * only used in forms.
 		 */
 		public void keyTyped(KeyEvent e) {}
-		
 	}
 }

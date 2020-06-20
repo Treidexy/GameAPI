@@ -2,6 +2,7 @@ package me.Treidex.Game.SuperClasses;
 
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 
 import me.Treidex.Game.GameWindow;
 import me.Treidex.Game.Anotations.Unfinished;
@@ -96,6 +97,24 @@ public class Scene {
 	public void lateUpdate() {
 		for (GameObject gameObject : gameObjects) {
 			gameObject.lateUpdate();
+		}
+	}
+	
+	public void mouseClicked(MouseEvent e) {
+		for (GameObject gameObject : gameObjects) {
+			gameObject.mouseClicked(e);
+		}
+	}
+
+	public void mousePressed(MouseEvent e) {
+		for (GameObject gameObject : gameObjects) {
+			gameObject.mousePressed(e);
+		}
+	}
+
+	public void mouseReleased(MouseEvent e) {
+		for (GameObject gameObject : gameObjects) {
+			gameObject.mouseReleased(e);
 		}
 	}
 	

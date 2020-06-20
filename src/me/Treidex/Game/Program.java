@@ -1,5 +1,7 @@
 package me.Treidex.Game;
 
+import java.awt.Dimension;
+
 import me.Treidex.Game.Anotations.*;
 import me.Treidex.Game.Math.Time;
 
@@ -106,7 +108,7 @@ public final class Program implements Runnable {
 	 * of the program.
 	 */
 	public void init() {
-		game = new Game(gameManager, fixedTPS);
+		game = new Game(gameManager, new Dimension(width, height), fixedTPS);
 		gameWindow = new GameWindow(game, windowName, width, height);
 		game.init();
 	}
