@@ -6,9 +6,11 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
 import javax.swing.JPanel;
 
+import me.Treidex.Game.Anotations.Unused;
 import me.Treidex.Game.Math.Time;
 
 /**
@@ -87,6 +89,7 @@ public class Game extends JPanel {
 		keyInput = new KeyInput();
 		
 		addMouseListener(mouseInput);
+		addMouseMotionListener(mouseInput);
 		addKeyListener(keyInput);
 		
 		setFocusable(true);
@@ -136,18 +139,34 @@ public class Game extends JPanel {
 		gameManager.scene.lateUpdate();
 	}
 	
-	private class MouseInput implements MouseListener {
+	private class MouseInput implements MouseListener, MouseMotionListener {
 
-		public void mouseClicked(MouseEvent e) {}
+		public void mouseClicked(MouseEvent e) {
+			gameManager.scene.mouseClicked(e);
+		}
 
-		public void mousePressed(MouseEvent e) {}
+		public void mousePressed(MouseEvent e) {
+			gameManager.scene.mousePressed(e);
+		}
 
-		public void mouseReleased(MouseEvent e) {}
+		public void mouseReleased(MouseEvent e) {
+			gameManager.scene.mouseReleased(e);
+		}
 
+		@Unused
 		@Override
 		public void mouseEntered(MouseEvent e) {}
+		@Unused
 		@Override
 		public void mouseExited(MouseEvent e) {}
+
+		public void mouseDragged(MouseEvent e) {
+			gameManager.scene.mouseDragged(e);
+		}
+
+		public void mouseMoved(MouseEvent e) {
+			gameManager.scene.mouseMoved(e);
+		}
 		
 	}
 	

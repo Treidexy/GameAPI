@@ -94,6 +94,22 @@ public class Vector2 {
 		return new Vector2(Math.abs(vector.x), Math.abs(vector.y));
 	}
 	
+	public static boolean greaterThan(Vector2 vector1, Vector2 vector2) {
+		return (vector1.x > vector2.x && vector1.y > vector2.y);
+	}
+	
+	public static boolean greaterThanOREqualTo(Vector2 vector1, Vector2 vector2) {
+		return (vector1.x >= vector2.x && vector1.y >= vector2.y);
+	}
+	
+	public static boolean lessThan(Vector2 vector1, Vector2 vector2) {
+		return (vector1.x < vector2.x && vector1.y < vector2.y);
+	}
+	
+	public static boolean lessThanOREqualTo(Vector2 vector1, Vector2 vector2) {
+		return (vector1.x <= vector2.x && vector1.y <= vector2.y);
+	}
+	
 	/**
 	 * Method Used for Linear Interpolation
 	 * for two Vectors.

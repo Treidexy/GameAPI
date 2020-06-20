@@ -19,6 +19,8 @@ import me.Treidex.Game.Math.Vector2;
  */
 @Unfinished
 public class Scene {
+	public GameObject[] staticObjects;
+	
 	/**
 	 * The List of Game Objects.
 	 */
@@ -33,6 +35,9 @@ public class Scene {
 	 * all the Game Objects.
 	 */
 	public final void setParents() {
+		for (GameObject staticObject : staticObjects) {
+			staticObject.setParents();
+		}
 		for (GameObject gameObject : gameObjects) {
 			gameObject.setParents();
 		}
@@ -46,6 +51,11 @@ public class Scene {
 	public void init() {
 		setParents();
 		
+		for (GameObject staticObject : staticObjects) {
+			staticObject.scene = this;
+			
+			staticObject.init();
+		}
 		for (GameObject gameObject : gameObjects) {
 			gameObject.scene = this;
 			
@@ -63,6 +73,9 @@ public class Scene {
 	public void draw(Graphics g) {
 		g.translate((int) translate.x, (int) translate.y);
 		
+		for (GameObject staticObject : staticObjects) {
+			staticObject.draw(g);
+		}
 		for (GameObject gameObject : gameObjects) {
 			gameObject.draw(g);
 		}
@@ -74,6 +87,9 @@ public class Scene {
 	 * Called every frame.
 	 */
 	public void update() {
+		for (GameObject staticObject : staticObjects) {
+			staticObject.update();
+		}
 		for (GameObject gameObject : gameObjects) {
 			gameObject.update();
 		}
@@ -85,6 +101,9 @@ public class Scene {
 	 * Called a fixed times a second.
 	 */
 	public void fixedUpdate() {
+		for (GameObject staticObject : staticObjects) {
+			staticObject.fixedUpdate();
+		}
 		for (GameObject gameObject : gameObjects) {
 			gameObject.fixedUpdate();
 		}
@@ -95,26 +114,50 @@ public class Scene {
 	 * Called at the end of an update.
 	 */
 	public void lateUpdate() {
+		for (GameObject staticObject : staticObjects) {
+			staticObject.lateUpdate();
+		}
 		for (GameObject gameObject : gameObjects) {
 			gameObject.lateUpdate();
 		}
 	}
 	
 	public void mouseClicked(MouseEvent e) {
+		for (GameObject staticObject : staticObjects) {
+			staticObject.mouseClicked(e);
+		}
 		for (GameObject gameObject : gameObjects) {
 			gameObject.mouseClicked(e);
 		}
 	}
 
 	public void mousePressed(MouseEvent e) {
+		for (GameObject staticObject : staticObjects) {
+			staticObject.mousePressed(e);
+		}
 		for (GameObject gameObject : gameObjects) {
 			gameObject.mousePressed(e);
 		}
 	}
 
 	public void mouseReleased(MouseEvent e) {
+		for (GameObject staticObject : staticObjects) {
+			staticObject.mouseReleased(e);
+		}
 		for (GameObject gameObject : gameObjects) {
 			gameObject.mouseReleased(e);
+		}
+	}
+	
+	public void mouseDragged(MouseEvent e) {
+		for (GameObject gameObject : gameObjects) {
+			gameObject.mouseDragged(e);
+		}
+	}
+
+	public void mouseMoved(MouseEvent e) {
+		for (GameObject gameObject : gameObjects) {
+			gameObject.mouseMoved(e);
 		}
 	}
 	

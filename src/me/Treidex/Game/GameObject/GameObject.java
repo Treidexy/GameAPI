@@ -143,6 +143,18 @@ public class GameObject {
 		}
 	}
 	
+	public void mouseDragged(MouseEvent e) {
+		for (Component component : components) {
+			component.mouseDragged(e);
+		}
+	}
+
+	public void mouseMoved(MouseEvent e) {
+		for (Component component : components) {
+			component.mouseMoved(e);
+		}
+	}
+	
 	/**
 	 * Key Pressed Event for all Components.
 	 * 

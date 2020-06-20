@@ -1,6 +1,7 @@
 package me.Treidex.Game.Test;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 
 import me.Treidex.Game.GameManager;
@@ -8,6 +9,7 @@ import me.Treidex.Game.Program;
 import me.Treidex.Game.GameObject.GameObject;
 import me.Treidex.Game.GameObject.Components.*;
 import me.Treidex.Game.GameObject.Components.Colliders.*;
+import me.Treidex.Game.GameObject.Components.UI.Button;
 import me.Treidex.Game.GameObject.Components.UI.Text;
 import me.Treidex.Game.Math.*;
 import me.Treidex.Game.SuperClasses.Scene;
@@ -69,46 +71,32 @@ public class Main {
 				);
 				
 				gameObjects = new GameObject[] {
-//						new Coin(
-//								this,
-//								new Transform(
-//									new Vector2(725, 400),
-//									new Vector2(30, 30),
-//									0f
-//								),
-//								ColliderType.Rectangle,
-//								6,
-//								new SpriteRenderer(
-//									"/sprites/Ball.png"
-//								)
-//							),
-//						new GameObject(
-//								new Transform(
-//									new Vector2(1000, 400),
-//									new Vector2(50, 100),
-//									0f
-//								),
-//								new SpriteRenderer(
-//									"/sprites/Ball.png"
-//								),
-//								new RectangleCollider(
-//									false,
-//									2,
-//									new ColliderEvent() {
-//										public void onCollisionEnter(float[] collisionMap, Collider[] colliders) {
-//											System.exit(0);
-//										}
-//										
-//										public void onCollisionExit() {}
-//									}
-//								)
-//								new Physics(
-//									ColliderType.Rectangle,
-//									new Vector2(-69f, 0),
-//									0.36f,
-//									0.14f
-//								)
-//							),
+					new GameObject(
+						new Transform(
+							new Vector2(50, 100),
+							Vector2.zero,
+							0
+						),
+						new Text(
+							"Lol",
+							new Color(0, 0, 0),
+							new Font(Font.MONOSPACED, Font.ROMAN_BASELINE, 69),
+							false
+						)
+					),
+					new GameObject(
+						new Transform(
+							new Vector2(50, 100),
+							new Vector2(100, 100),
+							0
+						),
+						new Button(
+							true,
+							new Color(200, 200, 200),
+							new Color(188, 188, 188),
+							new Color(100, 100, 100)
+						)
+					),
 					player,
 					new GameObject(
 						new Transform(
@@ -122,17 +110,6 @@ public class Main {
 						new RectangleCollider(
 							false,
 							2
-						)
-					),
-					new GameObject(
-						new Transform(
-							new Vector2(50, 100),
-							Vector2.zero,
-							0
-						),
-						new Text(
-							"Lol",
-							false
 						)
 					),
 					new GameObject(

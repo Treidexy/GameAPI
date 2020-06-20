@@ -1,22 +1,28 @@
 package me.Treidex.Game.GameObject.Components.UI;
 
-import java.awt.Graphics;
+import java.awt.*;
 
 public class Text extends UI {
 	public String text;
 	
-	public Text(String text, boolean isStatic) {
+	protected Color col;
+	protected Font font;
+	
+	public Text(String text, Color col, Font font, boolean isStatic) {
 		super(isStatic);
 		this.text = text;
+		this.col = col;
+		this.font = font;
 	}
 	
 	public void draw(Graphics g) {
-		if (isStatic)
-			g.translate((int) -parent.scene.translate.x, (int) -parent.scene.translate.y);
+		staticTransStart(g);
+		
+		g.setColor(col);
+		g.setFont(font);
 		
 		g.drawString(text, (int) transform.position().x, (int) transform.position().y);
 		
-		if (isStatic)
-			g.translate((int) parent.scene.translate.x, (int) parent.scene.translate.y);
+		staticTransEnd(g);
 	}
 }

@@ -62,6 +62,10 @@ public class Component {
 
 	public void mouseReleased(MouseEvent e) {}
 	
+	public void mouseDragged(MouseEvent e) {}
+
+	public void mouseMoved(MouseEvent e) {}
+	
 	/**
 	 * Structure for Key Pressing for the Component.
 	 * 
