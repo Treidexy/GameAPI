@@ -1,0 +1,15 @@
+Alpha 2.0-pre1.
+
+New Features in Alpha 2.0-pre1:
+	- User Interface Components.
+	- Mouse Input.
+	- Control over Game Objects
+	- Follow Component.
+
+New Changes to Alpha 2.0-pre1:
+	- Three Game Object arrays:
+		1) noTranslateObjects
+	
+
+Removed Features from Alpha 2.0-pre1:
+	- None.

@@ -10,9 +10,9 @@ import me.Treidex.Game.Math.Vector2;
 public class Button extends UI {
 	public ButtonEvent[] buttonEvents;
 	
-	protected Color normalCol;
-	protected Color overCol;
-	protected Color pressedCol;
+	public Color normalCol;
+	public Color overCol;
+	public Color pressedCol;
 	
 	protected boolean mouseOver;
 	protected boolean mousePressed;
@@ -43,7 +43,7 @@ public class Button extends UI {
 		
 		if (clicked)
 			for (ButtonEvent buttonEvent : buttonEvents) {
-				buttonEvent.mousePressed();
+				buttonEvent.mousePressed(new Button[] {this});
 			}
 	}
 	
@@ -52,7 +52,7 @@ public class Button extends UI {
 		
 		if (clicked)
 			for (ButtonEvent buttonEvent : buttonEvents) {
-				buttonEvent.mouseReleased();
+				buttonEvent.mouseReleased(new Button[] {this});
 			}
 		
 		clicked = false;
@@ -68,7 +68,7 @@ public class Button extends UI {
 			mouseOver = true;
 			
 			for (ButtonEvent buttonEvent : buttonEvents) {
-				buttonEvent.mouseOver();
+				buttonEvent.mouseOver(new Button[] {this});
 			}
 		} else
 			mouseOver = false;

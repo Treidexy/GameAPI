@@ -44,7 +44,7 @@ public class EllipseCollider extends Collider {
 	}
 	
 	public void onDestroy() {
-		super.destroy(Mathf.<Collider> getIndexFromArray(this, super.colliders));
+		super.destroy(Mathf.<Collider> getIndexFromArray(this, colliders));
 	}
 
 	/**

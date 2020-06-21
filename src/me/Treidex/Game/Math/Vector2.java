@@ -1,7 +1,5 @@
 package me.Treidex.Game.Math;
 
-import me.Treidex.Game.Anotations.Unfinished;
-
 /**
  * A Class that stores a 2D Vector.
  * 

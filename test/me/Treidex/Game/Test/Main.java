@@ -79,11 +79,11 @@ public class Main {
 							new Color(188, 188, 188),
 							new Color(100, 100, 100),
 							new ButtonEvent() {
-								public void mouseOver() {}
+								public void mouseOver(Button b) {}
 								
-								public void mousePressed() {}
+								public void mousePressed(Button b) {}
 								
-								public void mouseReleased() {
+								public void mouseReleased(Button b) {
 									System.exit(0);
 								}
 							}

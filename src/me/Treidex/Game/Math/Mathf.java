@@ -2,8 +2,6 @@ package me.Treidex.Game.Math;
 
 import java.lang.reflect.Array;
 
-import me.Treidex.Game.GameObject.GameObject;
-
 /**
  * An Addition to java.lang.Math,
  * used for more Math functions.

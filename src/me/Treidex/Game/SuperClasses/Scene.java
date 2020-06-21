@@ -254,6 +254,7 @@ public class Scene {
 	
 	public void spawn(GameObject objectToSpawn) {
 		gameObjects = Mathf.<GameObject> addToArray(GameObject.class, gameObjects, objectToSpawn);
+		gameObjects[Mathf.<GameObject> getIndexFromArray(objectToSpawn, gameObjects)].init();;
 	}
 	
 	public void destroyAll() {
