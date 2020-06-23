@@ -11,7 +11,7 @@ import me.Treidex.Game.GameObject.Components.Colliders.*;
 import me.Treidex.Game.GameObject.Components.UI.*;
 import me.Treidex.Game.GameObject.Components.UI.Events.*;
 import me.Treidex.Game.Math.*;
-import me.Treidex.Game.SuperClasses.*;
+import me.Treidex.Game.Scene.*;
 
 public class Main {
 	public static final int width = 1920;
@@ -26,73 +26,111 @@ public class Main {
 			public void init() {
 				player = null;
 				player = new GameObject(
+					"Player",
 					new Transform(
 						new Vector2(0, 0),
 						new Vector2(50, 100),
 						0f
 					),
-					new Follow(
-						0f,
-						new Vector2(0, 0),
-						width,
-						height
-					),
-					new PlayerController(
-						1000,
-						88,
-						false
-					),
-					new SpriteRenderer(
-						"/gui/KIU.png"
-					),
-					new RectangleCollider(
-						false,
-						5,
-						new ColliderEvent() {
-							public void onCollisionEnter(float[] collisionMap, Collider[] colliders) {
-								System.out.println("Entering Collision with: " + colliders[0]);
+					new Component[] {
+						new Follow(
+							0f,
+							new Vector2(0, 0),
+							width,
+							height
+						),
+						new PlayerController(
+							1000,
+							88,
+							false
+						),
+						new SpriteRenderer(
+							"/gui/KIU.png"
+						),
+						new RectangleCollider(
+							false,
+							5,
+							new ColliderEvent() {
+								public void onCollisionEnter(float[] collisionMap, Collider[] colliders) {
+									System.out.println("Entering Collision with: " + colliders[0]);
+								}
+								
+								public void onCollisionExit() {
+									System.out.println("Exited Collision!D");
+								}
 							}
-							
-							public void onCollisionExit() {
-								System.out.println("Exited Collision!D");
-							}
-						}
-					),
-					new Physics(
-						ColliderType.Rectangle,
-						new Vector2(0, 420),
-						0.36f,
-						0.14f
-					)
+						),
+						new Physics(
+							ColliderType.Rectangle,
+							new Vector2(0, 420),
+							0.36f,
+							0.14f
+						)
+					},
+					new GameObject[] {
+						new GameObject(
+							"Text1",
+							new Transform(
+								new Vector2(50, 100),
+								Vector2.zero,
+								0
+							),
+							new Text(
+								"Lol",
+								new Color(0, 0, 0),
+								new Font(Font.MONOSPACED, Font.ROMAN_BASELINE, 69)
+							)
+						)
+					}
 //					new PlayerScore()
 				);
 				
 				noTranslateObjects = new GameObject[] {
 					new GameObject(
+						"Save and Exit Button",
 						new Transform(
 							new Vector2(50, 100),
 							new Vector2(100, 100),
 							0
 						),
-						new Button(
-							new Color(200, 200, 200),
-							new Color(188, 188, 188),
-							new Color(100, 100, 100),
-							new ButtonEvent() {
-								public void mouseOver(Button b) {}
-								
-								public void mousePressed(Button b) {}
-								
-								public void mouseReleased(Button b) {
-									System.exit(0);
+						new Component[] {
+							new Button(
+								new Color(200, 200, 200),
+								new Color(188, 188, 188),
+								new Color(100, 100, 100),
+								new ButtonEvent() {
+									public void mouseOver(Button[] b) {}
+									
+									public void mousePressed(Button[] b) {}
+									
+									public void mouseReleased(Button[] b) {
+										scene.save("scene.json");
+										System.exit(0);
+									}
 								}
-							}
-						)
+							)
+						},
+						new GameObject[] {
+							new GameObject(
+								"ButtonText",
+								new Transform(
+									new Vector2(5, 45),
+									Vector2.zero,
+									0
+								),
+								new Text(
+									"Save\n and\nExit...",
+									new Color(0, 0, 0),
+									new Font(Font.MONOSPACED, Font.ROMAN_BASELINE, 24)
+								)
+							)
+						}
 					)
 				};
 				
 				staticObjects = new GameObject[] {
 					new GameObject(
+						"Ground1",
 						new Transform(
 							new Vector2(-15, 500),
 							new Vector2(690, 50),
@@ -107,6 +145,7 @@ public class Main {
 						)
 					),
 					new GameObject(
+						"Ground2",
 						new Transform(
 							new Vector2(700, 450),
 							new Vector2(690, 50),
@@ -118,18 +157,6 @@ public class Main {
 						new RectangleCollider(
 							false,
 							2
-						)
-					),
-					new GameObject(
-						new Transform(
-							new Vector2(50, 100),
-							Vector2.zero,
-							0
-						),
-						new Text(
-							"Lol",
-							new Color(0, 0, 0),
-							new Font(Font.MONOSPACED, Font.ROMAN_BASELINE, 69)
 						)
 					)
 				};

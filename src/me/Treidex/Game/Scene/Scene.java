@@ -1,8 +1,9 @@
-package me.Treidex.Game.SuperClasses;
+package me.Treidex.Game.Scene;
 
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.util.Map;
 
 import me.Treidex.Game.GameWindow;
 import me.Treidex.Game.Anotations.Unfinished;
@@ -18,19 +19,21 @@ import me.Treidex.Game.Math.Vector2;
  *
  */
 @Unfinished
-public class Scene {
-	public GameObject[] noTranslateObjects;
-	
-	public GameObject[] staticObjects;
-	
-	/**
-	 * The List of Game Objects.
-	 */
-	public GameObject[] gameObjects;
+public class Scene extends SceneIO {
 	
 	public Vector2 translate = Vector2.zero;
 	
 	protected GameWindow window;
+	
+	public Scene() {
+		super();
+	}
+	
+	public Scene(Map<String, Object> yml) {
+		this.noTranslateObjects = (GameObject[]) yml.get("no-translate-objects");
+		this.staticObjects = (GameObject[]) yml.get("static-objects");
+		this.gameObjects = (GameObject[]) yml.get("game-objects");
+	}
 	
 	/**
 	 * Sets the parents for
@@ -254,7 +257,7 @@ public class Scene {
 	
 	public void spawn(GameObject objectToSpawn) {
 		gameObjects = Mathf.<GameObject> addToArray(GameObject.class, gameObjects, objectToSpawn);
-		gameObjects[Mathf.<GameObject> getIndexFromArray(objectToSpawn, gameObjects)].init();;
+		gameObjects[Mathf.<GameObject> getIndexFromArray(objectToSpawn, gameObjects)].init();
 	}
 	
 	public void destroyAll() {

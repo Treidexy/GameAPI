@@ -18,6 +18,14 @@ public class Text extends UI {
 		g.setColor(col);
 		g.setFont(font);
 		
-		g.drawString(text, (int) transform.position().x, (int) transform.position().y);
+		drawString(g, text, (int) transform.position().x, (int) transform.position().y);
 	}
+	
+	private void drawString(Graphics g, String text, int x, int y) {
+		if (text.contains("\n"))
+	        for (String line : text.split("\n"))
+	            g.drawString(line, x, y += g.getFontMetrics().getHeight());
+		else
+			g.drawString(text, x, y);
+    }
 }

@@ -17,6 +17,8 @@ import me.Treidex.Game.GameObject.GameObject;
  */
 public class Component {
 	
+	public String name;
+	
 	/**
 	 * Store the Parent Game Object in which
 	 * the Component is used inside.

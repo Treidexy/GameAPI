@@ -1,6 +1,6 @@
 package me.Treidex.Game;
 
-import me.Treidex.Game.SuperClasses.Scene;
+import me.Treidex.Game.Scene.Scene;
 
 /**
  * Imagine the world

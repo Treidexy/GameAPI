@@ -6,7 +6,6 @@ import java.awt.event.MouseEvent;
 
 import me.Treidex.Game.GameObject.Components.Component;
 import me.Treidex.Game.GameObject.Components.Transform;
-import me.Treidex.Game.SuperClasses.Scene;
 
 /**
  * Class of every Object On-Scene.
@@ -14,19 +13,7 @@ import me.Treidex.Game.SuperClasses.Scene;
  * @author Treidex
  *
  */
-public class GameObject {
-	
-	/**
-	 * The Transform of the Game Object.
-	 */
-	public Transform transform;
-	
-	/**
-	 * The Components the Game Object contains.
-	 */
-	public Component[] components;
-	
-	public Scene scene;
+public class GameObject extends GOIO {
 	
 	/**
 	 * Initialize the Game Object.
@@ -34,10 +21,25 @@ public class GameObject {
 	 * @param transform The Transform of the Game Object.
 	 * @param components The Components the Game Object contains.
 	 */
-	public GameObject(Transform transform, Component... components) {
+	public GameObject(String name, Transform transform, Component... components) {
+		super(name);
 		this.transform = transform;
 		this.transform.setParent(this);
 		this.components = components;
+		
+		childrenNull = true;
+	}
+	
+	public GameObject(String name, Transform transform, Component[] components, GameObject[] children) {
+		super(name);
+		this.transform = transform;
+		this.transform.setParent(this);
+		this.components = components;
+		this.children = children;
+		
+		for (GameObject child: children) {
+			child.setParent(this);
+		}
 	}
 	
 	/**
@@ -48,32 +50,11 @@ public class GameObject {
 		for (Component component: components) {
 			component.setParent(this);
 		}
-	}
-	
-	public <T extends Component> boolean hasComponent(Class<T> componentClass){
-	    for (Component c: this.components){
-	        if(c.getClass() == componentClass) {
-	            return true;
-	        }
-	    }
-	    return false;
-	}
-	
-	/**
-	 * Allows Method for getting Component.
-	 * 
-	 * @param <T> Component Type.
-	 * @param componentClass Component Class.
-	 * @return Component.
-	 */
-	@SuppressWarnings("unchecked")
-	public <T extends Component> T getComponent(Class<T> componentClass){
-	    for (Component c: this.components){
-	        if(c.getClass() == componentClass) {
-	            return (T) c;
-	        }
-	    }
-	    return null;
+		
+		if (!childrenNull)
+			for (GameObject child: children) {
+				child.setParents();
+			}
 	}
 	
 	// Child Methods
@@ -85,6 +66,11 @@ public class GameObject {
 		for (Component component: components) {
 			component.init();
 		}
+		
+		if (!childrenNull)
+			for (GameObject child: children) {
+				child.init();
+			}
 	}
 	
 	/**
@@ -96,6 +82,11 @@ public class GameObject {
 		for (Component component: components) {
 			component.draw(g);
 		}
+		
+		if (!childrenNull)
+			for (GameObject child: children) {
+				child.draw(g);
+			}
 	}
 	
 	/**
@@ -105,6 +96,11 @@ public class GameObject {
 		for (Component component: components) {
 			component.update();
 		}
+		
+		if (!childrenNull)
+			for (GameObject child: children) {
+				child.update();
+			}
 	}
 	
 	/**
@@ -114,6 +110,11 @@ public class GameObject {
 		for (Component component : components) {
 			component.fixedUpdate();
 		}
+		
+		if (!childrenNull)
+			for (GameObject child: children) {
+				child.fixedUpdate();
+			}
 	}
 	
 	/**
@@ -123,36 +124,66 @@ public class GameObject {
 		for (Component component : components) {
 			component.lateUpdate();
 		}
+		
+		if (!childrenNull)
+			for (GameObject child: children) {
+				child.lateUpdate();
+			}
 	}
 	
 	public void mouseClicked(MouseEvent e) {
 		for (Component component : components) {
 			component.mouseClicked(e);
 		}
+		
+		if (!childrenNull)
+			for (GameObject child: children) {
+				child.mouseClicked(e);
+			}
 	}
 
 	public void mousePressed(MouseEvent e) {
 		for (Component component : components) {
 			component.mousePressed(e);
 		}
+		
+		if (!childrenNull)
+			for (GameObject child: children) {
+				child.mousePressed(e);
+			}
 	}
 
 	public void mouseReleased(MouseEvent e) {
 		for (Component component : components) {
 			component.mouseReleased(e);
 		}
+		
+		if (!childrenNull)
+			for (GameObject child: children) {
+				child.mouseReleased(e);
+			}
 	}
 	
 	public void mouseDragged(MouseEvent e) {
 		for (Component component : components) {
 			component.mouseDragged(e);
 		}
+		
+		if (!childrenNull)
+			for (GameObject child: children) {
+				child.mouseDragged(e);
+			}
 	}
 
 	public void mouseMoved(MouseEvent e) {
 		for (Component component : components) {
 			component.mouseMoved(e);
 		}
+		
+		if (!childrenNull)
+			for (GameObject child: children) {
+				child.mouseMoved(e);
+			}
 	}
 	
 	/**
@@ -164,6 +195,11 @@ public class GameObject {
 		for (Component component : components) {
 			component.keyPressed(e);
 		}
+		
+		if (!childrenNull)
+			for (GameObject child: children) {
+				child.keyPressed(e);
+			}
 	}
 	
 	/**
@@ -175,11 +211,21 @@ public class GameObject {
 		for (Component component : components) {
 			component.keyReleased(e);
 		}
+		
+		if (!childrenNull)
+			for (GameObject child: children) {
+				child.keyReleased(e);
+			}
 	}
 	
 	public void onDestroy() {
 		for (Component component : components) {
 			component.onDestroy();
 		}
+		
+		if (!childrenNull)
+			for (GameObject child: children) {
+				child.onDestroy();
+			}
 	}
 }

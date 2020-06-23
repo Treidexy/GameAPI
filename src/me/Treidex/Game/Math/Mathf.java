@@ -42,6 +42,16 @@ public final class Mathf {
 		return begin + lerp * (end - begin);
 	}
 	
+	public static Object arrayToString() {
+		
+	}
+	
+	public static <In, Out> Out[] convertArray(In[] in) {
+		Out[] out;
+		
+		return null;
+	}
+	
 	/**
 	 * Add a Value to an Array.
 	 * 
