@@ -5,8 +5,10 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.util.HashMap;
 
-import me.Treidex.Game.Math.Time;
-import me.Treidex.Game.Math.Vector2;
+import org.json.simple.JSONObject;
+
+import me.Treidex.Game.Util.Time;
+import me.Treidex.Game.Util.Vector2;
 
 /**
  * Component for a Simple Player Controller.
@@ -27,6 +29,13 @@ public class PlayerController extends Component {
 	public float jumpHeight;
 	
 	/**
+	 * Whether to Render the Default Player Texture.
+	 */
+	protected boolean renderDefault;
+	
+	protected JSONObject pcMap;
+	
+	/**
 	 * Store the User Inputs.
 	 */
 	private HashMap<String, Boolean> inputs;
@@ -37,11 +46,6 @@ public class PlayerController extends Component {
 	private Physics physics;
 	
 	/**
-	 * Whether to Render the Default Player Texture.
-	 */
-	private boolean renderDefault;
-	
-	/**
 	 * Initialize the Player Controller.
 	 * 
 	 * @param speed The Speed of the Player Controller.
@@ -49,6 +53,8 @@ public class PlayerController extends Component {
 	 * @param renderDefault Whether to Render the Default Player Texture.
 	 */
 	public PlayerController(float speed, float jumpHeight, boolean renderDefault) {
+		initID("Player Controller");
+		
 		this.speed = speed;
 		this.jumpHeight = jumpHeight;
 		
@@ -151,8 +157,22 @@ public class PlayerController extends Component {
 	 */
 	private void move(Vector2 accel) {
 		Vector2 acceleration = Vector2.mult(accel, speed);
-		acceleration = Vector2.mult(acceleration, Time.fixedDeltaTime);
+		acceleration.mult(Time.fixedDeltaTime);
 		
 		physics.addForce(acceleration);
+	}
+
+	@SuppressWarnings("unchecked")
+	public JSONObject getMap() {
+		pcMap = new JSONObject();
+		pcMap.put("speed", speed);
+		pcMap.put("jump-height", jumpHeight);
+		pcMap.put("render-default", renderDefault);
+		
+		return pcMap;
+	}
+	
+	public static Component loadMap(final JSONObject map) {
+		return new PlayerController((Float) map.get("speed"), (Float) map.get("jump-height"), (Boolean) map.get("render-default"));
 	}
 }

@@ -4,9 +4,12 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
+import org.json.simple.JSONObject;
+
 import me.Treidex.Game.Anotations.Unfinished;
-import me.Treidex.Game.Math.Mathf;
-import me.Treidex.Game.Math.Vector2;
+import me.Treidex.Game.GameObject.Components.Component;
+import me.Treidex.Game.Util.Mathf;
+import me.Treidex.Game.Util.Vector2;
 
 /**
  * Ellipse's are cool,
@@ -20,6 +23,8 @@ import me.Treidex.Game.Math.Vector2;
 @Unfinished
 public class EllipseCollider extends Collider {
 	
+	protected JSONObject ecMap;
+	
 	/**
 	 * Initialize the
 	 * Ellipse Collider.
@@ -29,6 +34,8 @@ public class EllipseCollider extends Collider {
 	 */
 	public EllipseCollider(boolean isTrigger, float margin, ColliderEvent... colliderEvents) {
 		super(isTrigger, margin, colliderEvents);
+		
+		initID("Collider->Ellipse");
 	}
 	
 	/**
@@ -161,5 +168,18 @@ public class EllipseCollider extends Collider {
 		}
 		
 		return new CollisionMap(collisionMap, this);
+	}
+
+	@SuppressWarnings("unchecked")
+	public JSONObject getMap() {
+		ecMap = new JSONObject();
+		ecMap.put("is-trigger", isTrigger);
+		ecMap.put("margin", margin);
+		
+		return ecMap;
+	}
+	
+	public static Component loadMap(final JSONObject map) {
+		return new EllipseCollider((Boolean) map.get("is-trigger"), (Float) map.get("margin"));
 	}
 }

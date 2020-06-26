@@ -3,7 +3,7 @@ package me.Treidex.Game;
 import java.awt.Dimension;
 
 import me.Treidex.Game.Anotations.*;
-import me.Treidex.Game.Math.Time;
+import me.Treidex.Game.Util.Time;
 
 /**
  * This the Main Program as of itself,
@@ -128,7 +128,6 @@ public final class Program implements Runnable {
 				Time.lastTick = System.currentTimeMillis();
 			}
 		}
-		System.exit(0);
 	}
 	
 	/**

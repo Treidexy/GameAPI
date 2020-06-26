@@ -11,7 +11,7 @@ import java.awt.event.MouseMotionListener;
 import javax.swing.JPanel;
 
 import me.Treidex.Game.Anotations.Unused;
-import me.Treidex.Game.Math.Time;
+import me.Treidex.Game.Util.Time;
 
 /**
  * The universal game;
@@ -24,12 +24,12 @@ import me.Treidex.Game.Math.Time;
  * 
  */
 public class Game extends JPanel {
-	
+
 	/**
 	 * If you know anything about JPanels,
 	 * you know what this is.
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -5950206307232302066L;
 	
 	/**
 	 * The Fixed Ticks Per Second.
@@ -153,12 +153,8 @@ public class Game extends JPanel {
 			gameManager.scene.mouseReleased(e);
 		}
 
-		@Unused
-		@Override
-		public void mouseEntered(MouseEvent e) {}
-		@Unused
-		@Override
-		public void mouseExited(MouseEvent e) {}
+		@Deprecated@Unused@Override public void mouseEntered(MouseEvent e) {}
+		@Deprecated@Unused@Override public void mouseExited(MouseEvent e) {}
 
 		public void mouseDragged(MouseEvent e) {
 			gameManager.scene.mouseDragged(e);
@@ -182,7 +178,7 @@ public class Game extends JPanel {
 		 * Called whenever key is Pressed.
 		 */
 		public void keyPressed(KeyEvent e) {
-			if (e.getKeyCode() == 27)
+			if (e.getKeyCode() == KeyEvent.VK_ESCAPE)
 				end = true;
 			
 			gameManager.scene.keyPressed(e);

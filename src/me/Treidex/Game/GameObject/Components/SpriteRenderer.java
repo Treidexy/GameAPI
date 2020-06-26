@@ -4,6 +4,8 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
 
+import org.json.simple.JSONObject;
+
 import me.Treidex.Game.GameObject.GameObject;
 
 /**
@@ -29,12 +31,16 @@ public class SpriteRenderer extends Component {
 	 */
 	private Image sprite;
 	
+	protected JSONObject spMap;
+	
 	/**
 	 * Initialize the Sprite Renderer.
 	 * 
 	 * @param filepath The Path to the Image File.
 	 */
 	public SpriteRenderer(String filepath) {
+		initID("Sprite Renderer");
+		
 		this.filepath = filepath;
 		
 		spriteRaw = Toolkit.getDefaultToolkit().getImage(getClass().getResource(filepath));
@@ -56,5 +62,17 @@ public class SpriteRenderer extends Component {
 	 */
 	public void draw(Graphics g) {
 		g.drawImage(sprite, (int) transform.position().x, (int) transform.position().y, null);
+	}
+
+	@SuppressWarnings("unchecked")
+	public JSONObject getMap() {
+		spMap = new JSONObject();
+		spMap.put("file-path", filepath);
+		
+		return spMap;
+	}
+	
+	public static Component loadMap(final JSONObject map) {
+		return new SpriteRenderer((String) map.get("file-path"));
 	}
 }

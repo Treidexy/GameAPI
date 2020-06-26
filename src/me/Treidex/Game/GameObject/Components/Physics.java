@@ -1,9 +1,11 @@
 package me.Treidex.Game.GameObject.Components;
 
+import org.json.simple.JSONObject;
+
 import me.Treidex.Game.Anotations.Unfinished;
 import me.Treidex.Game.GameObject.Components.Colliders.*;
-import me.Treidex.Game.Math.Time;
-import me.Treidex.Game.Math.Vector2;
+import me.Treidex.Game.Util.Time;
+import me.Treidex.Game.Util.Vector2;
 
 /**
  * Component for Simulated Physics.
@@ -48,7 +50,10 @@ public class Physics extends Component {
 	/**
 	 * The Collider Type.
 	 */
-	private ColliderType colliderType;
+	protected ColliderType colliderType;
+	
+	protected JSONObject physicsM;
+	protected JSONObject gravityM;
 	
 	/**
 	 * Initialize the Physics Component.
@@ -59,6 +64,8 @@ public class Physics extends Component {
 	 * @param lerp The Liner Interpolation for the Physics Component.
 	 */
 	public Physics(ColliderType colliderType, Vector2 gravity, float speedDamp, float lerp) {
+		initID("Physics");
+		
 		this.colliderType = colliderType;
 		this.gravity = gravity;
 		this.speedDamp = speedDamp;
@@ -138,5 +145,24 @@ public class Physics extends Component {
 		onGround = true;
 		
 		addForce(new Vector2((Math.abs(velocity.x) * collisionMap[1]), (Math.abs(velocity.y) * collisionMap[2])));
+	}
+
+	@SuppressWarnings("unchecked")
+	public JSONObject getMap() {
+		physicsM = new JSONObject();
+		gravityM = gravity.getMap();
+		
+		physicsM.put("collider-type", colliderType.ordinal());
+		physicsM.put("gravity", gravityM);
+		physicsM.put("speed-damp", speedDamp);
+		physicsM.put("lerp", lerp);
+		
+		return physicsM;
+	}
+	
+	public static Component loadMap(final JSONObject map) {
+		Vector2 gravity = Vector2.loadMap((JSONObject) map.get("gravity"));
+		
+		return new Physics(ColliderType.values()[(Integer) map.get("collider-type")], gravity, (Float) map.get("speed-damp"), (Float) map.get("lerp"));
 	}
 }

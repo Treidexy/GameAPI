@@ -10,8 +10,8 @@ import me.Treidex.Game.GameObject.Components.*;
 import me.Treidex.Game.GameObject.Components.Colliders.*;
 import me.Treidex.Game.GameObject.Components.UI.*;
 import me.Treidex.Game.GameObject.Components.UI.Events.*;
-import me.Treidex.Game.Math.*;
 import me.Treidex.Game.Scene.*;
+import me.Treidex.Game.Util.*;
 
 public class Main {
 	public static final int width = 1920;
@@ -86,46 +86,46 @@ public class Main {
 				);
 				
 				noTranslateObjects = new GameObject[] {
-					new GameObject(
-						"Save and Exit Button",
-						new Transform(
-							new Vector2(50, 100),
-							new Vector2(100, 100),
-							0
-						),
-						new Component[] {
-							new Button(
-								new Color(200, 200, 200),
-								new Color(188, 188, 188),
-								new Color(100, 100, 100),
-								new ButtonEvent() {
-									public void mouseOver(Button[] b) {}
-									
-									public void mousePressed(Button[] b) {}
-									
-									public void mouseReleased(Button[] b) {
-										scene.save("scene.json");
-										System.exit(0);
-									}
-								}
-							)
-						},
-						new GameObject[] {
-							new GameObject(
-								"ButtonText",
-								new Transform(
-									new Vector2(5, 45),
-									Vector2.zero,
-									0
-								),
-								new Text(
-									"Save\n and\nExit...",
-									new Color(0, 0, 0),
-									new Font(Font.MONOSPACED, Font.ROMAN_BASELINE, 24)
-								)
-							)
-						}
-					)
+//					new GameObject(
+//						"Save and Exit Button",
+//						new Transform(
+//							new Vector2(50, 100),
+//							new Vector2(100, 100),
+//							0
+//						),
+//						new Component[] {
+//							new Button(
+//								new Color(200, 200, 200),
+//								new Color(188, 188, 188),
+//								new Color(100, 100, 100),
+//								new ButtonEvent() {
+//									public void mouseOver(Button[] b) {}
+//									
+//									public void mousePressed(Button[] b) {}
+//									
+//									public void mouseReleased(Button[] b) {
+//										scene.save("scene.json");
+//										System.exit(0);
+//									}
+//								}
+//							)
+//						},
+//						new GameObject[] {
+//							new GameObject(
+//								"ButtonText",
+//								new Transform(
+//									new Vector2(5, 45),
+//									Vector2.zero,
+//									0
+//								),
+//								new Text(
+//									"Save\n and\nExit...",
+//									new Color(0, 0, 0),
+//									new Font(Font.MONOSPACED, Font.ROMAN_BASELINE, 24)
+//								)
+//							)
+//						}
+//					)
 				};
 				
 				staticObjects = new GameObject[] {
@@ -157,6 +157,19 @@ public class Main {
 						new RectangleCollider(
 							false,
 							2
+						)
+					),
+					new GameObject(
+						"Text2",
+						new Transform(
+							new Vector2(550, 100),
+							Vector2.zero,
+							0
+						),
+						new Text(
+							"Dis is a Static Texto!",
+							new Color(0, 0, 0),
+							new Font(Font.MONOSPACED, Font.ROMAN_BASELINE, 69)
 						)
 					)
 				};
@@ -191,7 +204,7 @@ public class Main {
 
 		gameManager = new GameManager(scene);
 		
-		Program program = new Program(gameManager, "Testing for Game API - Treidex", 1337, 60, width, height);
+		Program program = new Program(gameManager, "Testing for Game API - Treidex", 120, 60, width, height);
 		program.start();
 	}
 }

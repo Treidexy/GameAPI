@@ -20,5 +20,5 @@ public enum ColliderType {
 	 * The Ellipse Collider
 	 * @see me.Treidex.Game.GameObject.Components.Colliders.EllipseCollider Ellipse Collider.
 	 */
-	Ellipse
+	Ellipse;
 }

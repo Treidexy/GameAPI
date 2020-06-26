@@ -2,7 +2,9 @@ package me.Treidex.Game.GameObject.Components;
 
 import java.awt.Graphics;
 
-import me.Treidex.Game.Math.Vector2;
+import org.json.simple.JSONObject;
+
+import me.Treidex.Game.Util.Vector2;
 
 /**
  * A Component that makes the Game
@@ -15,27 +17,30 @@ import me.Treidex.Game.Math.Vector2;
 public class Follow extends Component {
 	
 	/**
-	 * The Position in which
-	 * the Game should follow.
-	 */
-	private Vector2 pos;
-	
-	/**
 	 * The Linear Interpolation of the Focus Change.
 	 */
-	private float lerp;
+	protected float lerp;
 	
-	private Vector2 offset;
+	protected Vector2 offset;
 	
 	/**
 	 * The Width of the Canvas.
 	 */
-	private int width;
+	protected int width;
 	
 	/**
 	 * The Height of the Canvas.
 	 */
-	private int height;
+	protected int height;
+	
+	protected JSONObject followM;
+	protected JSONObject offsetM;
+	
+	/**
+	 * The Position in which
+	 * the Game should follow.
+	 */
+	private Vector2 pos;
 	
 	/**
 	 * Initialize the Follow Component.
@@ -45,6 +50,8 @@ public class Follow extends Component {
 	 * @param height The Height of the Canvas.
 	 */
 	public Follow(float lerp, Vector2 offset, int width, int height) {
+		initID("Follow");
+		
 		this.lerp = lerp;
 		this.offset = offset;
 		this.width = width;
@@ -71,5 +78,24 @@ public class Follow extends Component {
 	 */
 	public void lateUpdate() {
 		pos = Vector2.lerp(pos, Vector2.sub(transform.center(), offset), lerp);
+	}
+
+	@SuppressWarnings("unchecked")
+	public JSONObject getMap() {
+		followM = new JSONObject();
+		offsetM = offset.getMap();
+		
+		followM.put("lerp", lerp);
+		followM.put("offset", offsetM);
+		followM.put("width", width);
+		followM.put("height", height);
+		
+		return followM;
+	}
+	
+	public static Component loadMap(final JSONObject map) {
+		Vector2 offset = Vector2.loadMap((JSONObject) map.get("offset"));
+		
+		return new Follow((Float) map.get("lerp"), offset, (Integer) map.get("width"), (Integer) map.get("height"));
 	}
 }

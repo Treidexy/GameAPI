@@ -4,7 +4,10 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
+import org.json.simple.JSONObject;
+
 import me.Treidex.Game.GameObject.GameObject;
+import me.Treidex.Game.Util.Mathf;
 
 /**
  * How do you make anything?
@@ -15,7 +18,7 @@ import me.Treidex.Game.GameObject.GameObject;
  * @author Treidex
  *
  */
-public class Component {
+public abstract class Component {
 	
 	public String name;
 	
@@ -30,6 +33,9 @@ public class Component {
 	 * the Parent.
 	 */
 	protected Transform transform;
+	
+	private static String[] ids;
+	private static String ComponentID;
 	
 	/**
 	 * Structure for Initialization of the Component.
@@ -100,7 +106,30 @@ public class Component {
 		transform = parent.transform;
 	}
 	
+	protected static final void initID(final String id) {
+		ComponentID = id;
+		if (!Mathf.<String> hasInArray(ids, ComponentID))
+			ids = Mathf.<String> addToArray(String.class, ids, ComponentID);
+	}
+	
+	public static final String getID() throws ComponentNoIDException {
+		if (ComponentID == null)
+			throw new ComponentNoIDException();
+		
+		return ComponentID;
+	}
+	
+	public static final String[] getIDs() {
+		return ids;
+	}
+	
+	public abstract JSONObject getMap();
+	
+	public static Component loadMap(final JSONObject map) {
+		throw new IllegalStateException("'loadMap()' must be define in Sub-Class: " + ComponentID);
+	}
+	
 	public String toString() {
-		return "Component!";
+		return "Component";
 	}
 }

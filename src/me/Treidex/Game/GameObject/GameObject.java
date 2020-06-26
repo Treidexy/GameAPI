@@ -42,6 +42,19 @@ public class GameObject extends GOIO {
 		}
 	}
 	
+	public GameObject(String name, boolean isActive, Transform transform, Component[] components, GameObject[] children) {
+		super(name);
+		this.isActive = isActive;
+		this.transform = transform;
+		this.transform.setParent(this);
+		this.components = components;
+		this.children = children;
+		
+		for (GameObject child: children) {
+			child.setParent(this);
+		}
+	}
+	
 	/**
 	 * Sets the Parents of the Components
 	 * in Game Object.

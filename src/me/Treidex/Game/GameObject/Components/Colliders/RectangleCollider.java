@@ -4,8 +4,11 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
-import me.Treidex.Game.Math.Mathf;
-import me.Treidex.Game.Math.Vector2;
+import org.json.simple.JSONObject;
+
+import me.Treidex.Game.GameObject.Components.Component;
+import me.Treidex.Game.Util.Mathf;
+import me.Treidex.Game.Util.Vector2;
 
 /**
  * The numero uno Collider
@@ -16,6 +19,8 @@ import me.Treidex.Game.Math.Vector2;
  */
 public class RectangleCollider extends Collider {
 	
+	protected JSONObject rcMap;
+	
 	/**
 	 * Initialize the Rectangle Collider.
 	 * 
@@ -24,6 +29,8 @@ public class RectangleCollider extends Collider {
 	 */
 	public RectangleCollider(boolean isTrigger, float margin, ColliderEvent... colliderEvents) {
 		super(isTrigger, margin, colliderEvents);
+		
+		initID("Collider->Rectangle");
 	}
 	
 	/**
@@ -67,8 +74,8 @@ public class RectangleCollider extends Collider {
 					CollisionMap tempCollision = collider.checkCollision(Vector2.add(transform.position(), new Vector2(x, y)));
 					
 					Collider tempCollider = tempCollision.collision;
-					float[] tempCollisionMap = tempCollision.collisionMapf;
-					
+					float[] tempCollisionMap = collider.checkCollision(Vector2.add(transform.position(), new Vector2(x, y))).collisionMapf;
+
 					if (tempCollisionMap[0] != 0) {
 						collisionMap[0] = tempCollisionMap[0];
 						collidersArray.add(tempCollider);
@@ -154,5 +161,18 @@ public class RectangleCollider extends Collider {
 		}
 		
 		return new CollisionMap(collisionMap, this);
+	}
+
+	@SuppressWarnings("unchecked")
+	public JSONObject getMap() {
+		rcMap = new JSONObject();
+		rcMap.put("is-trigger", isTrigger);
+		rcMap.put("margin", margin);
+		
+		return rcMap;
+	}
+	
+	public static Component loadMap(final JSONObject map) {
+		return new RectangleCollider((Boolean) map.get("is-trigger"), (Float) map.get("margin"));
 	}
 }

@@ -1,7 +1,9 @@
 package me.Treidex.Game.GameObject.Components;
 
+import org.json.simple.JSONObject;
+
 import me.Treidex.Game.Anotations.Unfinished;
-import me.Treidex.Game.Math.Vector2;
+import me.Treidex.Game.Util.Vector2;
 
 /**
  * Transforms Store Position, Size, and Rotation;
@@ -35,6 +37,10 @@ public class Transform extends Component {
 	@Unfinished
 	public float rotation;
 	
+	protected JSONObject transformM;
+	protected JSONObject centerM;
+	protected JSONObject sizeM;
+	
 	/**
 	 * Initialize the Transform.
 	 * 
@@ -43,6 +49,8 @@ public class Transform extends Component {
 	 * @param rotation Transform Rotation.
 	 */
 	public Transform(Vector2 center, Vector2 size, float rotation) {
+		initID("Transform");
+		
 		this.size = size;
 		this.rotation = rotation;
 		
@@ -68,6 +76,27 @@ public class Transform extends Component {
 		this.position = position;
 		
 		center = Vector2.add(this.position, Vector2.div(size, 2));
+	}
+	
+	@SuppressWarnings("unchecked")
+	public JSONObject getMap() {
+		JSONObject out = new JSONObject();
+		centerM = center.getMap();
+		sizeM = size.getMap();
+		
+		out.put("center", centerM);
+		out.put("rotation", rotation);
+		out.put("size", sizeM);
+		
+		return out;
+	}
+	
+	public static Component loadMap(final JSONObject map) {
+		Vector2 center = Vector2.loadMap((JSONObject) map.get("center"));
+		Vector2 size = Vector2.loadMap((JSONObject) map.get("size"));
+		float rotation = (Float) map.get("rotation");
+		
+		return (Component) new Transform(center, size, rotation);
 	}
 	
 	public String toString() {

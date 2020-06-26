@@ -3,13 +3,12 @@ package me.Treidex.Game.Scene;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
-import java.util.Map;
 
 import me.Treidex.Game.GameWindow;
 import me.Treidex.Game.Anotations.Unfinished;
 import me.Treidex.Game.GameObject.GameObject;
-import me.Treidex.Game.Math.Mathf;
-import me.Treidex.Game.Math.Vector2;
+import me.Treidex.Game.Util.Mathf;
+import me.Treidex.Game.Util.Vector2;
 
 
 /**
@@ -25,14 +24,13 @@ public class Scene extends SceneIO {
 	
 	protected GameWindow window;
 	
-	public Scene() {
-		super();
-	}
+	public Scene() {}
 	
-	public Scene(Map<String, Object> yml) {
-		this.noTranslateObjects = (GameObject[]) yml.get("no-translate-objects");
-		this.staticObjects = (GameObject[]) yml.get("static-objects");
-		this.gameObjects = (GameObject[]) yml.get("game-objects");
+	public Scene(String name, GameObject[] noTranslateObjects, GameObject[] staticObjects, GameObject[] gameObjects) {
+		this.name = name;
+		this.noTranslateObjects = noTranslateObjects;
+		this.staticObjects = staticObjects;
+		this.gameObjects = gameObjects;
 	}
 	
 	/**

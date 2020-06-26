@@ -1,7 +1,9 @@
 package me.Treidex.Game.Test.GameObjects.Components;
 
+import org.json.simple.JSONObject;
+
 import me.Treidex.Game.GameObject.Components.*;
-import me.Treidex.Game.Math.Vector2;
+import me.Treidex.Game.Util.Vector2;
 
 public class ObsticleThingy extends Component {
 	private Physics physics;
@@ -18,5 +20,11 @@ public class ObsticleThingy extends Component {
 	
 	public void fixedUpdate() {
 		physics.addForce(new Vector2(-speed, 0));
+	}
+
+	@Override
+	public JSONObject getMap() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
