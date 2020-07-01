@@ -9,7 +9,7 @@ import me.Treidex.Game.GameObject.Components.Transform;
 import me.Treidex.Game.Util.Mathf;
 
 public class GOIO extends GOMethods {
-	public String name;
+	
 	
 	protected JSONObject goMap;
 	protected JSONArray childrenA;

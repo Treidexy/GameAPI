@@ -120,12 +120,16 @@ public final class Program implements Runnable {
 	public void run() {
 		init();
 		while (!gameWindow.shouldClose) {
-			if (System.currentTimeMillis() > Time.lastTick + WAIT_MILLIS) {
-				Time.deltaTime = (float) (System.currentTimeMillis() - Time.lastTick) / 1000;
-				
-				update();
-				
-				Time.lastTick = System.currentTimeMillis();
+			Time.deltaTime = (float) (System.currentTimeMillis() - Time.lastTick) / 1000;
+			
+			update();
+			
+			Time.lastTick = System.currentTimeMillis();
+			
+			try {
+				Thread.sleep(WAIT_MILLIS);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
 			}
 		}
 	}

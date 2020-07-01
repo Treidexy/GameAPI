@@ -12,16 +12,6 @@ import me.Treidex.Game.GameObject.GameObject;
 import me.Treidex.Game.Util.JSON;
 
 public class SceneIO {
-	public String name;
-	
-	public GameObject[] noTranslateObjects;
-	
-	public GameObject[] staticObjects;
-	
-	/**
-	 * The List of Game Objects.
-	 */
-	public GameObject[] gameObjects;
 	
 	private JSONObject scene;
 	

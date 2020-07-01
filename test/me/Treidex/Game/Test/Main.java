@@ -86,46 +86,46 @@ public class Main {
 				);
 				
 				noTranslateObjects = new GameObject[] {
-//					new GameObject(
-//						"Save and Exit Button",
-//						new Transform(
-//							new Vector2(50, 100),
-//							new Vector2(100, 100),
-//							0
-//						),
-//						new Component[] {
-//							new Button(
-//								new Color(200, 200, 200),
-//								new Color(188, 188, 188),
-//								new Color(100, 100, 100),
-//								new ButtonEvent() {
-//									public void mouseOver(Button[] b) {}
-//									
-//									public void mousePressed(Button[] b) {}
-//									
-//									public void mouseReleased(Button[] b) {
+					new GameObject(
+						"Save and Exit Button",
+						new Transform(
+							new Vector2(50, 100),
+							new Vector2(100, 100),
+							0
+						),
+						new Component[] {
+							new Button(
+								new Color(200, 200, 200),
+								new Color(188, 188, 188),
+								new Color(100, 100, 100),
+								new ButtonEvent() {
+									public void mouseOver(Button[] b) {}
+									
+									public void mousePressed(Button[] b) {}
+									
+									public void mouseReleased(Button[] b) {
 //										scene.save("scene.json");
-//										System.exit(0);
-//									}
-//								}
-//							)
-//						},
-//						new GameObject[] {
-//							new GameObject(
-//								"ButtonText",
-//								new Transform(
-//									new Vector2(5, 45),
-//									Vector2.zero,
-//									0
-//								),
-//								new Text(
-//									"Save\n and\nExit...",
-//									new Color(0, 0, 0),
-//									new Font(Font.MONOSPACED, Font.ROMAN_BASELINE, 24)
-//								)
-//							)
-//						}
-//					)
+										System.exit(0);
+									}
+								}
+							)
+						},
+						new GameObject[] {
+							new GameObject(
+								"ButtonText",
+								new Transform(
+									new Vector2(5, 45),
+									Vector2.zero,
+									0
+								),
+								new Text(
+									"Save\n and\nExit...",
+									new Color(0, 0, 0),
+									new Font(Font.MONOSPACED, Font.ROMAN_BASELINE, 24)
+								)
+							)
+						}
+					)
 				};
 				
 				staticObjects = new GameObject[] {

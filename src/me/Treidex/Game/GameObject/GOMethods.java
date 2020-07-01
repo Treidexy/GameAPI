@@ -5,6 +5,8 @@ import me.Treidex.Game.GameObject.Components.Transform;
 import me.Treidex.Game.Scene.Scene;
 
 public class GOMethods {
+	public String name;
+	
 	public GameObject parent;
 	/**
 	 * The Transform of the Game Object.

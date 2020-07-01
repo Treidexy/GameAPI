@@ -13,7 +13,7 @@ import me.Treidex.Game.GameObject.Components.Transform;
  * @author Treidex
  *
  */
-public class GameObject extends GOIO {
+public class GameObject extends GOMethods {
 	
 	/**
 	 * Initialize the Game Object.
@@ -22,7 +22,7 @@ public class GameObject extends GOIO {
 	 * @param components The Components the Game Object contains.
 	 */
 	public GameObject(String name, Transform transform, Component... components) {
-		super(name);
+		this.name = name;
 		this.transform = transform;
 		this.transform.setParent(this);
 		this.components = components;
@@ -31,7 +31,7 @@ public class GameObject extends GOIO {
 	}
 	
 	public GameObject(String name, Transform transform, Component[] components, GameObject[] children) {
-		super(name);
+		this.name = name;
 		this.transform = transform;
 		this.transform.setParent(this);
 		this.components = components;
@@ -43,7 +43,7 @@ public class GameObject extends GOIO {
 	}
 	
 	public GameObject(String name, boolean isActive, Transform transform, Component[] components, GameObject[] children) {
-		super(name);
+		this.name = name;
 		this.isActive = isActive;
 		this.transform = transform;
 		this.transform.setParent(this);

@@ -18,9 +18,20 @@ import me.Treidex.Game.Util.Vector2;
  *
  */
 @Unfinished
-public class Scene extends SceneIO {
+public class Scene {
 	
 	public Vector2 translate = Vector2.zero;
+	
+	public String name;
+	
+	public GameObject[] noTranslateObjects;
+	
+	public GameObject[] staticObjects;
+	
+	/**
+	 * The List of Game Objects.
+	 */
+	public GameObject[] gameObjects;
 	
 	protected GameWindow window;
 	
