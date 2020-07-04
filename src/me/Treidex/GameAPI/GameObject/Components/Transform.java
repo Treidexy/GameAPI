@@ -78,6 +78,10 @@ public class Transform extends Component {
 		center = Vector2.add(this.position, Vector2.div(size, 2));
 	}
 	
+	public Transform copy() {
+		return new Transform(center.copy(), size.copy(), rotation);
+	}
+	
 	@SuppressWarnings("unchecked")
 	public JSONObject getMap() {
 		JSONObject out = new JSONObject();

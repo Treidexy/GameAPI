@@ -120,7 +120,7 @@ public abstract class Component {
 	}
 	
 	public static final String[] getIDs() {
-		return ids;
+		return ids.clone();
 	}
 	
 	public abstract JSONObject getMap();

@@ -1,20 +1,17 @@
 package me.Treidex.GameAPI.test;
 
-import static java.lang.Math.E;
-import static java.lang.Math.PI;
-
 import java.awt.Color;
 import java.awt.Graphics;
 
 import me.Treidex.GameAPI.GameManager;
 import me.Treidex.GameAPI.Program;
 import me.Treidex.GameAPI.GameObject.GameObject;
+import me.Treidex.GameAPI.GameObject.Components.Follow;
 import me.Treidex.GameAPI.GameObject.Components.Physics;
 import me.Treidex.GameAPI.GameObject.Components.PlayerController;
 import me.Treidex.GameAPI.GameObject.Components.SpriteRenderer;
 import me.Treidex.GameAPI.GameObject.Components.Transform;
 import me.Treidex.GameAPI.GameObject.Components.Colliders.ColliderType;
-import me.Treidex.GameAPI.GameObject.Components.Colliders.EllipseCollider;
 import me.Treidex.GameAPI.GameObject.Components.Colliders.RectangleCollider;
 import me.Treidex.GameAPI.Scene.Scene;
 import me.Treidex.GameAPI.Util.Vector2;
@@ -58,28 +55,28 @@ public final class Main {
 							new Vector2(50, 100),
 							0
 						),
-//						new Follow(
-//							0,
-//							Vector2.zero,
-//							width,
-//							height
-//						),
+						new Follow(
+							0,
+							Vector2.zero,
+							width,
+							height
+						),
 						new SpriteRenderer(
 							"sprites/Ball.png"
 						),
-						new EllipseCollider(
+						new RectangleCollider(
 							false,
 							2
 						),
 						new Physics(
-							ColliderType.Ellipse,
-							new Vector2(0, 100),
-							0.1f,
-							0.1f
+							ColliderType.Rectangle,
+							new Vector2(0, 520),
+							0f,
+							0f
 						),
 						new PlayerController(
 							1000,
-							100,
+							69,
 							false
 						)
 					)
@@ -97,7 +94,7 @@ public final class Main {
 		};
 		
 		gameManager = new GameManager(scene);
-		program = new Program(gameManager, "Testing the Game Engine - Treidex", 1001, 60, width, height);
+		program = new Program(gameManager, "Testing the Game Engine - Treidex", 420, 60, width, height);
 		program.start();
 	}
 
