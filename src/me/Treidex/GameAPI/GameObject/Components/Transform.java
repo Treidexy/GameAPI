@@ -17,7 +17,7 @@ public class Transform extends Component {
 	/**
 	 * Empty Preset.
 	 */
-	public static Transform empty = new Transform(Vector2.zero, Vector2.zero,0);
+	public static Transform empty = new Transform(Vector2.zero, Vector2.zero, 0);
 	
 	private Vector2 center = Vector2.zero;
 	
@@ -36,6 +36,8 @@ public class Transform extends Component {
 	 */
 	@Unfinished
 	public float rotation;
+	
+	public boolean relative;
 	
 	protected JSONObject transformM;
 	protected JSONObject centerM;
@@ -57,8 +59,20 @@ public class Transform extends Component {
 		center(center);
 	}
 	
+	public void init() {
+		if (parent != null) {
+			if (parent.parent != null)
+				relative = true;
+			else
+				relative = false;
+		}
+	}
+	
 	public Vector2 center() {
-		return center;
+		if (relative)
+			return Vector2.add(center, parent.parent.transform.center);
+		else
+			return center;
 	}
 	
 	public void center(Vector2 center) {
@@ -69,7 +83,10 @@ public class Transform extends Component {
 	}
 	
 	public Vector2 position() {
-		return position;
+		if (relative)
+			return Vector2.add(position, parent.parent.transform.position);
+		else
+			return position;
 	}
 	
 	public void position(Vector2 position) {

@@ -76,6 +76,8 @@ public class GameObject extends GOMethods {
 	 * Initialize all Components.
 	 */
 	public void init() {
+		transform.init();
+		
 		for (Component component: components) {
 			component.init();
 		}

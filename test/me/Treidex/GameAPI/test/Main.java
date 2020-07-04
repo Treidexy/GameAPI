@@ -1,11 +1,13 @@
 package me.Treidex.GameAPI.test;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 
 import me.Treidex.GameAPI.GameManager;
 import me.Treidex.GameAPI.Program;
 import me.Treidex.GameAPI.GameObject.GameObject;
+import me.Treidex.GameAPI.GameObject.Components.Component;
 import me.Treidex.GameAPI.GameObject.Components.Follow;
 import me.Treidex.GameAPI.GameObject.Components.Physics;
 import me.Treidex.GameAPI.GameObject.Components.PlayerController;
@@ -13,6 +15,7 @@ import me.Treidex.GameAPI.GameObject.Components.SpriteRenderer;
 import me.Treidex.GameAPI.GameObject.Components.Transform;
 import me.Treidex.GameAPI.GameObject.Components.Colliders.ColliderType;
 import me.Treidex.GameAPI.GameObject.Components.Colliders.RectangleCollider;
+import me.Treidex.GameAPI.GameObject.Components.UI.Text;
 import me.Treidex.GameAPI.Scene.Scene;
 import me.Treidex.GameAPI.Util.Vector2;
 
@@ -55,30 +58,47 @@ public final class Main {
 							new Vector2(50, 100),
 							0
 						),
-						new Follow(
-							0,
-							Vector2.zero,
-							width,
-							height
-						),
-						new SpriteRenderer(
-							"sprites/Ball.png"
-						),
-						new RectangleCollider(
-							false,
-							2
-						),
-						new Physics(
-							ColliderType.Rectangle,
-							new Vector2(0, 520),
-							0f,
-							0f
-						),
-						new PlayerController(
-							1000,
-							69,
-							false
-						)
+						new Component[] {
+							new Follow(
+								0,
+								Vector2.zero,
+								width,
+								height
+							),
+							new SpriteRenderer(
+								"sprites/Ball.png"
+							),
+							new RectangleCollider(
+								false,
+								2
+							),
+							new Physics(
+								ColliderType.Rectangle,
+								new Vector2(0, 520),
+								0f,
+								0f
+							),
+							new PlayerController(
+								1000,
+								69,
+								false
+							)
+						},
+						new GameObject[] {
+							new GameObject(
+								"Text",
+								new Transform(
+									new Vector2(-50, -25),
+									Vector2.zero,
+									0
+								),
+								new Text(
+									"$player_name",
+									Color.CYAN,
+									new Font(Font.MONOSPACED, Font.ROMAN_BASELINE, 20)
+								)
+							)
+						}
 					)
 				};
 				

@@ -112,9 +112,9 @@ public abstract class Component {
 			ids = Mathf.<String> addToArray(String.class, ids, ComponentID);
 	}
 	
-	public static final String getID() throws ComponentNoIDException {
+	public static final String getID() {
 		if (ComponentID == null)
-			throw new ComponentNoIDException();
+			throw new IllegalStateException("Component Has No Component ID!");
 		
 		return ComponentID;
 	}

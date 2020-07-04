@@ -79,9 +79,6 @@ public abstract class Collider extends Component {
 			if (collider == this)
 				return;
 		colliders = Mathf.<Collider> addToArray(Collider.class, colliders, this);
-		
-		System.out.println(this);
-		System.out.println(colliders.length);
 	}
 	
 	public void destroy(int index) {

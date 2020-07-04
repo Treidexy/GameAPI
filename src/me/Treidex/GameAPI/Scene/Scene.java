@@ -24,14 +24,14 @@ public class Scene {
 	
 	public String name;
 	
-	public GameObject[] noTranslateObjects;
+	public GameObject[] noTranslateObjects = new GameObject[0];
 	
-	public GameObject[] staticObjects;
+	public GameObject[] staticObjects = new GameObject[0];
 	
 	/**
 	 * The List of Game Objects.
 	 */
-	public GameObject[] gameObjects;
+	public GameObject[] gameObjects = new GameObject[0];
 	
 	protected GameWindow window;
 	
@@ -261,6 +261,16 @@ public class Scene {
 		for (GameObject staticObject : staticObjects) {
 			staticObject.onDestroy();
 		}
+	}
+	
+	public final GameObject findGameObjectByName(String name) {
+		GameObject out = null;
+		for (GameObject gameObject: gameObjects) {
+			if (gameObject.name.equals(name))
+				out = gameObject;
+		}
+		
+		return out;
 	}
 	
 	
