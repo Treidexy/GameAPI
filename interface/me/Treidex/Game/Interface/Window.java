@@ -1,55 +1,121 @@
 package me.Treidex.Game.Interface;
 
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JSeparator;
 
-import me.Treidex.Game.Interface.Configurations.Config;
+public class Window {
 
-public class Window extends JFrame {
+	private JFrame frmJavaEngine;
 
 	/**
-	 * 
+	 * Launch the application.
 	 */
-	private static final long serialVersionUID = 0x22c9963da5f37f13L;
-	
-	private Config config;
-	private int windowId;
-	
-	private TabbedPane tabbedPane;
-
-	public Window(int windowId, TabbedPane tabbedPane) {
-		this.tabbedPane = tabbedPane;
-		this.windowId = windowId;
-		config = new Config("window-" + this.windowId + ".config", new String[] { "Game Engine Editor", "1000", "800" });
-		
-		add(tabbedPane);
-	}
-	
-	public void open() {
-		config.load();
-		setTitle(config.getConfig()[0]);
-		setSize(Integer.valueOf(config.getConfig()[1]), Integer.valueOf(config.getConfig()[2]));
-		
-		setResizable(true);
-		setLocationRelativeTo(null);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setVisible(true);
-		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-		addWindowListener(new WindowAdapter() {
-		    public void windowClosing(WindowEvent event) {
-		        exit();
-		    }
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Window window = new Window();
+					window.frmJavaEngine.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
 		});
 	}
-	
-	public void exit() {
-		config.setConfig(new String[] { config.getConfig()[0], String.valueOf(getWidth()), String.valueOf(getHeight()) });
-		config.save();
-		
-		tabbedPane.exit();
-		
-		dispose();
+
+	/**
+	 * Create the application.
+	 */
+	public Window() {
+		initialize();
 	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		JFrame.setDefaultLookAndFeelDecorated(true);
+		
+		frmJavaEngine = new JFrame();
+		frmJavaEngine.setIconImage(Toolkit.getDefaultToolkit().getImage(Window.class.getResource("/all/icon.png")));
+		frmJavaEngine.setTitle("Java Engine");
+		frmJavaEngine.setSize(1000, 800);
+		frmJavaEngine.setLocationRelativeTo(null);
+		frmJavaEngine.setOpacity(0.96f);
+		frmJavaEngine.setForeground(Color.LIGHT_GRAY);
+		frmJavaEngine.getContentPane().setBackground(Color.DARK_GRAY);
+		frmJavaEngine.setBackground(Color.GRAY);
+		frmJavaEngine.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		JPanel Game = new JPanel();
+		Game.setBackground(Color.DARK_GRAY);
+		Game.setBounds(0, 0, frmJavaEngine.getWidth(), 500);
+		frmJavaEngine.getContentPane().add(Game);
+		
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.setBackground(Color.LIGHT_GRAY);
+		frmJavaEngine.setJMenuBar(menuBar);
+		
+		JMenu mnFile = new JMenu("File");
+		menuBar.add(mnFile);
+		
+		JMenuItem mntmFile_New = new JMenuItem("New");
+		mntmFile_New.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		mnFile.add(mntmFile_New);
+		
+		JMenuItem mntmFile_Open = new JMenuItem("Open...");
+		mntmFile_Open.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		mnFile.add(mntmFile_Open);
+		
+		JMenu mnEdit = new JMenu("Edit");
+		menuBar.add(mnEdit);
+		
+		JMenuItem mntmEdit_Copy = new JMenuItem("Copy");
+		mntmEdit_Copy.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		mnEdit.add(mntmEdit_Copy);
+		
+		JMenuItem mntmEdit_Cut = new JMenuItem("Cut");
+		mntmEdit_Cut.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		mnEdit.add(mntmEdit_Cut);
+		
+		JMenuItem mntmEdit_Paste = new JMenuItem("Paste...");
+		mntmEdit_Paste.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		mnEdit.add(mntmEdit_Paste);
+		
+		mnEdit.add(new JSeparator());
+		
+		JMenuItem mntmEdit_SelectAll = new JMenuItem("Select All...");
+		mntmEdit_SelectAll.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		mnEdit.add(mntmEdit_SelectAll);
+	}
+
 }
