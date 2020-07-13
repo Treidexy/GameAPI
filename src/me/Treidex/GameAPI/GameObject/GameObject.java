@@ -13,7 +13,7 @@ import me.Treidex.GameAPI.GameObject.Components.Transform;
  * @author Treidex
  *
  */
-public class GameObject extends GOMethods {
+public final class GameObject extends GOMethods {
 	
 	/**
 	 * Initialize the Game Object.

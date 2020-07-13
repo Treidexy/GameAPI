@@ -1,4 +1,4 @@
-package me.Treidex.GameAPI.Util;
+package me.Treidex.GameAPI.Util.Math;
 
 import org.json.simple.JSONObject;
 
@@ -125,7 +125,7 @@ public class Vector2 {
 	 * @param lerp The Amount you want to Lerp.
 	 * @return The Lerped Vector.
 	 * 
-	 * @see me.Treidex.GameAPI.Util.Mathf#lerp(float, float, float) Linear Interpolation (Lerping).
+	 * @see me.Treidex.GameAPI.Util.Math.Mathf#lerp(float, float, float) Linear Interpolation (Lerping).
 	 */
 	public static Vector2 lerp(final Vector2 startPos, final Vector2 endPos, final float lerp) {
 		return Vector2.add(endPos, Vector2.mult(Vector2.sub(endPos, startPos), lerp));
@@ -135,6 +135,10 @@ public class Vector2 {
 		float magnitude = vector.magnitude();
 		
 		return new Vector2(vector.x / magnitude, vector.y / magnitude);
+	}
+	
+	public static Vector2 fromAngle(final float ang) {
+		return new Vector2((float) Math.sin(ang), (float) Math.cos(ang));
 	}
 	
 	/**
@@ -233,7 +237,7 @@ public class Vector2 {
 	 * @param lerp The Amount you want to Lerp.
 	 * @return The Lerped Vector.
 	 * 
-	 * @see me.Treidex.GameAPI.Util.Mathf#lerp(float, float, float) Linear Interpolation (Lerping).
+	 * @see me.Treidex.GameAPI.Util.Math.Mathf#lerp(float, float, float) Linear Interpolation (Lerping).
 	 */
 	public Vector2 lerp(final Vector2 endPos, final float lerp) {
 		x = Mathf.lerp(x, endPos.x, lerp);

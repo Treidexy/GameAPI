@@ -7,8 +7,8 @@ import java.awt.event.MouseEvent;
 import me.Treidex.GameAPI.GameWindow;
 import me.Treidex.GameAPI.Anotations.Unfinished;
 import me.Treidex.GameAPI.GameObject.GameObject;
-import me.Treidex.GameAPI.Util.Mathf;
-import me.Treidex.GameAPI.Util.Vector2;
+import me.Treidex.GameAPI.Util.Math.Mathf;
+import me.Treidex.GameAPI.Util.Math.Vector2;
 
 
 /**

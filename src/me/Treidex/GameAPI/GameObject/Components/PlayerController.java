@@ -8,7 +8,7 @@ import java.util.HashMap;
 import org.json.simple.JSONObject;
 
 import me.Treidex.GameAPI.Util.Time;
-import me.Treidex.GameAPI.Util.Vector2;
+import me.Treidex.GameAPI.Util.Math.Vector2;
 
 /**
  * Component for a Simple Player Controller.
@@ -38,12 +38,12 @@ public class PlayerController extends Component {
 	/**
 	 * Store the User Inputs.
 	 */
-	private HashMap<String, Boolean> inputs;
+	protected HashMap<String, Boolean> inputs;
 	
 	/**
 	 * The Physics Component of the Player Controller.
 	 */
-	private Physics physics;
+	protected Physics physics;
 	
 	/**
 	 * Initialize the Player Controller.
@@ -155,7 +155,7 @@ public class PlayerController extends Component {
 	 * 
 	 * @param accel The Map in which to Move the Player.
 	 */
-	private void move(Vector2 accel) {
+	public void move(Vector2 accel) {
 		Vector2 acceleration = Vector2.mult(accel, speed);
 		acceleration.mult(Time.fixedDeltaTime);
 		

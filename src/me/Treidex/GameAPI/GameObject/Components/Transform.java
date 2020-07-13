@@ -3,7 +3,7 @@ package me.Treidex.GameAPI.GameObject.Components;
 import org.json.simple.JSONObject;
 
 import me.Treidex.GameAPI.Anotations.Unfinished;
-import me.Treidex.GameAPI.Util.Vector2;
+import me.Treidex.GameAPI.Util.Math.Vector2;
 
 /**
  * Transforms Store Position, Size, and Rotation;

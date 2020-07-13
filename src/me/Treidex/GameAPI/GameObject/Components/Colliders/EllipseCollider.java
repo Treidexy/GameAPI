@@ -8,8 +8,8 @@ import org.json.simple.JSONObject;
 
 import me.Treidex.GameAPI.Anotations.Unfinished;
 import me.Treidex.GameAPI.GameObject.Components.Component;
-import me.Treidex.GameAPI.Util.Mathf;
-import me.Treidex.GameAPI.Util.Vector2;
+import me.Treidex.GameAPI.Util.Math.Mathf;
+import me.Treidex.GameAPI.Util.Math.Vector2;
 
 /**
  * Ellipse's are cool,

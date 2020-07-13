@@ -7,7 +7,7 @@ import java.awt.event.MouseEvent;
 import org.json.simple.JSONObject;
 
 import me.Treidex.GameAPI.GameObject.GameObject;
-import me.Treidex.GameAPI.Util.Mathf;
+import me.Treidex.GameAPI.Util.Math.Mathf;
 
 /**
  * How do you make anything?

@@ -1,4 +1,4 @@
-package me.Treidex.GameAPI.Util;
+package me.Treidex.GameAPI.Util.Math;
 
 import java.lang.reflect.Array;
 

@@ -10,7 +10,7 @@ import org.json.simple.JSONObject;
 import me.Treidex.GameAPI.GameObject.Components.Component;
 import me.Treidex.GameAPI.GameObject.Components.UI.Events.ButtonEvent;
 import me.Treidex.GameAPI.Util.Util;
-import me.Treidex.GameAPI.Util.Vector2;
+import me.Treidex.GameAPI.Util.Math.Vector2;
 
 public class Button extends UI {
 	public ButtonEvent[] buttonEvents;

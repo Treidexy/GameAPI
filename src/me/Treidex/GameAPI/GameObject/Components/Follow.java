@@ -4,7 +4,7 @@ import java.awt.Graphics;
 
 import org.json.simple.JSONObject;
 
-import me.Treidex.GameAPI.Util.Vector2;
+import me.Treidex.GameAPI.Util.Math.Vector2;
 
 /**
  * A Component that makes the Game

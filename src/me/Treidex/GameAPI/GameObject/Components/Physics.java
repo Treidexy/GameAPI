@@ -5,7 +5,7 @@ import org.json.simple.JSONObject;
 import me.Treidex.GameAPI.Anotations.Unfinished;
 import me.Treidex.GameAPI.GameObject.Components.Colliders.*;
 import me.Treidex.GameAPI.Util.Time;
-import me.Treidex.GameAPI.Util.Vector2;
+import me.Treidex.GameAPI.Util.Math.Vector2;
 
 /**
  * Component for Simulated Physics.
