@@ -1,0 +1,15 @@
+Alpha 2.0-pre2.
+
+New Features in Alpha 2.0-pre2:
+	- Rays!
+	- Ability to Get any Game Object by there Name.
+	- All Game Objects and Scenes MUST have Names.
+	- Ability to create Game Objects During Runtime.
+	- Vector2s can be created from Angles.
+	- Colliders now Send a Collision when Colliding with Triggers.
+
+New Changes to Alpha 2.0-pre2:
+	- None.
+
+Removed Features from Alpha 2.0-pre2:
+	- Stopped Trying to Store Scenes in files.

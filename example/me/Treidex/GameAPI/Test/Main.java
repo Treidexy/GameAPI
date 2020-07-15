@@ -13,6 +13,8 @@ import me.Treidex.GameAPI.GameObject.Components.Physics;
 import me.Treidex.GameAPI.GameObject.Components.PlayerController;
 import me.Treidex.GameAPI.GameObject.Components.SpriteRenderer;
 import me.Treidex.GameAPI.GameObject.Components.Transform;
+import me.Treidex.GameAPI.GameObject.Components.Colliders.Collider;
+import me.Treidex.GameAPI.GameObject.Components.Colliders.ColliderEvent;
 import me.Treidex.GameAPI.GameObject.Components.Colliders.ColliderType;
 import me.Treidex.GameAPI.GameObject.Components.Colliders.RectangleCollider;
 import me.Treidex.GameAPI.GameObject.Components.UI.Text;
@@ -152,12 +154,28 @@ public final class Main {
 					new GameObject(
 						"Marker",
 						new Transform(
-							new Vector2(900, 600),
-							new Vector2(1, 1),
+							new Vector2(900, 500),
+							new Vector2(100, 100),
 							0
 						),
 						new SpriteRenderer(
 							"gui/KIU.png"
+						),
+						new RectangleCollider(
+							true,
+							2,
+							new ColliderEvent() {
+								@Override
+								public void onCollisionEnter(float[] collisionMap, Collider[] colliders) {
+									System.out.println("Hit!");
+								}
+
+								@Override
+								public void onCollisionExit() {
+									// TODO Auto-generated method stub
+									
+								}
+							}
 						)
 					)
 				};

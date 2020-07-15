@@ -167,7 +167,10 @@ public class EllipseCollider extends Collider {
 			}
 		}
 		
-		return new CollisionMap(collisionMap, this);
+		if (isTrigger)
+			return new CollisionMap(new float[] { collisionMap[0], 0, 0 }, this);
+		else
+			return new CollisionMap(collisionMap, this);
 	}
 
 	@SuppressWarnings("unchecked")

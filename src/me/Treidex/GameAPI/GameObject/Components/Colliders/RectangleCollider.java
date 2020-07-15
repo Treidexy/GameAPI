@@ -65,9 +65,6 @@ public class RectangleCollider extends Collider {
 			if (collider == this)
 				continue;
 			
-			if (collider.isTrigger)
-				continue;
-			
 			for (int y = 0; y < transform.size.y; y++) {
 				for (int x = 0; x < transform.size.x; x++) {
 					
@@ -160,7 +157,10 @@ public class RectangleCollider extends Collider {
 			collisionMap[2] = 1;
 		}
 		
-		return new CollisionMap(collisionMap, this);
+		if (isTrigger)
+			return new CollisionMap(new float[] { collisionMap[0], 0, 0 }, this);
+		else
+			return new CollisionMap(collisionMap, this);
 	}
 
 	@SuppressWarnings("unchecked")
