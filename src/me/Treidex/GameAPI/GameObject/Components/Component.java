@@ -123,7 +123,7 @@ public abstract class Component {
 		return ids.clone();
 	}
 	
-	public abstract JSONObject getMap();
+//	public abstract JSONObject getMap();
 	
 	public static Component loadMap(final JSONObject map) {
 		throw new IllegalStateException("'loadMap()' must be define in Sub-Class: " + ComponentID);
