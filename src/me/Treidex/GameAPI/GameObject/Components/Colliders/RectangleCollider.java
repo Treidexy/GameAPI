@@ -45,7 +45,7 @@ public class RectangleCollider extends Collider {
 	}
 	
 	public void onDestroy() {
-		super.destroy(Mathf.<Collider> getIndexFromArray(this, Collider.colliders));
+		destroy(Mathf.<Collider> getIndexFromArray(this, colliders));
 	}
 	
 	/**

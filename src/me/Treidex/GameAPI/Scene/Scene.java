@@ -7,6 +7,7 @@ import java.awt.event.MouseEvent;
 import me.Treidex.GameAPI.GameWindow;
 import me.Treidex.GameAPI.Anotations.Unfinished;
 import me.Treidex.GameAPI.GameObject.GameObject;
+import me.Treidex.GameAPI.GameObject.Prefab;
 import me.Treidex.GameAPI.Util.Math.Mathf;
 import me.Treidex.GameAPI.Util.Math.Vector2;
 
@@ -277,11 +278,20 @@ public class Scene {
 	public void spawn(GameObject objectToSpawn) {
 		gameObjects = Mathf.<GameObject> addToArray(GameObject.class, gameObjects, objectToSpawn);
 		gameObjects[Mathf.<GameObject> getIndexFromArray(objectToSpawn, gameObjects)].init();
+		setParents();
+	}
+	
+	public GameObject instansiate(Prefab prefab) {
+		GameObject out = prefab.instansiate();
+		
+		spawn(out);
+		
+		return out;
 	}
 	
 	public void destroyAll() {
 		for (int i = 0; i < gameObjects.length; i++) {
-			destroy(i);
+			destroy(0);
 		}
 	}
 	

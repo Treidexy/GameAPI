@@ -74,7 +74,9 @@ public abstract class Collider extends Component {
 		this.isTrigger = isTrigger;
 		this.margin = margin;
 		this.colliderEvents = colliderEvents;
-		
+	}
+	
+	public void init() {
 		for (Collider collider: colliders)
 			if (collider == this)
 				return;

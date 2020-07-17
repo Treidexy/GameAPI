@@ -90,7 +90,7 @@ public abstract class Component {
 	
 	public void onDestroy() {}
 	
-	public GameObject getParent() {
+	public final GameObject getParent() {
 		return parent;
 	}
 	

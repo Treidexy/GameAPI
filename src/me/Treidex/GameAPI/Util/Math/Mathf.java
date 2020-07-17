@@ -118,7 +118,7 @@ public final class Mathf {
 		return out;
 	}
 	
-	public static <T> Integer getIndexFromArray(final T object, final T[] array) {
+	public static <T> int getIndexFromArray(final T object, final T[] array) {
 		for (int i = 0; i < array.length; i++) {
 			if (array[i] == object) {
 				return i;
