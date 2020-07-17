@@ -26,7 +26,7 @@ public class EllipseCollider extends Collider {
 	protected JSONObject ecMap;
 	
 	/**
-	 * Initialize the
+	 * Create the
 	 * Ellipse Collider.
 	 * 
 	 * @param isTrigger Determines whether is a Trigger or not.

@@ -1,5 +1,14 @@
 package me.Treidex.GameAPI.GameObject.Components.Colliders;
 
+
+/**
+ * 
+ * Just what it says,
+ * this is a Custom Collider Event.
+ * 
+ * @author Treidex
+ *
+ */
 public interface ColliderEvent {
 	/**
 	 * Structure for Entering Collision.

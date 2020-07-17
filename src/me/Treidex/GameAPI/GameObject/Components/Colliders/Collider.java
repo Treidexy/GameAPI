@@ -21,8 +21,7 @@ public abstract class Collider extends Component {
 	public static Collider[] colliders = new Collider[0];
 	
 	/**
-	 * Boolean to see if the
-	 * Collider is a Trigger.
+	 * Is this Collider a Trigger?
 	 */
 	public boolean isTrigger;
 	
@@ -34,11 +33,10 @@ public abstract class Collider extends Component {
 	public float margin;
 	
 	/**
-	 * (!UN-USED!)
 	 * Used to determine
 	 * when to trigger
-	 * onCollisionEnter (UN-USED) and
-	 * onCollisionExit (UN-USED).
+	 * onCollisionEnter and
+	 * onCollisionExit.
 	 */
 	private boolean pcollided;
 	
@@ -62,10 +60,14 @@ public abstract class Collider extends Component {
 	 */
 	public abstract CollisionMap checkCollision(Vector2 checkPos);
 	
+	/**
+	 * List of all 
+	 * the Collider Events.
+	 */
 	protected ColliderEvent[] colliderEvents;
 	
 	/**
-	 * Initialize the Collider.
+	 * Create the Collider.
 	 * 
 	 * @param isTrigger Determines whether the Collider is a Trigger.
 	 * @param margin The Margin in which to check Collision.
@@ -76,6 +78,9 @@ public abstract class Collider extends Component {
 		this.colliderEvents = colliderEvents;
 	}
 	
+	/**
+	 * Initialize the Collider.
+	 */
 	public void init() {
 		for (Collider collider: colliders)
 			if (collider == this)
@@ -83,13 +88,23 @@ public abstract class Collider extends Component {
 		colliders = Mathf.<Collider> addToArray(Collider.class, colliders, this);
 	}
 	
+	/**
+	 * Used for when
+	 * colliders want to remove
+	 * a Collider
+	 * from the Colliders Array.
+	 * 
+	 * @param index The index in the Colliders Array in wich to Destroy.
+	 * 
+	 * @see me.Treidex.GameAPI.GameObject.Components.Colliders.Collider#colliders Colliders Array.
+	 */
 	public void destroy(int index) {
 		colliders = Mathf.<Collider> removeFromArray(Collider.class, colliders, index);
 	}
 	
 	/**
 	 * Getter for pcollided.
-	 * @see me.Treidex.GameAPI.GameObject.Components.Colliders.Collider#pcollided P Collided.
+	 * @see me.Treidex.GameAPI.GameObject.Components.Colliders.Collider#pcollided Past Collided.
 	 * 
 	 * @return pcollided The Value for pcollided.
 	 */
@@ -99,7 +114,7 @@ public abstract class Collider extends Component {
 	
 	/**
 	 * Setter for pcollided.
-	 * @see me.Treidex.GameAPI.GameObject.Components.Colliders.Collider#pcollided P Collided.
+	 * @see me.Treidex.GameAPI.GameObject.Components.Colliders.Collider#pcollided Past Collided.
 	 * 
 	 * @param pcollided Whether Collider Collided before.
 	 */
