@@ -7,18 +7,19 @@ import java.awt.Graphics;
 import me.Treidex.GameAPI.GameManager;
 import me.Treidex.GameAPI.Program;
 import me.Treidex.GameAPI.GameObject.GameObject;
+import me.Treidex.GameAPI.GameObject.Prefab;
 import me.Treidex.GameAPI.GameObject.Components.Component;
 import me.Treidex.GameAPI.GameObject.Components.Follow;
 import me.Treidex.GameAPI.GameObject.Components.Physics;
 import me.Treidex.GameAPI.GameObject.Components.PlayerController;
 import me.Treidex.GameAPI.GameObject.Components.SpriteRenderer;
 import me.Treidex.GameAPI.GameObject.Components.Transform;
-import me.Treidex.GameAPI.GameObject.Components.Colliders.Collider;
-import me.Treidex.GameAPI.GameObject.Components.Colliders.ColliderEvent;
 import me.Treidex.GameAPI.GameObject.Components.Colliders.ColliderType;
 import me.Treidex.GameAPI.GameObject.Components.Colliders.RectangleCollider;
 import me.Treidex.GameAPI.GameObject.Components.UI.Text;
 import me.Treidex.GameAPI.Scene.Scene;
+import me.Treidex.GameAPI.Test.Components.JumpPadSpawner;
+import me.Treidex.GameAPI.Test.Components.TimedObject;
 import me.Treidex.GameAPI.Util.Math.Vector2;
 
 public final class Main {
@@ -28,10 +29,33 @@ public final class Main {
 	private static final String PlayerName = "Treidex";
 	
 	private static Scene scene;
-	private static GameManager gameManager;
+	public static GameManager gameManager;
 	private static Program program;
 	
 	private static GameObject player;
+	
+	public static Prefab prefab_JumpPad = new Prefab() {
+		public GameObject instansiate() {
+			return new GameObject(
+				"JUMPAD_",
+				new Transform(
+					Vector2.zero,
+					new Vector2(50, 50),
+					0
+				),
+				new SpriteRenderer(
+					"gui/KIU.png"
+				),
+				new RectangleCollider(
+					false,
+					2
+				),
+				new TimedObject(
+					0.24f
+				)
+			);
+		}
+	};
 	
 	public static void main(String[] args) {
 		scene = new Scene() {
@@ -67,7 +91,8 @@ public final class Main {
 							1000,
 							69,
 							false
-						)
+						),
+						new JumpPadSpawner()
 					},
 					new GameObject[] {
 						new GameObject(
@@ -149,34 +174,6 @@ public final class Main {
 							false,
 							2
 						)
-					),
-					
-					new GameObject(
-						"Marker",
-						new Transform(
-							new Vector2(900, 500),
-							new Vector2(100, 100),
-							0
-						),
-						new SpriteRenderer(
-							"gui/KIU.png"
-						),
-						new RectangleCollider(
-							true,
-							2,
-							new ColliderEvent() {
-								@Override
-								public void onCollisionEnter(float[] collisionMap, Collider[] colliders) {
-									System.out.println("Hit!");
-								}
-
-								@Override
-								public void onCollisionExit() {
-									// TODO Auto-generated method stub
-									
-								}
-							}
-						)
 					)
 				};
 				gameObjects = new GameObject[] {
@@ -207,5 +204,4 @@ public final class Main {
 		program = new Program(gameManager, "Testing the Game Engine - Treidex", 420, 60, width, height);
 		program.start();
 	}
-
 }
