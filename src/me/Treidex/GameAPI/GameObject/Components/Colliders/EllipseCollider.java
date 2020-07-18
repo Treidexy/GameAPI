@@ -31,6 +31,7 @@ public class EllipseCollider extends Collider {
 	 * 
 	 * @param isTrigger Determines whether is a Trigger or not.
 	 * @param margin The Margin in which to calculate from.
+	 * @param colliderEvents The Collider Events.
 	 */
 	public EllipseCollider(boolean isTrigger, float margin, ColliderEvent... colliderEvents) {
 		super(isTrigger, margin, colliderEvents);

@@ -190,7 +190,7 @@ public class Vector2 {
 	/**
 	 * Method for Subtracting from a Vector.
 	 * 
-	 * @param vector2 The Vector used to Subtract.
+	 * @param vector The Vector used to Subtract.
 	 * 
 	 * @return The Subtracted Vector.
 	 */
@@ -244,8 +244,6 @@ public class Vector2 {
 	/**
 	 * Method Used for the Absolute Vector.
 	 * 
-	 * @param vector The Vector.
-	 * 
 	 * @return The Absolute Vector.
 	 */
 	public Vector2 abs() {
@@ -283,7 +281,6 @@ public class Vector2 {
 	 * Method Used for Linear Interpolation
 	 * for two Vectors.
 	 * 
-	 * @param startPos The Start Position.
 	 * @param endPos The End Position.
 	 * @param lerp The Amount you want to Lerp.
 	 * 

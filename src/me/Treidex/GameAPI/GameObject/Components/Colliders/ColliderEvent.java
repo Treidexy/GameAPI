@@ -12,6 +12,9 @@ package me.Treidex.GameAPI.GameObject.Components.Colliders;
 public interface ColliderEvent {
 	/**
 	 * Structure for Entering Collision.
+	 * 
+	 * @param collisionMap The Collision Map.
+	 * @param colliders The Colliders that it is hitting.
 	 */
 	public void onCollisionEnter(float[] collisionMap, Collider[] colliders);
 	

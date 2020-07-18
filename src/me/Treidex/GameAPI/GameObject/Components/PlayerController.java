@@ -76,7 +76,7 @@ public class PlayerController extends Component {
 	}
 	
 	/**
-	 * Draw the Default Player Texture if {@link me.Treidex.Game.GameObject.Components.Player#renderDefault Render Default} is True.
+	 * Draw the Default Player Texture if {@link PlayerController#renderDefault Render Default} is True.
 	 */
 	public void draw(Graphics g) {
 		if (renderDefault) {

@@ -67,10 +67,10 @@ public class Button extends UI {
 	/**
 	 * Create the Button.
 	 * 
-	 * @param normalCol
-	 * @param overCol The Normal Color of the Button.
-	 * @param pressedCol The Color of the Button when the Mouse is Over it.
-	 * @param buttonEvents The Pressed Color of the Button.
+	 * @param normalCol The Normal Color of the Button
+	 * @param overCol The Color of the Button when the Mouse is Over it.
+	 * @param pressedCol The Pressed Color of the Button.
+	 * @param buttonEvents The Button Events.
 	 */
 	public Button(Color normalCol, Color overCol, Color pressedCol, ButtonEvent... buttonEvents) {
 		initID("UI->Button");

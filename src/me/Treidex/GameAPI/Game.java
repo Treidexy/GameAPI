@@ -80,6 +80,8 @@ public class Game extends JPanel {
 	 * the Game.
 	 * 
 	 * @param gameManager The Game Manager.
+	 * @param screen The Screen Dimensions.
+	 * @param fixedTPS The Fixed Ticks Per Second.
 	 */
 	public Game(GameManager gameManager, Dimension screen, int fixedTPS) {
 		this.gameManager = gameManager;

@@ -12,13 +12,13 @@ public enum ColliderType {
 	
 	/**
 	 * The Rectangle Collider.
-	 * @see me.Treidex.Game.GameObject.Components.Colliders.RectangleCollider Rectangle Collider.
+	 * @see me.Treidex.GameAPI.GameObject.Components.Colliders.RectangleCollider Rectangle Collider.
 	 */
 	Rectangle,
 	
 	/**
 	 * The Ellipse Collider
-	 * @see me.Treidex.Game.GameObject.Components.Colliders.EllipseCollider Ellipse Collider.
+	 * @see me.Treidex.GameAPI.GameObject.Components.Colliders.EllipseCollider Ellipse Collider.
 	 */
 	Ellipse;
 }

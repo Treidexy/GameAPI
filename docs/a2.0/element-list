@@ -1,0 +1,9 @@
+me.Treidex.GameAPI
+me.Treidex.GameAPI.Anotations
+me.Treidex.GameAPI.GameObject
+me.Treidex.GameAPI.GameObject.Components
+me.Treidex.GameAPI.GameObject.Components.Colliders
+me.Treidex.GameAPI.GameObject.Components.UI
+me.Treidex.GameAPI.GameObject.Components.UI.Events
+me.Treidex.GameAPI.Util
+me.Treidex.GameAPI.Util.Math

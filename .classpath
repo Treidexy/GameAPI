@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry excluding="me/Treidex/Game/Scene/SceneIO.java|me/Treidex/Game/GameObject/GOIO.java|me/Treidex/GameAPI/GameObject/GOIO.java|me/Treidex/GameAPI/Scene/SceneIO.java" kind="src" path="src"/>
+	<classpathentry excluding="me/Treidex/Game/Scene/SceneIO.java|me/Treidex/Game/GameObject/GOIO.java|me/Treidex/GameAPI/Scene/SceneIO.java|me/Treidex/GameAPI/GameObject/GOIO.java|Storage/" kind="src" path="src"/>
 	<classpathentry excluding="me/Treidex/Game/Interface/Configurations/DEL_Config.java|me/Treidex/Game/Interface/Configurations/DEL_ConfigObject.java|resources/" kind="src" path="interface"/>
 	<classpathentry kind="src" path="interface/resources"/>
 	<classpathentry excluding="resources/" kind="src" path="example"/>

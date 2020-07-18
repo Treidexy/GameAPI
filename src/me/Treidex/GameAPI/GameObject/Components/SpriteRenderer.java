@@ -36,7 +36,7 @@ public class SpriteRenderer extends Component {
 	/**
 	 * Initialize the Sprite Renderer.
 	 * 
-	 * @param filepath The Path to the Image File.
+	 * @param fp The Path to the Image File.
 	 */
 	public SpriteRenderer(String fp) {
 		initID("Sprite Renderer");

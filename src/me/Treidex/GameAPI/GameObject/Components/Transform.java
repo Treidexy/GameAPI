@@ -52,7 +52,7 @@ public class Transform extends Component {
 	/**
 	 * Create the Transform.
 	 * 
-	 * @param position Transform Position.
+	 * @param center Transform Center.
 	 * @param size Transform Size.
 	 * @param rotation Transform Rotation.
 	 */
@@ -116,7 +116,7 @@ public class Transform extends Component {
 	/**
 	 * Setter for the Position of the Transform.
 	 * 
-	 * @param center The new Position of the Transform.
+	 * @param position The new Position of the Transform.
 	 */
 	public void position(Vector2 position) {
 		this.position = position;

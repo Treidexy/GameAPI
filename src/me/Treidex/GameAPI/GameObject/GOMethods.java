@@ -1,8 +1,8 @@
 package me.Treidex.GameAPI.GameObject;
 
+import me.Treidex.GameAPI.Scene;
 import me.Treidex.GameAPI.GameObject.Components.Component;
 import me.Treidex.GameAPI.GameObject.Components.Transform;
-import me.Treidex.GameAPI.Scene.Scene;
 
 /**
  * All the Final Methods for Game Objects.

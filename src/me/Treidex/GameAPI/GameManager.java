@@ -1,7 +1,5 @@
 package me.Treidex.GameAPI;
 
-import me.Treidex.GameAPI.Scene.Scene;
-
 /**
  * Imagine the world
  * if everyone just did
@@ -29,7 +27,7 @@ public final class GameManager {
 	/**
 	 * Initialize the Game Manage
 	 * 
-	 * @param scenes All the Scenes to be loaded.
+	 * @param scene The Scene to be loaded.
 	 */
 	public GameManager(Scene scene) {
 		setScene(scene);

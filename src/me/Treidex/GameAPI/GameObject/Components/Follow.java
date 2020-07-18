@@ -49,6 +49,7 @@ public class Follow extends Component {
 	 * Initialize the Follow Component.
 	 * 
 	 * @param lerp The Linear Interpolation of the Focus Change.
+	 * @param offset The Offset of the Focus.
 	 * @param width The Width of the Canvas.
 	 * @param height The Height of the Canvas.
 	 */

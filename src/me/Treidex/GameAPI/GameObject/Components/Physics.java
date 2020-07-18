@@ -127,7 +127,7 @@ public class Physics extends Component {
 	/**
 	 * Method for Adding Force to the Physics Component.
 	 * 
-	 * @param force
+	 * @param force The Force you want to add.
 	 */
 	public void addForce(Vector2 force) {
 		velocity = Vector2.add(velocity, force);

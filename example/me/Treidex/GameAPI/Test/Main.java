@@ -6,6 +6,7 @@ import java.awt.Graphics;
 
 import me.Treidex.GameAPI.GameManager;
 import me.Treidex.GameAPI.Program;
+import me.Treidex.GameAPI.Scene;
 import me.Treidex.GameAPI.GameObject.GameObject;
 import me.Treidex.GameAPI.GameObject.Prefab;
 import me.Treidex.GameAPI.GameObject.Components.Component;
@@ -17,11 +18,15 @@ import me.Treidex.GameAPI.GameObject.Components.Transform;
 import me.Treidex.GameAPI.GameObject.Components.Colliders.ColliderType;
 import me.Treidex.GameAPI.GameObject.Components.Colliders.RectangleCollider;
 import me.Treidex.GameAPI.GameObject.Components.UI.Text;
-import me.Treidex.GameAPI.Scene.Scene;
 import me.Treidex.GameAPI.Test.Components.JumpPadSpawner;
 import me.Treidex.GameAPI.Test.Components.TimedObject;
 import me.Treidex.GameAPI.Util.Math.Vector2;
 
+/**
+ * 
+ * @author Treidex
+ *
+ */
 public final class Main {
 	private static final int width = 1000;
 	private static final int height = 800;
