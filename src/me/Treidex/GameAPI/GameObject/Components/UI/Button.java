@@ -12,15 +12,50 @@ import me.Treidex.GameAPI.GameObject.Components.UI.Events.ButtonEvent;
 import me.Treidex.GameAPI.Util.Util;
 import me.Treidex.GameAPI.Util.Math.Vector2;
 
+/**
+ * 
+ * Buttons are Essential to Everything.
+ * 
+ * @author Treidex
+ *
+ */
 public class Button extends UI {
+	
+	/**
+	 * List of all the Button Events.
+	 * 
+	 * @see me.Treidex.GameAPI.GameObject.Components.UI.Events.ButtonEvent Button Event.
+	 */
 	public ButtonEvent[] buttonEvents;
 	
+	/**
+	 * The Normal Color of the Button.
+	 */
 	public Color normalCol;
+	
+	/**
+	 * The Color of the Button when the Mouse is Over it.
+	 */
 	public Color overCol;
+	
+	/**
+	 * The Pressed Color of the Button.
+	 */
 	public Color pressedCol;
 	
+	/**
+	 * Is the Mouse Over?
+	 */
 	protected boolean mouseOver;
+	
+	/**
+	 * Is the Mouse Pressed.
+	 */
 	protected boolean mousePressed;
+	
+	/**
+	 * Is the Mouse Pressing the Button?
+	 */
 	protected boolean clicked;
 	
 	protected JSONObject buttonM;
@@ -29,6 +64,14 @@ public class Button extends UI {
 	protected JSONObject pcMap;
 	protected JSONArray btA;
 	
+	/**
+	 * Create the Button.
+	 * 
+	 * @param normalCol
+	 * @param overCol The Normal Color of the Button.
+	 * @param pressedCol The Color of the Button when the Mouse is Over it.
+	 * @param buttonEvents The Pressed Color of the Button.
+	 */
 	public Button(Color normalCol, Color overCol, Color pressedCol, ButtonEvent... buttonEvents) {
 		initID("UI->Button");
 		
@@ -38,6 +81,9 @@ public class Button extends UI {
 		this.buttonEvents = buttonEvents;
 	}
 	
+	/**
+	 * Draw the Button.
+	 */
 	public void draw(Graphics g) {
 		g.setColor(normalCol);
 		
@@ -50,6 +96,9 @@ public class Button extends UI {
 		g.fillRoundRect((int) transform.position().x, (int) transform.position().y, (int) transform.size.x, (int) transform.size.y, 5, 5);
 	}
 	
+	/**
+	 * Mouse Pressed Button Event.
+	 */
 	public void mousePressed(MouseEvent e) {
 		mousePressed = true;
 		clicked = mouseOver;
@@ -60,6 +109,9 @@ public class Button extends UI {
 			}
 	}
 	
+	/**
+	 * Mouse Released Button Event.
+	 */
 	public void mouseReleased(MouseEvent e) {
 		mousePressed = false;
 		
@@ -71,6 +123,9 @@ public class Button extends UI {
 		clicked = false;
 	}
 	
+	/**
+	 * Mouse Moved Button Event.
+	 */
 	public void mouseMoved(MouseEvent e) {
 		Vector2 mouse = new Vector2(e.getX(), e.getY());
 		

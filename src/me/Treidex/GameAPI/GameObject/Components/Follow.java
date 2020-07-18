@@ -21,6 +21,9 @@ public class Follow extends Component {
 	 */
 	protected float lerp;
 	
+	/**
+	 * The Offset of the Focus
+	 */
 	protected Vector2 offset;
 	
 	/**

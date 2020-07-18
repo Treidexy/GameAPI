@@ -18,8 +18,9 @@ public final class GameObject extends GOMethods {
 	/**
 	 * Initialize the Game Object.
 	 * 
+	 * @param name The Name of the Game Object
 	 * @param transform The Transform of the Game Object.
-	 * @param components The Components the Game Object contains.
+	 * @param components The Components of the Game Object
 	 */
 	public GameObject(String name, Transform transform, Component... components) {
 		this.name = name;
@@ -30,6 +31,14 @@ public final class GameObject extends GOMethods {
 		childrenNull = true;
 	}
 	
+	/**
+	 * Initialize the Game Object.
+	 * 
+	 * @param name The Name of the Game Object
+	 * @param transform The Transform of the Game Object.
+	 * @param components The Components of the Game Object
+	 * @param children The Children of the Game Object.
+	 */
 	public GameObject(String name, Transform transform, Component[] components, GameObject[] children) {
 		this.name = name;
 		this.transform = transform;
@@ -42,6 +51,15 @@ public final class GameObject extends GOMethods {
 		}
 	}
 	
+	/**
+	* Initialize the Game Object.
+	 * 
+	 * @param name The Name of the Game Object
+	 * @param isActive Is the Game Object Active?
+	 * @param transform The Transform of the Game Object.
+	 * @param components The Components of the Game Object
+	 * @param children The Children of the Game Object.
+	 */
 	public GameObject(String name, boolean isActive, Transform transform, Component[] components, GameObject[] children) {
 		this.name = name;
 		this.isActive = isActive;
@@ -146,6 +164,11 @@ public final class GameObject extends GOMethods {
 			}
 	}
 	
+	/**
+	 * Call Mouse Click Event to all Components.
+	 * 
+	 * @param e
+	 */
 	public void mouseClicked(MouseEvent e) {
 		for (Component component : components) {
 			component.mouseClicked(e);

@@ -20,8 +20,6 @@ import me.Treidex.GameAPI.Util.Math.Mathf;
  */
 public abstract class Component {
 	
-	public String name;
-	
 	/**
 	 * Store the Parent Game Object in which
 	 * the Component is used inside.
@@ -64,14 +62,39 @@ public abstract class Component {
 	 */
 	public void lateUpdate() {}
 	
+	/**
+	 * Structure for Mouse Clicked Event
+	 * 
+	 * @param e Mouse Event
+	 */
 	public void mouseClicked(MouseEvent e) {}
 
+	/**
+	 * Structure for Mouse Press Event
+	 * 
+	 * @param e Mouse Event
+	 */
 	public void mousePressed(MouseEvent e) {}
 
+	/**
+	 * Structure for Mouse Release Event
+	 * 
+	 * @param e Mouse Event
+	 */
 	public void mouseReleased(MouseEvent e) {}
-	
+
+	/**
+	 * Structure for Mouse Drag Event
+	 * 
+	 * @param e Mouse Event
+	 */
 	public void mouseDragged(MouseEvent e) {}
 
+	/**
+	 * Structure for Mouse Move Event
+	 * 
+	 * @param e Mouse Event
+	 */
 	public void mouseMoved(MouseEvent e) {}
 	
 	/**
@@ -88,8 +111,16 @@ public abstract class Component {
 	 */
 	public void keyReleased(KeyEvent e) {}
 	
+	/**
+	 * Function for Executing code when Component is Destroyed.
+	 */
 	public void onDestroy() {}
 	
+	/**
+	 * Getter for the Parent Game Object.
+	 * 
+	 * @return The Parent GameObject.
+	 */
 	public final GameObject getParent() {
 		return parent;
 	}

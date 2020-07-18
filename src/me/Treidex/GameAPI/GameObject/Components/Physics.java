@@ -30,6 +30,9 @@ public class Physics extends Component {
 	 */
 	public Vector2 gravity;
 	
+	/**
+	 * The Exact Position of the Physics Component.
+	 */
 	public Vector2 newPos;
 	
 	/**
@@ -76,7 +79,7 @@ public class Physics extends Component {
 	}
 	
 	/**
-	 * Initialize the Collider.
+	 * Initialize the Physics Component.
 	 */
 	public void init() {
 		switch(colliderType) {

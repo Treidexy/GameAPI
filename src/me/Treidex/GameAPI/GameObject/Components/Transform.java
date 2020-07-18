@@ -19,10 +19,13 @@ public class Transform extends Component {
 	 */
 	public static Transform empty = new Transform(Vector2.zero, Vector2.zero, 0);
 	
+	/**
+	 * Store Transform Center.
+	 */
 	private Vector2 center = Vector2.zero;
 	
 	/**
-	 * Store Transform Position.
+	 * Store Transform Position (Top-Left).
 	 */
 	private Vector2 position = Vector2.zero;
 	
@@ -37,6 +40,9 @@ public class Transform extends Component {
 	@Unfinished
 	public float rotation;
 	
+	/**
+	 * Is this position Relative to the Parent
+	 */
 	public boolean relative;
 	
 	protected JSONObject transformM;
@@ -44,7 +50,7 @@ public class Transform extends Component {
 	protected JSONObject sizeM;
 	
 	/**
-	 * Initialize the Transform.
+	 * Create the Transform.
 	 * 
 	 * @param position Transform Position.
 	 * @param size Transform Size.
@@ -59,6 +65,9 @@ public class Transform extends Component {
 		center(center);
 	}
 	
+	/**
+	 * Initialze the Transform.
+	 */
 	public void init() {
 		if (parent != null) {
 			if (parent.parent != null)
@@ -68,6 +77,11 @@ public class Transform extends Component {
 		}
 	}
 	
+	/**
+	 * Getter for the Center of the Transform.
+	 * 
+	 * @return the Center of the Transform.
+	 */
 	public Vector2 center() {
 		if (relative)
 			return Vector2.add(center, parent.parent.transform.center);
@@ -75,6 +89,11 @@ public class Transform extends Component {
 			return center;
 	}
 	
+	/**
+	 * Setter for the Center of the Transform.
+	 * 
+	 * @param center The new Center of the Transform.
+	 */
 	public void center(Vector2 center) {
 		this.center = center;
 		
@@ -82,6 +101,11 @@ public class Transform extends Component {
 		
 	}
 	
+	/**
+	 * Getter for the Position of the Transform.
+	 * 
+	 * @return the Position of the Transform.
+	 */
 	public Vector2 position() {
 		if (relative)
 			return Vector2.add(position, parent.parent.transform.position);
@@ -89,12 +113,22 @@ public class Transform extends Component {
 			return position;
 	}
 	
+	/**
+	 * Setter for the Position of the Transform.
+	 * 
+	 * @param center The new Position of the Transform.
+	 */
 	public void position(Vector2 position) {
 		this.position = position;
 		
 		center = Vector2.add(this.position, Vector2.div(size, 2));
 	}
 	
+	/**
+	 * Copy a Transform.
+	 * 
+	 * @return A Copy of the Transform.
+	 */
 	public Transform copy() {
 		return new Transform(center.copy(), size.copy(), rotation);
 	}
@@ -120,6 +154,9 @@ public class Transform extends Component {
 		return (Component) new Transform(center, size, rotation);
 	}
 	
+	/**
+	 * Return the Transform as a String.
+	 */
 	public String toString() {
 		return "[ " + center + ", " + size + " ]";
 	}
