@@ -41,14 +41,19 @@ public class GameWindow extends JFrame {
 	 */
 	private long time;
 	
+	/**
+	 * The Name of the Window.
+	 */
 	private String windowName;
 	
 	
 	/**
-	 * Constructor -
-	 * Initializes the Window
+	 * Initialize the Window.
 	 * 
-	 * @param game The Game that controls the Canvas.
+	 * @param game The Game that is Running.
+	 * @param windowName The Name of the Window.
+	 * @param width The Width of the Window.
+	 * @param height The Height of the Window.
 	 */
 	public GameWindow(Game game, String windowName, int width, int height) {
 		this.game = game;

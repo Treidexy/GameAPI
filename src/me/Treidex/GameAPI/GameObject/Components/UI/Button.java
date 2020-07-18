@@ -130,8 +130,8 @@ public class Button extends UI {
 		Vector2 mouse = new Vector2(e.getX(), e.getY());
 		
 		if (
-			Vector2.greaterThanOREqualTo(mouse, transform.position()) &&
-			Vector2.lessThanOREqualTo(mouse, Vector2.add(transform.position(), transform.size))
+			Vector2.both_greaterThanOREqualTo(mouse, transform.position()) &&
+			Vector2.both_lessThanOREqualTo(mouse, Vector2.add(transform.position(), transform.size))
 		) {
 			mouseOver = true;
 			

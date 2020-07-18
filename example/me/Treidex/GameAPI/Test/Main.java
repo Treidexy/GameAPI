@@ -58,7 +58,7 @@ public final class Main {
 	};
 	
 	public static void main(String[] args) {
-		scene = new Scene() {
+		scene = new Scene("Main Scene") {
 			public void init() {
 				player = new GameObject(
 					"Player",
@@ -110,8 +110,6 @@ public final class Main {
 						)
 					}
 				);
-				
-				name = "Scene 1";
 				
 				noTranslateObjects = new GameObject[] {};
 				staticObjects = new GameObject[] {

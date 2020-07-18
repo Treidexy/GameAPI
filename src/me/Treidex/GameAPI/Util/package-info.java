@@ -1,6 +1,4 @@
 /**
- * Main Package for Custom Math.
- * Including Vector2 (At Least a simple version of it),
- * and Mathf (Addition to Math).
+ * Package for Utilities to help with the Engine!
  */
 package me.Treidex.GameAPI.Util;

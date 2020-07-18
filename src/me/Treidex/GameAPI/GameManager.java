@@ -35,10 +35,20 @@ public final class GameManager {
 		setScene(scene);
 	}
 	
+	/**
+	 * Set the Scene.
+	 * 
+	 * @param newScene The new Scene.
+	 */
 	public void setScene(Scene newScene) {
 		scene = newScene;
 	}
 	
+	/**
+	 * Change the Scene.
+	 * 
+	 * @param newScene The new Scene.
+	 */
 	public void changeScene(Scene newScene) {
 		scene.destroyAll();
 		setScene(newScene);

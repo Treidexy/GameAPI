@@ -42,6 +42,13 @@ public final class Mathf {
 		return begin + lerp * (end - begin);
 	}
 	
+	/**
+	 * Convert an Array to a String Array.
+	 * 
+	 * @param array The Array you want to Convert.
+	 * 
+	 * @return The String Array.
+	 */
 	public static String[] arrayToString(final Object[] array) {
 		for (int i = 0; i < array.length; i++) {
 			array[i] = array[i].toString();
@@ -50,6 +57,15 @@ public final class Mathf {
 		return (String[]) array;
 	}
 	
+	/**
+	 * Method to Cast an Array to a different Type.
+	 * 
+	 * @param <In> The Array Type you want to change.
+	 * @param <Out> The Array Type you want to Cast to.
+	 * @param in The Array.
+	 * 
+	 * @return The Casted Array.
+	 */
 	@SuppressWarnings("unchecked")
 	public static <In, Out> Out[] convertArray(final In[] in) {
 		Out[] out = (Out[]) in.clone();
@@ -57,6 +73,15 @@ public final class Mathf {
 		return out;
 	}
 	
+	/**
+	 * See if an Array has an Object.
+	 * 
+	 * @param <T> The Array Type.
+	 * @param array The Array.
+	 * @param object The Object you want to check to see if it is in the Array.
+	 * 
+	 * @return Whether the Object is in the Array or not.
+	 */
 	public static <T> boolean hasInArray(final T[] array, final T object) {
 		for (T obj: array) {
 			if (obj.equals(object))
@@ -118,6 +143,15 @@ public final class Mathf {
 		return out;
 	}
 	
+	/**
+	 * Get the Index of an Object in an Array.
+	 * 
+	 * @param <T> The Array Type.
+	 * @param object The Object you want to find.
+	 * @param array The Array.
+	 * 
+	 * @return The index of the Object in the Array.
+	 */
 	public static <T> int getIndexFromArray(final T object, final T[] array) {
 		for (int i = 0; i < array.length; i++) {
 			if (array[i] == object) {

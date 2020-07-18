@@ -49,6 +49,7 @@ public class Vector2 {
 	 * 
 	 * @param vector1 A Vector you want to Add.
 	 * @param vector2 Another Vector you want to Add.
+	 * 
 	 * @return The two Vectors Added.
 	 */
 	public static Vector2 add(final Vector2 vector1, final Vector2 vector2) {
@@ -60,6 +61,7 @@ public class Vector2 {
 	 * 
 	 * @param vector1 The Vector you want to Subtract.
 	 * @param vector2 The Vector used to Subtract.
+	 * 
 	 * @return The Subtracted Vector.
 	 */
 	public static Vector2 sub(final Vector2 vector1, final Vector2 vector2) {
@@ -71,6 +73,7 @@ public class Vector2 {
 	 * 
 	 * @param vector The Vector you want to Multiply.
 	 * @param multiplier The Amount you want to Multiply the Vector by.
+	 * 
 	 * @return The Multiplied Vector.
 	 */
 	public static Vector2 mult(final Vector2 vector, final float multiplier) {
@@ -82,33 +85,48 @@ public class Vector2 {
 	 * 
 	 * @param vector The Vector you want to Divide.
 	 * @param divider The Amount you want to Divide the Vector by.
+	 * 
 	 * @return The Divided Vector.
 	 */
 	public static Vector2 div(final Vector2 vector, final float divider) {
 		return new Vector2(vector.x / divider, vector.y / divider);
 	}
 	
+	/**
+	 * Method Used for getting the Negative Vector.
+	 * 
+	 * @param vector The Vector.
+	 * 
+	 * @return The Negative Vector.
+	 */
 	public static Vector2 neg(final Vector2 vector) {
 		return Vector2.sub(zero, vector);
 	}
 	
+	/**
+	 * Method Used for getting an Absolute Vector.
+	 * 
+	 * @param vector The Vector.
+	 * 
+	 * @return The Absolute Vector.
+	 */
 	public static Vector2 abs(final Vector2 vector) {
 		return new Vector2(Math.abs(vector.x), Math.abs(vector.y));
 	}
 	
-	public static boolean greaterThan(final Vector2 vector1, final Vector2 vector2) {
+	public static boolean both_greaterThan(final Vector2 vector1, final Vector2 vector2) {
 		return (vector1.x > vector2.x && vector1.y > vector2.y);
 	}
 	
-	public static boolean greaterThanOREqualTo(final Vector2 vector1, final Vector2 vector2) {
+	public static boolean both_greaterThanOREqualTo(final Vector2 vector1, final Vector2 vector2) {
 		return (vector1.x >= vector2.x && vector1.y >= vector2.y);
 	}
 	
-	public static boolean lessThan(final Vector2 vector1, final Vector2 vector2) {
+	public static boolean both_lessThan(final Vector2 vector1, final Vector2 vector2) {
 		return (vector1.x < vector2.x && vector1.y < vector2.y);
 	}
 	
-	public static boolean lessThanOREqualTo(final Vector2 vector1, final Vector2 vector2) {
+	public static boolean both_lessThanOREqualTo(final Vector2 vector1, final Vector2 vector2) {
 		return (vector1.x <= vector2.x && vector1.y <= vector2.y);
 	}
 	
@@ -131,22 +149,36 @@ public class Vector2 {
 		return Vector2.add(endPos, Vector2.mult(Vector2.sub(endPos, startPos), lerp));
 	}
 	
+	/**
+	 * Method Used for Nomalizing a Vector.
+	 * 
+	 * @param vector The Vector.
+	 * 
+	 * @return The Normalized Vector.
+	 */
 	public static Vector2 normalized(final Vector2 vector) {
 		float magnitude = vector.magnitude();
 		
 		return new Vector2(vector.x / magnitude, vector.y / magnitude);
 	}
 	
+	/**
+	 * Method for Creating a Vector from an Angle
+	 * 
+	 * @param ang The angle (In Radians).
+	 * 
+	 * @return The Directional Vector.
+	 */
 	public static Vector2 fromAngle(final float ang) {
 		return new Vector2((float) Math.sin(ang), (float) Math.cos(ang));
 	}
 	
 	/**
-	 * Method for Adding two Vectors.
+	 * Method for Adding to a Vector.
 	 * 
-	 * @param vector1 A Vector you want to Add.
-	 * @param vector2 Another Vector you want to Add.
-	 * @return The two Vectors Added.
+	 * @param vector The other Vector you want to Add.
+	 * 
+	 * @return The Added Vector.
 	 */
 	public Vector2 add(final Vector2 vector) {
 		x += vector.x;
@@ -156,10 +188,10 @@ public class Vector2 {
 	}
 	
 	/**
-	 * Method for Subtracting two Vectors.
+	 * Method for Subtracting from a Vector.
 	 * 
-	 * @param vector1 The Vector you want to Subtract.
 	 * @param vector2 The Vector used to Subtract.
+	 * 
 	 * @return The Subtracted Vector.
 	 */
 	public Vector2 sub(final Vector2 vector) {
@@ -172,8 +204,8 @@ public class Vector2 {
 	/**
 	 * Method Used for Vector Multiplication.
 	 * 
-	 * @param vector The Vector you want to Multiply.
 	 * @param multiplier The Amount you want to Multiply the Vector by.
+	 * 
 	 * @return The Multiplied Vector.
 	 */
 	public Vector2 mult(final float multiplier) {
@@ -186,8 +218,8 @@ public class Vector2 {
 	/**
 	 * Method Used for Vector Division.
 	 * 
-	 * @param vector The Vector you want to Divide.
 	 * @param divider The Amount you want to Divide the Vector by.
+	 * 
 	 * @return The Divided Vector.
 	 */
 	public Vector2 div(final float divider) {
@@ -197,6 +229,11 @@ public class Vector2 {
 		return this;
 	}
 	
+	/**
+	 * Method Used for the Negative Vector.
+	 * 
+	 * @return The Negative Vector.
+	 */
 	public Vector2 neg() {
 		x *= -1;
 		y *= -1;
@@ -204,26 +241,40 @@ public class Vector2 {
 		return this;
 	}
 	
+	/**
+	 * Method Used for the Absolute Vector.
+	 * 
+	 * @param vector The Vector.
+	 * 
+	 * @return The Absolute Vector.
+	 */
 	public Vector2 abs() {
 		return this;
 	}
 	
-	public boolean greaterThan(final Vector2 vector) {
+	public boolean both_greaterThan(final Vector2 vector) {
 		return (x > vector.x && y > vector.y);
 	}
 	
-	public boolean greaterThanOREqualTo(final Vector2 vector) {
+	public boolean both_greaterThanOREqualTo(final Vector2 vector) {
 		return (x >= vector.x && y >= vector.y);
 	}
 	
-	public boolean lessThan(final Vector2 vector) {
+	public boolean both_lessThan(final Vector2 vector) {
 		return (x < vector.x && y < vector.y);
 	}
 	
-	public boolean lessThanOREqualTo(final Vector2 vector) {
+	public boolean both_lessThanOREqualTo(final Vector2 vector) {
 		return (x <= vector.x && y <= vector.y);
 	}
 	
+	/**
+	 * See if a this equals another Vector.
+	 * 
+	 * @param vector The other Vector.
+	 * 
+	 * @return Whether the two Vectors are equal.
+	 */
 	public boolean equals(final Vector2 vector) {
 		return (x == vector.x && y == vector.y);
 	}
@@ -235,6 +286,7 @@ public class Vector2 {
 	 * @param startPos The Start Position.
 	 * @param endPos The End Position.
 	 * @param lerp The Amount you want to Lerp.
+	 * 
 	 * @return The Lerped Vector.
 	 * 
 	 * @see me.Treidex.GameAPI.Util.Math.Mathf#lerp(float, float, float) Linear Interpolation (Lerping).
@@ -296,11 +348,18 @@ public class Vector2 {
 		return mag;
 	}
 	
-	public void normalize() {
+	/**
+	 * Method Used for Nomalizing a Vector.
+	 * 
+	 * @return The Normalized Vector.
+	 */
+	public Vector2 normalize() {
 		float magnitude = magnitude();
 		
 		x /= magnitude;
 		y /= magnitude;
+		
+		return this;
 	}
 	
 	/**

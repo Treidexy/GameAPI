@@ -2,6 +2,7 @@ package me.Treidex.GameAPI.Util;
 
 import org.json.simple.JSONObject;
 
+@Deprecated
 public final class Util {
 	public static class Color {
 		@SuppressWarnings("unchecked")

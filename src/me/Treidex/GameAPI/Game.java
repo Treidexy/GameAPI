@@ -52,6 +52,9 @@ public class Game extends JPanel {
 	 */
 	public boolean end;
 	
+	/**
+	 * Instance of the Mouse Input.
+	 */
 	private MouseInput mouseInput;
 	
 	/**
@@ -59,6 +62,9 @@ public class Game extends JPanel {
 	 */
 	private KeyInput keyInput;
 	
+	/**
+	 * Screen Dimensions.
+	 */
 	public Dimension screen;
 	
 	/**
@@ -139,16 +145,32 @@ public class Game extends JPanel {
 		gameManager.scene.lateUpdate();
 	}
 	
+	/**
+	 * 
+	 * All Mouse Input Related stuff.
+	 * 
+	 * @author Treidex
+	 *
+	 */
 	private class MouseInput implements MouseListener, MouseMotionListener {
 
+		/**
+		 * Called whenever a Mouse Clicks.
+		 */
 		public void mouseClicked(MouseEvent e) {
 			gameManager.scene.mouseClicked(e);
 		}
 
+		/**
+		 * Called whenever a Mouse Presses.
+		 */
 		public void mousePressed(MouseEvent e) {
 			gameManager.scene.mousePressed(e);
 		}
 
+		/**
+		 * Called whenever a Mouse Releases.
+		 */
 		public void mouseReleased(MouseEvent e) {
 			gameManager.scene.mouseReleased(e);
 		}
@@ -156,10 +178,16 @@ public class Game extends JPanel {
 		@Deprecated@Unused@Override public void mouseEntered(MouseEvent e) {}
 		@Deprecated@Unused@Override public void mouseExited(MouseEvent e) {}
 
+		/**
+		 * Called whenever a Mouse Drags.
+		 */
 		public void mouseDragged(MouseEvent e) {
 			gameManager.scene.mouseDragged(e);
 		}
 
+		/**
+		 * Called Whenever a Mouse Moves.
+		 */
 		public void mouseMoved(MouseEvent e) {
 			gameManager.scene.mouseMoved(e);
 		}
@@ -191,10 +219,6 @@ public class Game extends JPanel {
 			gameManager.scene.keyReleased(e);
 		}
 
-		/**
-		 * Ignore;
-		 * only used in forms.
-		 */
-		public void keyTyped(KeyEvent e) {}
+		@Deprecated@Unused@Override public void keyTyped(KeyEvent e) {}
 	}
 }

@@ -167,7 +167,7 @@ public final class GameObject extends GOMethods {
 	/**
 	 * Call Mouse Click Event to all Components.
 	 * 
-	 * @param e
+	 * @param e Mouse Event.
 	 */
 	public void mouseClicked(MouseEvent e) {
 		for (Component component : components) {
@@ -180,6 +180,11 @@ public final class GameObject extends GOMethods {
 			}
 	}
 
+	/**
+	 * Call Mouse Press Event to all Components.
+	 * 
+	 * @param e Mouse Event.
+	 */
 	public void mousePressed(MouseEvent e) {
 		for (Component component : components) {
 			component.mousePressed(e);
@@ -191,6 +196,11 @@ public final class GameObject extends GOMethods {
 			}
 	}
 
+	/**
+	 * Call Mouse Release Event to all Components.
+	 * 
+	 * @param e Mouse Event.
+	 */
 	public void mouseReleased(MouseEvent e) {
 		for (Component component : components) {
 			component.mouseReleased(e);
@@ -202,6 +212,11 @@ public final class GameObject extends GOMethods {
 			}
 	}
 	
+	/**
+	 * Call Mouse Drag Event to all Components.
+	 * 
+	 * @param e Mouse Event.
+	 */
 	public void mouseDragged(MouseEvent e) {
 		for (Component component : components) {
 			component.mouseDragged(e);
@@ -213,6 +228,11 @@ public final class GameObject extends GOMethods {
 			}
 	}
 
+	/**
+	 * Call Mouse Move Event to all Components.
+	 * 
+	 * @param e Mouse Event.
+	 */
 	public void mouseMoved(MouseEvent e) {
 		for (Component component : components) {
 			component.mouseMoved(e);
@@ -256,6 +276,9 @@ public final class GameObject extends GOMethods {
 			}
 	}
 	
+	/**
+	 * Call On Destroy Methods for all Components.
+	 */
 	public void onDestroy() {
 		for (Component component : components) {
 			component.onDestroy();

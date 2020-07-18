@@ -5,7 +5,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 import me.Treidex.GameAPI.GameWindow;
-import me.Treidex.GameAPI.Anotations.Unfinished;
 import me.Treidex.GameAPI.GameObject.GameObject;
 import me.Treidex.GameAPI.GameObject.Prefab;
 import me.Treidex.GameAPI.Util.Math.Mathf;
@@ -18,15 +17,28 @@ import me.Treidex.GameAPI.Util.Math.Vector2;
  * @author Treidex
  *
  */
-@Unfinished
 public class Scene {
 	
+	/**
+	 * The Translationg of the Scene.
+	 * 
+	 * @see me.Treidex.GameAPI.GameObject.Components.Follow Follow.
+	 */
 	public Vector2 translate = Vector2.zero;
 	
+	/**
+	 * The Name of the Scene.
+	 */
 	public String name;
 	
+	/**
+	 * List of Game Objects not Affected by Translation.
+	 */
 	public GameObject[] noTranslateObjects = new GameObject[0];
 	
+	/**
+	 * List of Static Game Objects.
+	 */
 	public GameObject[] staticObjects = new GameObject[0];
 	
 	/**
@@ -34,10 +46,27 @@ public class Scene {
 	 */
 	public GameObject[] gameObjects = new GameObject[0];
 	
+	/**
+	 * The Game Window that the Scene is Running in.
+	 */
 	protected GameWindow window;
 	
-	public Scene() {}
+	/**
+	 * Create the Scene
+	 * 
+	 * @param name The Name of the Scene.
+	 */
+	public Scene(String name) { this.name = name; }
 	
+	/**
+	 * Create the Scene.
+	 * 
+	 * @param name The Name of the Scene.
+	 * @param noTranslateObjects List of Game Objects not Affected by Translation.
+	 * @param staticObjects List of Static Game Objects.
+	 * @param gameObjects The List of Game Objects.
+	 */
+	@Deprecated
 	public Scene(String name, GameObject[] noTranslateObjects, GameObject[] staticObjects, GameObject[] gameObjects) {
 		this.name = name;
 		this.noTranslateObjects = noTranslateObjects;
@@ -157,6 +186,10 @@ public class Scene {
 		}
 	}
 	
+	/**
+	 * Called whenever a Mouse Clicks.
+	 * @param e The Mouse Event
+	 */
 	public void mouseClicked(MouseEvent e) {
 		for (GameObject noTranslateObject : noTranslateObjects) {
 			noTranslateObject.mouseClicked(e);
@@ -169,6 +202,10 @@ public class Scene {
 		}
 	}
 
+	/**
+	 * Called whenever a Mouse Presses.
+	 * @param e The Mouse Event
+	 */
 	public void mousePressed(MouseEvent e) {
 		for (GameObject noTranslateObject : noTranslateObjects) {
 			noTranslateObject.mousePressed(e);
@@ -181,6 +218,10 @@ public class Scene {
 		}
 	}
 
+	/**
+	 * Called whenever a Mouse Releases.
+	 * @param e The Mouse Event
+	 */
 	public void mouseReleased(MouseEvent e) {
 		for (GameObject noTranslateObject : noTranslateObjects) {
 			noTranslateObject.mouseReleased(e);
@@ -194,6 +235,10 @@ public class Scene {
 		
 	}
 	
+	/**
+	 * Called whenever a Mouse Drags.
+	 * @param e The Mouse Event
+	 */
 	public void mouseDragged(MouseEvent e) {
 		for (GameObject noTranslateObject : noTranslateObjects) {
 			noTranslateObject.mouseDragged(e);
@@ -206,6 +251,10 @@ public class Scene {
 		}
 	}
 
+	/**
+	 * Called whenever a Mouse Moves.
+	 * @param e The Mouse Event
+	 */
 	public void mouseMoved(MouseEvent e) {
 		for (GameObject noTranslateObject : noTranslateObjects) {
 			noTranslateObject.mouseMoved(e);
@@ -252,6 +301,9 @@ public class Scene {
 		}
 	}
 	
+	/**
+	 * Called when the Scene gets Destroyed.
+	 */
 	public void onDestroy() {
 		for (GameObject noTranslateObject : noTranslateObjects) {
 			noTranslateObject.onDestroy();
@@ -264,6 +316,13 @@ public class Scene {
 		}
 	}
 	
+	/**
+	 * Method to Find a Game Object by its Name.
+	 * 
+	 * @param name The Name of the Game Object.
+	 * 
+	 * @return The Game Object with that Name.
+	 */
 	public final GameObject findGameObjectByName(String name) {
 		GameObject out = null;
 		for (GameObject gameObject: gameObjects) {
@@ -274,13 +333,24 @@ public class Scene {
 		return out;
 	}
 	
-	
+	/**
+	 * Spawn a GameObject
+	 * 
+	 * @param objectToSpawn The Game Object you want to Spawn.
+	 */
 	public void spawn(GameObject objectToSpawn) {
 		gameObjects = Mathf.<GameObject> addToArray(GameObject.class, gameObjects, objectToSpawn);
 		gameObjects[Mathf.<GameObject> getIndexFromArray(objectToSpawn, gameObjects)].init();
 		setParents();
 	}
 	
+	/**
+	 * Instansiate a Prefab into the Scene
+	 * 
+	 * @param prefab The Prefab to Instansiate.
+	 * 
+	 * @return The Instansiated Prefab.
+	 */
 	public GameObject instansiate(Prefab prefab) {
 		GameObject out = prefab.instansiate();
 		
@@ -289,19 +359,80 @@ public class Scene {
 		return out;
 	}
 	
+	/**
+	 * Method to Destroy all Game Objects in the Scene.
+	 */
 	public void destroyAll() {
 		for (int i = 0; i < gameObjects.length; i++) {
 			destroy(0);
 		}
+		
+		for (int i = 0; i < staticObjects.length; i++) {
+			destroyStatic(0);
+		}
+		
+		for (int i = 0; i < noTranslateObjects.length; i++) {
+			destroyNoTranslate(0);
+		}
 	}
 	
+	/**
+	 * Method to Destroy a Game Object.
+	 * 
+	 * @param objectToDestroy The Game Object you want to Destroy.
+	 */
 	public void destroy(GameObject objectToDestroy) {
 		destroy(Mathf.<GameObject> getIndexFromArray(objectToDestroy, gameObjects));
 	}
 	
+	/**
+	 * Method to Destroy a Static Game Object.
+	 * 
+	 * @param objectToDestroy The Static Game Object you want to Destroy.
+	 */
+	public void destroyStatic(GameObject objectToDestroy) {
+		destroyStatic(Mathf.<GameObject> getIndexFromArray(objectToDestroy, staticObjects));
+	}
+	
+	/**
+	 * Method to Destroy a No Translate Game Object.
+	 * 
+	 * @param objectToDestroy The No Translate Game Object you want to Destroy.
+	 */
+	public void destroyNoTranslate(GameObject objectToDestroy) {
+		destroyNoTranslate(Mathf.<GameObject> getIndexFromArray(objectToDestroy, noTranslateObjects));
+	}
+	
+	/**
+	 * Method to Destroy a Game Object using its position in the array.
+	 * 
+	 * @param index The index of the Game Object you want to Destroy.
+	 */
 	public void destroy(int index) {
 		gameObjects[index].onDestroy();
 		
 		gameObjects = Mathf.<GameObject> removeFromArray(GameObject.class, gameObjects, index);
+	}
+	
+	/**
+	 * Method to Destroy a Static Game Object using its position in the array.
+	 * 
+	 * @param index The index of the Static Game Object you want to Destroy.
+	 */
+	public void destroyStatic(int index) {
+		staticObjects[index].onDestroy();
+		
+		staticObjects = Mathf.<GameObject> removeFromArray(GameObject.class, staticObjects, index);
+	}
+	
+	/**
+	 * Method to Destroy a No Translate Game Object using its position in the array.
+	 * 
+	 * @param index The index of the No Translate Game Object you want to Destroy.
+	 */
+	public void destroyNoTranslate(int index) {
+		noTranslateObjects[index].onDestroy();
+		
+		noTranslateObjects = Mathf.<GameObject> removeFromArray(GameObject.class, noTranslateObjects, index);
 	}
 }
