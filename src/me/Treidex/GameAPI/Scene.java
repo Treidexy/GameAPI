@@ -106,19 +106,16 @@ public class Scene {
 		setScenes();
 		
 		for (GameObject noTranslateObject : noTranslateObjects) {
-			noTranslateObject.scene = this;
-			
-			noTranslateObject.init();
+			if (noTranslateObject.isActive())
+				noTranslateObject.init();
 		}
 		for (GameObject gameObject : gameObjects) {
-			gameObject.scene = this;
-			
-			gameObject.init();
+			if (gameObject.isActive())
+				gameObject.init();
 		}
 		for (GameObject staticObject : staticObjects) {
-			staticObject.scene = this;
-			
-			staticObject.init();
+			if (staticObject.isActive())
+				staticObject.init();
 		}
 	}
 	
@@ -131,15 +128,18 @@ public class Scene {
 	 */
 	public void draw(Graphics g) {
 		for (GameObject noTranslateObject : noTranslateObjects) {
-			noTranslateObject.draw(g);
+			if (noTranslateObject.isActive())
+				noTranslateObject.draw(g);
 		}
 		
 		g.translate((int) translate.x, (int) translate.y);
 		for (GameObject gameObject : gameObjects) {
-			gameObject.draw(g);
+			if (gameObject.isActive())
+				gameObject.draw(g);
 		}
 		for (GameObject staticObject : staticObjects) {
-			staticObject.draw(g);
+			if (staticObject.isActive())
+				staticObject.draw(g);
 		}
 	}
 	
@@ -150,13 +150,16 @@ public class Scene {
 	 */
 	public void update() {
 		for (GameObject noTranslateObject : noTranslateObjects) {
-			noTranslateObject.update();
+			if (noTranslateObject.isActive())
+				noTranslateObject.update();
 		}
 		for (GameObject gameObject : gameObjects) {
-			gameObject.update();
+			if (gameObject.isActive())
+				gameObject.update();
 		}
 		for (GameObject staticObject : staticObjects) {
-			staticObject.update();
+			if (staticObject.isActive())
+				staticObject.update();
 		}
 	}
 	
@@ -167,13 +170,16 @@ public class Scene {
 	 */
 	public void fixedUpdate() {
 		for (GameObject noTranslateObject : noTranslateObjects) {
-			noTranslateObject.fixedUpdate();
+			if (noTranslateObject.isActive())
+				noTranslateObject.fixedUpdate();
 		}
 		for (GameObject gameObject : gameObjects) {
-			gameObject.fixedUpdate();
+			if (gameObject.isActive())
+				gameObject.fixedUpdate();
 		}
 		for (GameObject staticObject : staticObjects) {
-			staticObject.fixedUpdate();
+			if (staticObject.isActive())
+				staticObject.fixedUpdate();
 		}
 	}
 	
@@ -183,13 +189,16 @@ public class Scene {
 	 */
 	public void lateUpdate() {
 		for (GameObject noTranslateObject : noTranslateObjects) {
-			noTranslateObject.lateUpdate();
+			if (noTranslateObject.isActive())
+				noTranslateObject.lateUpdate();
 		}
 		for (GameObject gameObject : gameObjects) {
-			gameObject.lateUpdate();
+			if (gameObject.isActive())
+				gameObject.lateUpdate();
 		}
 		for (GameObject staticObject : staticObjects) {
-			staticObject.lateUpdate();
+			if (staticObject.isActive())
+				staticObject.lateUpdate();
 		}
 	}
 	
@@ -199,13 +208,16 @@ public class Scene {
 	 */
 	public void mouseClicked(MouseEvent e) {
 		for (GameObject noTranslateObject : noTranslateObjects) {
-			noTranslateObject.mouseClicked(e);
+			if (noTranslateObject.isActive())
+				noTranslateObject.mouseClicked(e);
 		}
 		for (GameObject gameObject : gameObjects) {
-			gameObject.mouseClicked(e);
+			if (gameObject.isActive())
+				gameObject.mouseClicked(e);
 		}
 		for (GameObject staticObject : staticObjects) {
-			staticObject.mouseClicked(e);
+			if (staticObject.isActive())
+				staticObject.mouseClicked(e);
 		}
 	}
 
@@ -215,13 +227,16 @@ public class Scene {
 	 */
 	public void mousePressed(MouseEvent e) {
 		for (GameObject noTranslateObject : noTranslateObjects) {
-			noTranslateObject.mousePressed(e);
+			if (noTranslateObject.isActive())
+				noTranslateObject.mousePressed(e);
 		}
 		for (GameObject gameObject : gameObjects) {
-			gameObject.mousePressed(e);
+			if (gameObject.isActive())
+				gameObject.mousePressed(e);
 		}
 		for (GameObject staticObject : staticObjects) {
-			staticObject.mousePressed(e);
+			if (staticObject.isActive())
+				staticObject.mousePressed(e);
 		}
 	}
 
@@ -231,13 +246,16 @@ public class Scene {
 	 */
 	public void mouseReleased(MouseEvent e) {
 		for (GameObject noTranslateObject : noTranslateObjects) {
-			noTranslateObject.mouseReleased(e);
+			if (noTranslateObject.isActive())
+				noTranslateObject.mouseReleased(e);
 		}
 		for (GameObject gameObject : gameObjects) {
-			gameObject.mouseReleased(e);
+			if (gameObject.isActive())
+				gameObject.mouseReleased(e);
 		}
 		for (GameObject staticObject : staticObjects) {
-			staticObject.mouseReleased(e);
+			if (staticObject.isActive())
+				staticObject.mouseReleased(e);
 		}
 		
 	}
@@ -248,13 +266,16 @@ public class Scene {
 	 */
 	public void mouseDragged(MouseEvent e) {
 		for (GameObject noTranslateObject : noTranslateObjects) {
-			noTranslateObject.mouseDragged(e);
+			if (noTranslateObject.isActive())
+				noTranslateObject.mouseDragged(e);
 		}
 		for (GameObject gameObject : gameObjects) {
-			gameObject.mouseDragged(e);
+			if (gameObject.isActive())
+				gameObject.mouseDragged(e);
 		}
 		for (GameObject staticObject : staticObjects) {
-			staticObject.mouseDragged(e);
+			if (staticObject.isActive())
+				staticObject.mouseDragged(e);
 		}
 	}
 
@@ -264,13 +285,16 @@ public class Scene {
 	 */
 	public void mouseMoved(MouseEvent e) {
 		for (GameObject noTranslateObject : noTranslateObjects) {
-			noTranslateObject.mouseMoved(e);
+			if (noTranslateObject.isActive())
+				noTranslateObject.mouseMoved(e);
 		}
 		for (GameObject gameObject : gameObjects) {
-			gameObject.mouseMoved(e);
+			if (gameObject.isActive())
+				gameObject.mouseMoved(e);
 		}
 		for (GameObject staticObject : staticObjects) {
-			staticObject.mouseMoved(e);
+			if (staticObject.isActive())
+				staticObject.mouseMoved(e);
 		}
 	}
 	
@@ -281,13 +305,16 @@ public class Scene {
 	 */
 	public void keyPressed(KeyEvent e) {
 		for (GameObject noTranslateObject : noTranslateObjects) {
-			noTranslateObject.keyPressed(e);
+			if (noTranslateObject.isActive())
+				noTranslateObject.keyPressed(e);
 		}
 		for (GameObject gameObject : gameObjects) {
-			gameObject.keyPressed(e);
+			if (gameObject.isActive())
+				gameObject.keyPressed(e);
 		}
 		for (GameObject staticObject : staticObjects) {
-			staticObject.keyPressed(e);
+			if (staticObject.isActive())
+				staticObject.keyPressed(e);
 		}
 	}
 	
@@ -298,13 +325,16 @@ public class Scene {
 	 */
 	public void keyReleased(KeyEvent e) {
 		for (GameObject noTranslateObject : noTranslateObjects) {
-			noTranslateObject.keyReleased(e);
+			if (noTranslateObject.isActive())
+				noTranslateObject.keyReleased(e);
 		}
 		for (GameObject gameObject : gameObjects) {
-			gameObject.keyReleased(e);
+			if (gameObject.isActive())
+				gameObject.keyReleased(e);
 		}
 		for (GameObject staticObject : staticObjects) {
-			staticObject.keyReleased(e);
+			if (staticObject.isActive())
+				staticObject.keyReleased(e);
 		}
 	}
 	
