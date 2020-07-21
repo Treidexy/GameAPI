@@ -1,7 +1,5 @@
 package me.Treidex.GameAPI.Test;
 
-import static me.Treidex.GameAPI.GameObject.Components.CMethods.println;
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -24,6 +22,8 @@ import me.Treidex.GameAPI.Test.Components.Arrow;
 import me.Treidex.GameAPI.Test.Components.DebugSwitcher;
 import me.Treidex.GameAPI.Test.Components.JumpPadSpawner;
 import me.Treidex.GameAPI.Test.Components.TimedObject;
+import me.Treidex.GameAPI.Util.Constants;
+import me.Treidex.GameAPI.Util.Methods;
 import me.Treidex.GameAPI.Util.Math.Vector2;
 
 /**
@@ -31,7 +31,7 @@ import me.Treidex.GameAPI.Util.Math.Vector2;
  * @author Treidex
  *
  */
-public final class Main {
+public final class Main extends Methods implements Constants {
 	private static final int width = 1000;
 	private static final int height = 800;
 	

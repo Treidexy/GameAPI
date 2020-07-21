@@ -1,6 +1,6 @@
 package me.Treidex.GameAPI.Util;
 
-public interface Methods {
+public class Methods {
 	// Math
 	public static double rad_D(final double deg) {
 		return Math.toRadians(deg);
