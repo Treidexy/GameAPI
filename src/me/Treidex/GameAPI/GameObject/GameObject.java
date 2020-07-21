@@ -1,11 +1,13 @@
 package me.Treidex.GameAPI.GameObject;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 import me.Treidex.GameAPI.GameObject.Components.Component;
 import me.Treidex.GameAPI.GameObject.Components.Transform;
+import me.Treidex.GameAPI.Util.Math.Mathf;
 
 /**
  * Class of every Object On-Scene.
@@ -25,10 +27,10 @@ public final class GameObject extends GOMethods {
 	public GameObject(String name, Transform transform, Component... components) {
 		this.name = name;
 		this.transform = transform;
-		this.transform.setParent(this);
 		this.components = components;
 		
 		childrenNull = true;
+		this.components = Mathf.addToArray(Component.class, this.components, this.transform);
 	}
 	
 	/**
@@ -42,13 +44,14 @@ public final class GameObject extends GOMethods {
 	public GameObject(String name, Transform transform, Component[] components, GameObject[] children) {
 		this.name = name;
 		this.transform = transform;
-		this.transform.setParent(this);
 		this.components = components;
 		this.children = children;
 		
 		for (GameObject child: children) {
 			child.setParent(this);
 		}
+		
+		this.components = Mathf.addToArray(Component.class, this.components, this.transform);
 	}
 	
 	/**
@@ -64,13 +67,14 @@ public final class GameObject extends GOMethods {
 		this.name = name;
 		this.isActive = isActive;
 		this.transform = transform;
-		this.transform.setParent(this);
 		this.components = components;
 		this.children = children;
 		
 		for (GameObject child: children) {
 			child.setParent(this);
 		}
+		
+		this.components = Mathf.addToArray(Component.class, this.components, this.transform);
 	}
 	
 	/**
@@ -94,8 +98,6 @@ public final class GameObject extends GOMethods {
 	 * Initialize all Components.
 	 */
 	public void init() {
-		transform.init();
-		
 		for (Component component: components) {
 			component.init();
 		}
@@ -113,7 +115,7 @@ public final class GameObject extends GOMethods {
 	 */
 	public void draw(Graphics g) {
 		for (Component component: components) {
-			component.draw(g);
+			component.draw((Graphics2D) g);
 		}
 		
 		if (!childrenNull)

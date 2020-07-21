@@ -1,7 +1,6 @@
 package me.Treidex.GameAPI.Test.Components;
 
 import me.Treidex.GameAPI.GameObject.Components.Component;
-import me.Treidex.GameAPI.Test.Main;
 import me.Treidex.GameAPI.Util.Time;
 
 public class TimedObject extends Component {
@@ -17,6 +16,6 @@ public class TimedObject extends Component {
 		time += Time.deltaTime;
 		
 		if (time >= dTime)
-			Main.gameManager.scene.destroy(parent);
+			destroy();
 	}
 }

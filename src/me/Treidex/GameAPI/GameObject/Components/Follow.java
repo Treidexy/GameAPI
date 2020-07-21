@@ -1,6 +1,6 @@
 package me.Treidex.GameAPI.GameObject.Components;
 
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 import org.json.simple.JSONObject;
 
@@ -68,7 +68,7 @@ public class Follow extends Component {
 	 * Translate the Canvas to
 	 * the Focus Position.
 	 */
-	public void draw(Graphics g) {
+	public void draw(Graphics2D g) {
 		Vector2 translate = Vector2.neg(Vector2.sub(pos, Vector2.div(new Vector2(width, height), 2)));
 		Vector2 translateDif = Vector2.sub(translate, parent.scene.translate);
 		

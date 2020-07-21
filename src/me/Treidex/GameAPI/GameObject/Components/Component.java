@@ -1,6 +1,6 @@
 package me.Treidex.GameAPI.GameObject.Components;
 
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
@@ -21,12 +21,6 @@ import me.Treidex.GameAPI.Util.Math.Mathf;
 public abstract class Component extends CMethods implements CConstants {
 	
 	/**
-	 * Store the Parent Game Object in which
-	 * the Component is used inside.
-	 */
-	protected GameObject parent;
-	
-	/**
 	 * Store the Transform of
 	 * the Parent.
 	 */
@@ -40,12 +34,7 @@ public abstract class Component extends CMethods implements CConstants {
 	 */
 	public void init() {}
 	
-	/**
-	 * Structure for Initialization of the Component.
-	 * 
-	 * @param g The Graphics Component.
-	 */
-	public void draw(Graphics g) {}
+	public void draw(Graphics2D g) {}
 	
 	/**
 	 * Structure for Updating the Component.

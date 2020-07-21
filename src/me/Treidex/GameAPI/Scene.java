@@ -84,6 +84,18 @@ public class Scene {
 		}
 	}
 	
+	public final void setScenes() {
+		for (GameObject noTranslateObject : noTranslateObjects) {
+			noTranslateObject.setScene(this);
+		}
+		for (GameObject gameObject : gameObjects) {
+			gameObject.setScene(this);
+		}
+		for (GameObject staticObject : staticObjects) {
+			staticObject.setScene(this);
+		}
+	}
+	
 	/**
 	 * Initializes
 	 * all the Game Objects.
@@ -91,6 +103,7 @@ public class Scene {
 	 */
 	public void init() {
 		setParents();
+		setScenes();
 		
 		for (GameObject noTranslateObject : noTranslateObjects) {
 			noTranslateObject.scene = this;
@@ -336,6 +349,7 @@ public class Scene {
 		gameObjects = Mathf.<GameObject> addToArray(GameObject.class, gameObjects, objectToSpawn);
 		gameObjects[Mathf.<GameObject> getIndexFromArray(objectToSpawn, gameObjects)].init();
 		setParents();
+		setScenes();
 	}
 	
 	/**

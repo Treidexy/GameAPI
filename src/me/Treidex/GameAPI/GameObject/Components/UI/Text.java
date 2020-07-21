@@ -2,7 +2,7 @@ package me.Treidex.GameAPI.GameObject.Components.UI;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 import org.json.simple.JSONObject;
 
@@ -55,7 +55,7 @@ public class Text extends UI {
 	/**
 	 * Draw the Text Component.
 	 */
-	public void draw(Graphics g) {
+	public void draw(Graphics2D g) {
 		g.setColor(col);
 		g.setFont(font);
 		
@@ -70,7 +70,7 @@ public class Text extends UI {
 	 * @param x The X of the Text.
 	 * @param y The Y of the Text.
 	 */
-	private void drawString(Graphics g, String text, int x, int y) {
+	private void drawString(Graphics2D g, String text, int x, int y) {
 		if (text.contains("\n"))
 	        for (String line : text.split("\n"))
 	            g.drawString(line, x, y += g.getFontMetrics().getHeight());

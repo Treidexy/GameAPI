@@ -1,6 +1,9 @@
 package me.Treidex.GameAPI.Test;
 
+import static me.Treidex.GameAPI.GameObject.Components.CMethods.*;
+
 import java.awt.Color;
+
 import java.awt.Font;
 import java.awt.Graphics;
 
@@ -49,9 +52,9 @@ public final class Main {
 					new Vector2(50, 10),
 					0
 				),
-				new SpriteRenderer(
-					"gui/KIU.png"
-				),
+//				new SpriteRenderer(
+//					"gui/KIU.png"
+//				),
 				new RectangleCollider(
 					false,
 					2
@@ -64,6 +67,8 @@ public final class Main {
 	};
 	
 	public static void main(String[] args) {
+//		Debug.statements.add("debug");
+		
 		scene = new Scene("Main Scene") {
 			public void init() {
 				player = new GameObject(
@@ -71,7 +76,7 @@ public final class Main {
 					new Transform(
 						new Vector2(0, 0),
 						new Vector2(50, 100),
-						-10
+						10
 					),
 					new Component[] {
 						new Follow(
@@ -89,7 +94,7 @@ public final class Main {
 						),
 						new Physics(
 							ColliderType.Rectangle,
-							new Vector2(0, 520),
+							new Vector2(0, 540),
 							0f,
 							0f
 						),
@@ -219,7 +224,7 @@ public final class Main {
 			public void fixedUpdate() {
 				if (player.transform.position().y >= 1000) {
 					gameManager.changeScene(scene);
-					System.out.println(player.transform.position().y);
+					println(player.transform.position());
 				}
 				
 				super.fixedUpdate();

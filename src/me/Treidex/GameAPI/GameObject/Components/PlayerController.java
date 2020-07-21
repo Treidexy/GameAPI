@@ -1,7 +1,7 @@
 package me.Treidex.GameAPI.GameObject.Components;
 
 import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.util.HashMap;
 
@@ -78,16 +78,11 @@ public class PlayerController extends Component {
 	/**
 	 * Draw the Default Player Texture if {@link PlayerController#renderDefault Render Default} is True.
 	 */
-	public void draw(Graphics g) {
+	public void draw(Graphics2D g) {
 		if (renderDefault) {
 			g.setColor(new Color(14, 69, 14));
 			g.fillRect((int) transform.position().x, (int) transform.position().y, (int) transform.size.x, (int) transform.size.y);
 		}
-		
-		g.setColor(new Color(255, 69, 14));
-		g.drawLine((int) transform.center().x, (int) transform.center().y, (int) (transform.center().x + transform.up().x*25), (int) (transform.center().y + transform.up().y*25));
-		g.setColor(new Color(14, 255, 14));
-		g.drawLine((int) transform.center().x, (int) transform.center().y, (int) (transform.center().x + transform.left().x*25), (int) (transform.center().y + transform.left().y*25));
 	}
 	
 	/**

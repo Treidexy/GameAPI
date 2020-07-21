@@ -1,11 +1,12 @@
 package me.Treidex.GameAPI.GameObject.Components.Colliders;
 
 import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.util.ArrayList;
 
 import org.json.simple.JSONObject;
 
+import me.Treidex.GameAPI.Debug;
 import me.Treidex.GameAPI.GameObject.Components.Component;
 import me.Treidex.GameAPI.Util.Math.Mathf;
 import me.Treidex.GameAPI.Util.Math.Vector2;
@@ -37,16 +38,18 @@ public class RectangleCollider extends Collider {
 	/**
 	 * Draw The Wireframe of the Collider.
 	 */
-	public void draw(Graphics g) {
-		g.setColor(new Color(50, 255, 14));
-		g.drawRect((int) transform.position().x, (int) transform.position().y, (int) transform.size.x, (int) transform.size.y);
-		
-		g.setColor(new Color(255, 88, 14));
-		g.drawRect((int) (transform.position().x + margin), (int) (transform.position().y + margin), (int) (transform.size.x - margin*2), (int) (transform.size.y - margin*2));
+	public void draw(Graphics2D g) {
+		if (Debug.statements.contains("debug")) {
+			g.setColor(new Color(50, 255, 14));
+			g.drawRect((int) transform.position().x, (int) transform.position().y, (int) transform.size.x, (int) transform.size.y);
+			
+			g.setColor(new Color(255, 88, 14));
+			g.drawRect((int) (transform.position().x + margin), (int) (transform.position().y + margin), (int) (transform.size.x - margin*2), (int) (transform.size.y - margin*2));
+		}
 	}
 	
 	public void onDestroy() {
-		destroy(Mathf.<Collider> getIndexFromArray(this, colliders));
+		destroyCollider(Mathf.<Collider> getIndexFromArray(this, colliders));
 	}
 	
 	/**

@@ -1,7 +1,7 @@
 package me.Treidex.GameAPI.GameObject.Components.UI;
 
 import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 
 import org.json.simple.JSONArray;
@@ -84,7 +84,7 @@ public class Button extends UI {
 	/**
 	 * Draw the Button.
 	 */
-	public void draw(Graphics g) {
+	public void draw(Graphics2D g) {
 		g.setColor(normalCol);
 		
 		if (mouseOver)

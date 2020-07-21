@@ -81,8 +81,12 @@ public class GOMethods {
 	 * 
 	 * @see me.Treidex.GameAPI.GameObject.GOMethods#parent Parent.
 	 */
-	public void setParent(GameObject parent) {
+	public final void setParent(GameObject parent) {
 		this.parent = parent;
+	}
+	
+	public final void setScene(Scene scene) {
+		this.scene = scene;
 	}
 	
 	/**
@@ -112,7 +116,7 @@ public class GOMethods {
 	@SuppressWarnings("unchecked")
 	public final <T extends Component> T getComponent(Class<T> componentClass){
 	    for (Component c: this.components){
-	        if(c.getClass() == componentClass) {
+	        if(componentClass.isInstance(c)) {
 	            return (T) c;
 	        }
 	    }

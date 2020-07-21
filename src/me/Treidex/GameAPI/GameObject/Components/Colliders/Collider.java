@@ -99,7 +99,7 @@ public abstract class Collider extends Component {
 	 * 
 	 * @see me.Treidex.GameAPI.GameObject.Components.Colliders.Collider#colliders Colliders Array.
 	 */
-	public void destroy(int index) {
+	public void destroyCollider(int index) {
 		colliders = Mathf.<Collider> removeFromArray(Collider.class, colliders, index);
 	}
 	

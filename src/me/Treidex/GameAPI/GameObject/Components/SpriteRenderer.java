@@ -1,6 +1,5 @@
 package me.Treidex.GameAPI.GameObject.Components;
 
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -47,6 +46,9 @@ public class SpriteRenderer extends Component {
 		try {
 			spriteRaw = Toolkit.getDefaultToolkit().getImage(getClass().getResource(filepath));
 			sprite = spriteRaw;
+			
+			if (spriteRaw == null)
+				throw new NullPointerException("Could not render image: '" + filepath + "'!");
 		} catch (NullPointerException e) {
 			throw new NullPointerException("Could not render image: '" + filepath + "'!");
 		}
@@ -59,14 +61,12 @@ public class SpriteRenderer extends Component {
 	/**
 	 * Draw the Sprite.
 	 */
-	public void draw(Graphics g) {
-		Graphics2D g2d = (Graphics2D) g;
-		
+	public void draw(Graphics2D g) {
 		AffineTransform at = new AffineTransform();
 		
 		at.translate(transform.position().x, transform.position().y);
 		at.rotate(transform.rotation());
-		g2d.drawImage(sprite, at, null);
+		g.drawImage(sprite, at, null);
 	}
 
 	@SuppressWarnings("unchecked")
