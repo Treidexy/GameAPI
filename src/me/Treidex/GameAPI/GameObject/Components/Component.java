@@ -18,7 +18,7 @@ import me.Treidex.GameAPI.Util.Math.Mathf;
  * @author Treidex
  *
  */
-public abstract class Component {
+public abstract class Component extends CMethods implements CConstants {
 	
 	/**
 	 * Store the Parent Game Object in which
@@ -115,6 +115,9 @@ public abstract class Component {
 	 * Function for Executing code when Component is Destroyed.
 	 */
 	public void onDestroy() {}
+	
+	protected final boolean hasComponent(Class<? extends Component> componentClass) { return parent.hasComponent(componentClass); }
+	protected final <T extends Component> T getComponent(Class<T> componentClass) { return parent.<T> getComponent(componentClass); }
 	
 	/**
 	 * Getter for the Parent Game Object.

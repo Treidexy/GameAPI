@@ -84,10 +84,10 @@ public class Physics extends Component {
 	public void init() {
 		switch(colliderType) {
 			case Rectangle:
-				collider = parent.<RectangleCollider> getComponent(RectangleCollider.class);
+				collider = getComponent(RectangleCollider.class);
 				break;
 			case Ellipse:
-				collider = parent.<EllipseCollider> getComponent(EllipseCollider.class);
+				collider = getComponent(EllipseCollider.class);
 				break;
 		}
 		

@@ -18,6 +18,8 @@ public final class GameManager {
 	 */
 	public Scene scene;
 	
+	public GameWindow window;
+	
 	/**
 	 * The Canvas the Game is ran on.
 	 */
@@ -52,6 +54,10 @@ public final class GameManager {
 		setScene(newScene);
 		
 		scene.init();
+	}
+	
+	public void start() {
+		setScene(scene);
 	}
 	
 	/**

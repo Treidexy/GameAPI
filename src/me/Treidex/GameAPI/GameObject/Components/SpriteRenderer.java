@@ -1,12 +1,12 @@
 package me.Treidex.GameAPI.GameObject.Components;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.geom.AffineTransform;
 
 import org.json.simple.JSONObject;
-
-import me.Treidex.GameAPI.GameObject.GameObject;
 
 /**
  * Component Used to Render Custom Sprites.
@@ -52,13 +52,7 @@ public class SpriteRenderer extends Component {
 		}
 	}
 	
-	/**
-	 * Override The setParent Function.
-	 * Also scale Image.
-	 */
-	public void setParent(GameObject parent) {
-		super.setParent(parent);
-		
+	public void init() {
 		sprite = spriteRaw.getScaledInstance((int) transform.size.x, (int) transform.size.y, Image.SCALE_DEFAULT);
 	}
 	
@@ -66,7 +60,13 @@ public class SpriteRenderer extends Component {
 	 * Draw the Sprite.
 	 */
 	public void draw(Graphics g) {
-		g.drawImage(sprite, (int) transform.position().x, (int) transform.position().y, null);
+		Graphics2D g2d = (Graphics2D) g;
+		
+		AffineTransform at = new AffineTransform();
+		
+		at.translate(transform.position().x, transform.position().y);
+		at.rotate(transform.rotation());
+		g2d.drawImage(sprite, at, null);
 	}
 
 	@SuppressWarnings("unchecked")

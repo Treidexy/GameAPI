@@ -93,7 +93,7 @@ public class GOMethods {
 	 * 
 	 * @return If the Game Object has a Component.
 	 */
-	public final <T extends Component> boolean hasComponent(Class<T> componentClass){
+	public final boolean hasComponent(Class<? extends Component> componentClass){
 	    for (Component c: this.components){
 	        if(c.getClass() == componentClass) {
 	            return true;

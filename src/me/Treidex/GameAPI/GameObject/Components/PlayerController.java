@@ -72,7 +72,7 @@ public class PlayerController extends Component {
 		inputs.put("down", false);
 		inputs.put("space", false);
 		
-		physics = parent.<Physics> getComponent(Physics.class);
+		physics = getComponent(Physics.class);
 	}
 	
 	/**
@@ -83,6 +83,11 @@ public class PlayerController extends Component {
 			g.setColor(new Color(14, 69, 14));
 			g.fillRect((int) transform.position().x, (int) transform.position().y, (int) transform.size.x, (int) transform.size.y);
 		}
+		
+		g.setColor(new Color(255, 69, 14));
+		g.drawLine((int) transform.center().x, (int) transform.center().y, (int) (transform.center().x + transform.up().x*25), (int) (transform.center().y + transform.up().y*25));
+		g.setColor(new Color(14, 255, 14));
+		g.drawLine((int) transform.center().x, (int) transform.center().y, (int) (transform.center().x + transform.left().x*25), (int) (transform.center().y + transform.left().y*25));
 	}
 	
 	/**
@@ -91,16 +96,16 @@ public class PlayerController extends Component {
 	public void fixedUpdate() {
 		if (inputs.get("up")) {
 			if (physics.onGround)
-				physics.addForce(new Vector2(0, -jumpHeight));
+				physics.addForce(Vector2.mult(transform.up(), jumpHeight));
 		}
 		if (inputs.get("left")) {
-			move(new Vector2(-1, 0));
+			move(transform.left());
 		}
 		if (inputs.get("right")) {
-			move(new Vector2(1, 0));
+			move(Vector2.mult(transform.left(), -1));
 		}
 		if (inputs.get("down")) {
-			move(new Vector2(0, 1));
+			move(Vector2.mult(transform.up(), -1));
 		}
 	}
 	

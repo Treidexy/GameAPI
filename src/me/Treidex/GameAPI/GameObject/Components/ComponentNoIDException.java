@@ -1,5 +1,6 @@
 package me.Treidex.GameAPI.GameObject.Components;
 
+@Deprecated
 public class ComponentNoIDException extends Exception {
 
 	/**

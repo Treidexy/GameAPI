@@ -2,7 +2,6 @@ package me.Treidex.GameAPI.GameObject.Components;
 
 import org.json.simple.JSONObject;
 
-import me.Treidex.GameAPI.Anotations.Unfinished;
 import me.Treidex.GameAPI.Util.Math.Vector2;
 
 /**
@@ -12,7 +11,7 @@ import me.Treidex.GameAPI.Util.Math.Vector2;
  * @author Treidex
  *
  */
-public class Transform extends Component {
+public final class Transform extends Component {
 	
 	/**
 	 * Empty Preset.
@@ -37,8 +36,10 @@ public class Transform extends Component {
 	/**
 	 * Store Transform Rotation.
 	 */
-	@Unfinished
-	public float rotation;
+	private float rotation;
+	
+	private Vector2 up;
+	private Vector2 left;
 	
 	/**
 	 * Is this position Relative to the Parent
@@ -60,7 +61,7 @@ public class Transform extends Component {
 		initID("Transform");
 		
 		this.size = size;
-		this.rotation = rotation;
+		rotation(rad(rotation));
 		
 		center(center);
 	}
@@ -122,6 +123,29 @@ public class Transform extends Component {
 		this.position = position;
 		
 		center = Vector2.add(this.position, Vector2.div(size, 2));
+	}
+	
+	public float rotation() {
+		return rotation;
+	}
+	
+	public void rotation(float newRot) {
+		this.rotation = newRot;
+		
+		up = Vector2.fromAngle(-rotation + PI);
+		left = Vector2.fromAngle(-rotation - HALF_PI);
+	}
+	
+	public void rotate(float rad) {
+		rotation(rotation + rad);
+	}
+	
+	public Vector2 up() {
+		return up;
+	}
+	
+	public Vector2 left() {
+		return left;
 	}
 	
 	/**

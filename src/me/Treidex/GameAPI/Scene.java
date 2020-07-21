@@ -46,11 +46,6 @@ public class Scene {
 	public GameObject[] gameObjects = new GameObject[0];
 	
 	/**
-	 * The Game Window that the Scene is Running in.
-	 */
-	protected GameWindow window;
-	
-	/**
 	 * Create the Scene
 	 * 
 	 * @param name The Name of the Scene.

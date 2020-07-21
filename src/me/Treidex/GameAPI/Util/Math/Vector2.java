@@ -359,6 +359,10 @@ public class Vector2 {
 		return this;
 	}
 	
+	public Vector2 normalized() {
+		return normalized(this);
+	}
+	
 	/**
 	 * Change The Magnitude of the Vector.
 	 * 
@@ -370,6 +374,12 @@ public class Vector2 {
 		x *= newMagnitude;
 		y *= newMagnitude;
 	}
+	
+	public float heading() {
+		Vector2 norm = normalized();
+		
+		return (float) Math.atan2(norm.x, norm.y);
+	}
 
 	/**
 	 * Method to Copy a Vector.
@@ -378,6 +388,15 @@ public class Vector2 {
 	 */
 	public Vector2 copy() {
 		return new Vector2(x, y);
+	}
+	
+	public Vector2 copy(Vector2 other) {
+		Vector2 in = other.copy();
+		
+		x = in.x;
+		y = in.y;
+		
+		return this;
 	}
 	
 	@SuppressWarnings("unchecked")

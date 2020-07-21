@@ -18,6 +18,7 @@ import me.Treidex.GameAPI.GameObject.Components.Transform;
 import me.Treidex.GameAPI.GameObject.Components.Colliders.ColliderType;
 import me.Treidex.GameAPI.GameObject.Components.Colliders.RectangleCollider;
 import me.Treidex.GameAPI.GameObject.Components.UI.Text;
+import me.Treidex.GameAPI.Test.Components.Arrow;
 import me.Treidex.GameAPI.Test.Components.JumpPadSpawner;
 import me.Treidex.GameAPI.Test.Components.TimedObject;
 import me.Treidex.GameAPI.Util.Math.Vector2;
@@ -45,7 +46,7 @@ public final class Main {
 				"JUMPAD_",
 				new Transform(
 					Vector2.zero,
-					new Vector2(50, 50),
+					new Vector2(50, 10),
 					0
 				),
 				new SpriteRenderer(
@@ -70,7 +71,7 @@ public final class Main {
 					new Transform(
 						new Vector2(0, 0),
 						new Vector2(50, 100),
-						0
+						-10
 					),
 					new Component[] {
 						new Follow(
@@ -180,7 +181,29 @@ public final class Main {
 					)
 				};
 				gameObjects = new GameObject[] {
-					player
+					player,
+					new GameObject(
+							"Arrow",
+							new Transform(
+								Vector2.zero,
+								new Vector2(50, 50),
+								45
+							),
+							new SpriteRenderer(
+								"sprites/Ball.png"
+							),
+							new RectangleCollider(
+								false,
+								2
+							),
+							new Physics(
+								ColliderType.Rectangle,
+								Vector2.zero,
+								0.69f,
+								0f
+							),
+							new Arrow()
+						)
 				};
 				
 				super.init();
