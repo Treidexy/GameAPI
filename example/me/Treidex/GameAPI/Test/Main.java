@@ -1,9 +1,8 @@
 package me.Treidex.GameAPI.Test;
 
-import static me.Treidex.GameAPI.GameObject.Components.CMethods.*;
+import static me.Treidex.GameAPI.GameObject.Components.CMethods.println;
 
 import java.awt.Color;
-
 import java.awt.Font;
 import java.awt.Graphics;
 
@@ -22,6 +21,7 @@ import me.Treidex.GameAPI.GameObject.Components.Colliders.ColliderType;
 import me.Treidex.GameAPI.GameObject.Components.Colliders.RectangleCollider;
 import me.Treidex.GameAPI.GameObject.Components.UI.Text;
 import me.Treidex.GameAPI.Test.Components.Arrow;
+import me.Treidex.GameAPI.Test.Components.DebugSwitcher;
 import me.Treidex.GameAPI.Test.Components.JumpPadSpawner;
 import me.Treidex.GameAPI.Test.Components.TimedObject;
 import me.Treidex.GameAPI.Util.Math.Vector2;
@@ -52,9 +52,6 @@ public final class Main {
 					new Vector2(50, 10),
 					0
 				),
-//				new SpriteRenderer(
-//					"gui/KIU.png"
-//				),
 				new RectangleCollider(
 					false,
 					2
@@ -67,8 +64,6 @@ public final class Main {
 	};
 	
 	public static void main(String[] args) {
-//		Debug.statements.add("debug");
-		
 		scene = new Scene("Main Scene") {
 			public void init() {
 				player = new GameObject(
@@ -124,6 +119,12 @@ public final class Main {
 				
 				noTranslateObjects = new GameObject[] {};
 				staticObjects = new GameObject[] {
+					new GameObject(
+						"Game Manager",
+						Transform.empty,
+						new DebugSwitcher()
+					),
+
 					new GameObject(
 						"Ground 1",
 						new Transform(
