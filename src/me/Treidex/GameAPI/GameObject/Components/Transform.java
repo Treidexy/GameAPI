@@ -18,6 +18,11 @@ import me.Treidex.GameAPI.Util.Math.Vector2;
 public final class Transform extends Component {
 	
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6682642857596465277L;
+
+	/**
 	 * Empty Preset.
 	 */
 	public static Transform empty = new Transform(Vector2.zero, Vector2.zero, 0);

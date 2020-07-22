@@ -3,6 +3,10 @@ package me.Treidex.GameAPI.Test;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 import me.Treidex.GameAPI.GameManager;
 import me.Treidex.GameAPI.Program;
@@ -65,6 +69,11 @@ public final class Main extends Methods implements Constants {
 	
 	public static void main(String[] args) {
 		scene = new Scene("Main Scene") {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = -6820733175517078821L;
+
 			public void init() {
 				player = new GameObject(
 					"Player",
@@ -226,14 +235,40 @@ public final class Main extends Methods implements Constants {
 				if (player.transform.position().y >= 1000) {
 					gameManager.changeScene(scene);
 					println(player.transform.position());
+					
+					try {
+						FileOutputStream fos = new FileOutputStream(name + ".jscn");
+						ObjectOutputStream oos = new ObjectOutputStream(fos);
+						
+						oos.writeObject(this);
+						
+						oos.flush();
+						oos.close();
+						fos.close();
+					} catch (Exception e) {
+						printlnErr(e.toString());
+					}
 				}
 				
 				super.fixedUpdate();
 			}
 		};
 		
-		gameManager = new GameManager(scene);
-		program = new Program(gameManager, "Testing the Game Engine - Treidex", 420, 60, width, height);
-		program.start();
+		
+		try {
+			FileInputStream fis = new FileInputStream("Main Scene.jscn");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			
+			Scene jscn_MainScene = (Scene) ois.readObject();
+			
+			ois.close();
+			fis.close();
+			
+			gameManager = new GameManager(jscn_MainScene);
+			program = new Program(gameManager, "Testing the Game Engine - Treidex", 420, 60, width, height);
+			program.start();
+		} catch (Exception e) {
+			printlnErr(e.toString());
+		}
 	}
 }

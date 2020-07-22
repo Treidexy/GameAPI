@@ -3,6 +3,7 @@ package me.Treidex.GameAPI;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.io.Serializable;
 
 import me.Treidex.GameAPI.GameObject.GameObject;
 import me.Treidex.GameAPI.GameObject.Prefab;
@@ -16,8 +17,13 @@ import me.Treidex.GameAPI.Util.Math.Vector2;
  * @author Treidex
  *
  */
-public class Scene {
+public class Scene implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * The Translationg of the Scene.
 	 * 

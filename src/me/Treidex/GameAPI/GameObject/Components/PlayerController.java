@@ -19,6 +19,11 @@ import me.Treidex.GameAPI.Util.Math.Vector2;
 public class PlayerController extends Component {
 	
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3096642076006014L;
+
+	/**
 	 * The Speed of the Player Controller.
 	 */
 	public float speed;

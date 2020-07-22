@@ -1,5 +1,7 @@
 package me.Treidex.GameAPI.Util.Math;
 
+import java.io.Serializable;
+
 import org.json.simple.JSONObject;
 
 /**
@@ -8,8 +10,13 @@ import org.json.simple.JSONObject;
  * @author Treidex
  *
  */
-public class Vector2 {
+public class Vector2 implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * A Preset Vector2
 	 * state.

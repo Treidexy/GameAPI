@@ -3,6 +3,7 @@ package me.Treidex.GameAPI.GameObject.Components;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.io.Serializable;
 
 import org.json.simple.JSONObject;
 
@@ -18,8 +19,13 @@ import me.Treidex.GameAPI.Util.Math.Mathf;
  * @author Treidex
  *
  */
-public abstract class Component extends CMethods implements CConstants {
+public abstract class Component extends CMethods implements Serializable, CConstants {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * Store the Transform of
 	 * the Parent.

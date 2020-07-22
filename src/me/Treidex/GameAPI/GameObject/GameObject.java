@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.io.Serializable;
 
 import me.Treidex.GameAPI.GameObject.Components.Component;
 import me.Treidex.GameAPI.GameObject.Components.Transform;
@@ -15,8 +16,13 @@ import me.Treidex.GameAPI.Util.Math.Mathf;
  * @author Treidex
  *
  */
-public final class GameObject extends GOMethods {
+public final class GameObject extends GOMethods implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * Initialize the Game Object.
 	 * 

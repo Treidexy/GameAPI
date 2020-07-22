@@ -16,6 +16,11 @@ import org.json.simple.JSONObject;
 public class SpriteRenderer extends Component {
 	
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8916266846766341203L;
+
+	/**
 	 * The Path to the Image File.
 	 */
 	public String filepath;
