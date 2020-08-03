@@ -1,6 +1,7 @@
 package me.Treidex.GameAPI.Util.Math;
 
 import java.lang.reflect.Array;
+import java.util.Random;
 
 /**
  * An Addition to java.lang.Math,
@@ -160,5 +161,28 @@ public final class Mathf {
 		}
 		
 		throw new NullPointerException("Cannot Find Object in Array!");
+	}
+	
+	public static float map(final float value, final float min, final float max, final float newMin, final float newMax) {
+		return newMin + (newMax - newMin) * ((value - min) / (max - min));
+	}
+	
+	public static float random(final float max) {
+		float value = 0;
+		
+		do {
+			value = new Random().nextFloat() * max;
+		} while (value == max);
+		return value;
+	}
+	
+	public static float random(final float min, final float max) {
+		float diff = max - min;
+		float value;
+		
+		do {
+	      value = random(diff) + min;
+	    } while (value == max);
+		return value;
 	}
 }

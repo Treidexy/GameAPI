@@ -17,6 +17,11 @@ import me.Treidex.GameAPI.Util.Math.Vector2;
 public class Follow extends Component {
 	
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7554685348416648809L;
+
+	/**
 	 * The Linear Interpolation of the Focus Change.
 	 */
 	protected float lerp;

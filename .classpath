@@ -5,6 +5,7 @@
 	<classpathentry kind="src" path="interface/resources"/>
 	<classpathentry excluding="resources/" kind="src" path="example"/>
 	<classpathentry kind="src" path="example/resources"/>
+	<classpathentry kind="src" path="engine"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
 		<attributes>
 			<attribute name="module" value="true"/>

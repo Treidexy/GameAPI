@@ -16,6 +16,11 @@ import me.Treidex.GameAPI.Util.Math.Vector2;
 public class Physics extends Component {
 	
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4846917289350578333L;
+
+	/**
 	 * The Collider the Physics Component uses.
 	 */
 	public Collider collider;

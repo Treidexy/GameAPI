@@ -20,6 +20,11 @@ import me.Treidex.GameAPI.Util.Math.Vector2;
  */
 public class RectangleCollider extends Collider {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3763031898701409962L;
+	
 	protected JSONObject rcMap;
 	
 	/**

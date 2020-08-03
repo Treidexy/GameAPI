@@ -24,6 +24,11 @@ import me.Treidex.GameAPI.Util.Math.Vector2;
 @Unfinished
 public class EllipseCollider extends Collider {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6377154936926758976L;
+	
 	protected JSONObject ecMap;
 	
 	/**

@@ -3,10 +3,6 @@ package me.Treidex.GameAPI.Test;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 
 import me.Treidex.GameAPI.GameManager;
 import me.Treidex.GameAPI.Program;
@@ -45,7 +41,7 @@ public final class Main extends Methods implements Constants {
 	public static GameManager gameManager;
 	private static Program program;
 	
-	private static GameObject player;
+	public static GameObject player;
 	
 	public static Prefab prefab_JumpPad = new Prefab() {
 		public GameObject instansiate() {
@@ -80,7 +76,7 @@ public final class Main extends Methods implements Constants {
 					new Transform(
 						new Vector2(0, 0),
 						new Vector2(50, 100),
-						10
+						0
 					),
 					new Component[] {
 						new Follow(
@@ -108,6 +104,8 @@ public final class Main extends Methods implements Constants {
 							false
 						),
 						new JumpPadSpawner()
+						
+//						new SerializationFun()
 					},
 					new GameObject[] {
 						new GameObject(
@@ -235,19 +233,6 @@ public final class Main extends Methods implements Constants {
 				if (player.transform.position().y >= 1000) {
 					gameManager.changeScene(scene);
 					println(player.transform.position());
-					
-					try {
-						FileOutputStream fos = new FileOutputStream(name + ".jscn");
-						ObjectOutputStream oos = new ObjectOutputStream(fos);
-						
-						oos.writeObject(this);
-						
-						oos.flush();
-						oos.close();
-						fos.close();
-					} catch (Exception e) {
-						printlnErr(e.toString());
-					}
 				}
 				
 				super.fixedUpdate();
@@ -255,20 +240,11 @@ public final class Main extends Methods implements Constants {
 		};
 		
 		
-		try {
-			FileInputStream fis = new FileInputStream("Main Scene.jscn");
-			ObjectInputStream ois = new ObjectInputStream(fis);
-			
-			Scene jscn_MainScene = (Scene) ois.readObject();
-			
-			ois.close();
-			fis.close();
-			
-			gameManager = new GameManager(jscn_MainScene);
-			program = new Program(gameManager, "Testing the Game Engine - Treidex", 420, 60, width, height);
-			program.start();
-		} catch (Exception e) {
-			printlnErr(e.toString());
-		}
+		
+//		Scene jscn_MainScene = FileManager.ReadFile("Main Scene.jscn");
+		
+		gameManager = new GameManager(scene);
+		program = new Program(gameManager, "Testing the Game Engine - Treidex", 420, 60, width, height);
+		program.start();
 	}
 }

@@ -4,11 +4,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 
-import org.json.simple.JSONObject;
-
-import me.Treidex.GameAPI.GameObject.Components.Component;
-import me.Treidex.GameAPI.Util.Util;
-
 /**
  * 
  * Text is Super Important.
@@ -18,6 +13,11 @@ import me.Treidex.GameAPI.Util.Util;
  */
 public class Text extends UI {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8057213038123495572L;
+
 	/**
 	 * The actual text.
 	 */
@@ -32,10 +32,6 @@ public class Text extends UI {
 	 * The Text Font.
 	 */
 	protected Font font;
-	
-	protected JSONObject textM;
-	protected JSONObject colM;
-	protected JSONObject fontM;
 	
 	/**
 	 * Create the Text Component.
@@ -77,25 +73,4 @@ public class Text extends UI {
 		else
 			g.drawString(text, x, y);
     }
-
-	
-	@SuppressWarnings("unchecked")
-	public JSONObject getMap() {
-		textM = new JSONObject();
-		colM = Util.Color.getMap(col);
-		fontM = Util.Font.getMap(font);
-		
-		textM.put("text", text);
-		textM.put("color", colM);
-		textM.put("font", fontM);
-		
-		return textM;
-	}
-	
-	public static Component loadMap(final JSONObject map) {
-		Color col = Util.Color.loadMap((JSONObject) map.get("color"));
-		Font font = Util.Font.loadMap((JSONObject) map.get("font"));
-		
-		return new Text((String) map.get("text"), col, font);
-	}
 }

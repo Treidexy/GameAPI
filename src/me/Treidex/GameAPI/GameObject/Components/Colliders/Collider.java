@@ -16,6 +16,11 @@ import me.Treidex.GameAPI.Util.Math.Vector2;
 public abstract class Collider extends Component {
 	
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8883887059368321670L;
+
+	/**
 	 * List of all Colliders.
 	 */
 	public static Collider[] colliders = new Collider[0];
