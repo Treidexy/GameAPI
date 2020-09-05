@@ -2,12 +2,12 @@ package com.treidex.gameapi.engine.gameobject;
 
 import com.treidex.gameapi.engine.component.Component;
 import com.treidex.gameapi.engine.graphics.Mesh;
-import com.treidex.gameapi.engine.math.Vector3f;
+import com.treidex.gameapi.engine.math.Vector3;
 
 public class GameObject
 {
 	private String   name;
-	private Vector3f position, rotation, scale;
+	private Vector3 position, rotation, scale;
 	private Mesh     mesh;
 	
 	private Component[] components;
